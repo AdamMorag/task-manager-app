@@ -4,7 +4,8 @@
   <section>
     <h2>לוחות בניהולי</h2>
     <section class="cards-container">
-      <mat-card *ngFor="let board of boardsIManage">      
+      <mat-spinner *ngIf="loadingBoardsIManage"></mat-spinner>
+      <mat-card [hidden]="loadingBoardsIManage" *ngFor="let board of boardsIManage">      
         <mat-card-title>{{board.title}}</mat-card-title>
         <mat-card-actions>
             <button mat-raised-button color="primary" [routerLink]="['/board', board.boardId]" class="primary-color-hover">נהל לוח</button>          
@@ -16,7 +17,9 @@
   <section>
     <h2>לוחות שאני שותף בהם</h2>
     <section class="cards-container">
-      <mat-card *ngFor="let board of boardsImShared">
+      <mat-spinner *ngIf="loadingBoardsImSharedWith"></mat-spinner>
+      <mat-card [hidden]="loadingBoardsImSharedWith" [@flyInOut] (@flyInOut.done)="doNext()"
+      *ngFor="let board of staggeringboardsImShared">
         <mat-card-title>{{board.title}}</mat-card-title>
         <mat-card-actions>
             <button mat-raised-button color="primary" [routerLink]="['/board', board.boardId]" class="primary-color-hover">פתח לוח</button>          

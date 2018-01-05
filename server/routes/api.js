@@ -1,5 +1,16 @@
 const express = require('express');
 const router = express.Router();
+const MongoClient = require('mongodb').MongoClient;
+const ObjectID = require('mongodb').ObjectID;
+
+// Connect
+const connection = (closure) => {
+    return MongoClient.connect('mongodb://localhost:27017/TestDataBase', (err, db) => {
+        if (err) return console.log("connection error: - " + err);
+
+        closure(db);
+    });
+};
 
 // Error handling
 const sendError = (err, res) => {
@@ -16,7 +27,20 @@ let response = {
 };
 
 router.get('/boardsUserIsShareWith', (req, res) => {
-    res.json([{
+  connection((db) => {
+    let myAwesomeDB = db.db('TestDataBase');
+    console.log("got db");
+    myAwesomeDB.collection('TestCollection')
+        .find()
+        .toArray()
+        .then((boards) => {            
+            res.json(boards);
+        })
+        .catch((err) => {
+            sendError(err, res);
+        });
+  });
+    /*res.json([{
         title: "פרוייקט גמר",
         boardId: 2
       },{
@@ -34,7 +58,7 @@ router.get('/boardsUserIsShareWith', (req, res) => {
       },{
         title: "ארגון יום הולדת לעדי",
         boardId: 3
-      }]);
+      }]);*/
 });
 
 router.get('/boardsUserIsManagerOf', (req, res) => {
