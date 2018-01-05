@@ -1,0 +1,30 @@
+<mat-toolbar color="primary">
+  <span>Task Manager</span>
+  
+  <!-- This fills the remaining space of the current row -->
+  <span class="example-fill-remaining-space"></span>
+  
+  <span>שלום, אורח</span>
+</mat-toolbar>
+<mat-sidenav-container class="nav-container">
+  <mat-sidenav opened=true mode="side" position="end" class="my-sidenav" color="accent">
+    <mat-list class="vertical-center">
+        <mat-list-item>
+          <button mat-button [routerLink]="['/my-boards']">הלוחות שלי</button>
+        </mat-list-item>
+        <mat-list-item>
+          <button mat-button [routerLink]="['/my-tasks']">המשימות שלי</button>
+        </mat-list-item>
+        <mat-list-item>
+          <button mat-button [routerLink]="['/']">הלו"ז שלי</button>
+        </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <!--Main Section-->     
+    <router-outlet *ngIf="!loading"></router-outlet>
+    <div class="center">
+      <mat-spinner *ngIf="loading"></mat-spinner>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

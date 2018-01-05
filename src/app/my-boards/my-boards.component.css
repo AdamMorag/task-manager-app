@@ -1,0 +1,22 @@
+mat-card {
+    width: 25%;        
+}
+
+section {
+    margin: 5%;    
+}
+
+section mat-card {
+    margin: 1%;
+    background-color: lightblue
+}
+
+mat-card-actions {
+    text-align: left
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    direction: rtl;
+}

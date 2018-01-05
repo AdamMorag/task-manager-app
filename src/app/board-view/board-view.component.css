@@ -1,0 +1,71 @@
+.board-view {
+    direction: rtl;
+}
+
+.board-view-content {
+    width: 90%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.top-content {
+    margin-bottom: 1%;
+}
+
+.bottom-content {
+    margin-top: 1%;
+}
+
+.group-members {    
+    font-family: Arial, Helvetica, sans-serif;
+    width: 40%;    
+    background-color: lightblue;
+    border-radius: 10%;
+}
+
+.columns-container {
+    margin-top: 5%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    align-content: center;
+}
+
+.column-header {
+    margin-top: 0;
+    margin-bottom: 5%;
+    width: 100%;
+    color: white;
+    background-color: #3f51b5;
+    vertical-align: middle;
+    height: 20%;
+}
+
+.column-header h4 {
+    margin-top: 0;
+    vertical-align: middle;
+}
+
+.column {
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    min-height: 400px;      
+    min-width: 30%;
+    background-color: lightblue;
+}
+
+.actions button{
+    width: 200px;
+    margin: 2.5%;        
+}
+
+.task-card {    
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.task-card mat-card {
+    margin-bottom: 2%;
+}

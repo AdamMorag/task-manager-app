@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+    margin: 0px;    
+}
+
+.line-separator{    
+    margin-left: 5%;
+    margin-right: 5%;
+    height:1px;       
+    background:#717171;    
+    border-bottom:1px solid #313030;    
+}
+
+.vertical-line-separator{            
+    margin: 5%;    
+    height:90%;
+    width: 1px;       
+    background:#717171;    
+    border-bottom:1px solid #313030;    
+}
+
+.primary-color-hover:hover{
+    background-color: #3f51b5cc;    
+}

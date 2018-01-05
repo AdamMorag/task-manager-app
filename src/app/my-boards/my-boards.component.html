@@ -1,0 +1,27 @@
+<div>
+  <h1>הלוחות שלי</h1>
+  <div class="line-separator"></div>
+  <section>
+    <h2>לוחות בניהולי</h2>
+    <section class="cards-container">
+      <mat-card *ngFor="let board of boardsIManage">      
+        <mat-card-title>{{board.title}}</mat-card-title>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" [routerLink]="['/board', board.boardId]" class="primary-color-hover">נהל לוח</button>          
+          </mat-card-actions>
+      </mat-card>
+    </section>
+  </section>
+  <div class="line-separator"></div>
+  <section>
+    <h2>לוחות שאני שותף בהם</h2>
+    <section class="cards-container">
+      <mat-card *ngFor="let board of boardsImShared">
+        <mat-card-title>{{board.title}}</mat-card-title>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" [routerLink]="['/board', board.boardId]" class="primary-color-hover">פתח לוח</button>          
+          </mat-card-actions>
+      </mat-card>
+    </section>
+  </section>
+</div>

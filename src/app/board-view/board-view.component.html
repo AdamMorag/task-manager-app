@@ -1,0 +1,55 @@
+<div class="board-view">
+  <section class="board-view-header">
+    <h1>דף ניהול לוח - {{board.boardName}}</h1>
+  </section>
+  <section class="board-view-content">
+    <mat-grid-list class="top-content" cols="2" rowHeight="250px">
+      <mat-grid-tile>
+        <div style="display: block">
+          <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType"></canvas>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <section class="group-members">
+          <h4>חברי הקבוצה</h4>
+          <mat-grid-list cols="3">
+            <mat-grid-tile class="group-member" *ngFor="let boardMember of board.boardMembers">
+              <label>{{boardMember}}</label>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </section>
+        <section class="actions">
+          <ul style="list-style-type: none">
+            <li>
+              <button mat-raised-button (click)="openCreateTaskDialog()" color="primary" class="primary-color-hover">הוסף משימה</button>
+            </li>
+            <li>
+              <button mat-raised-button color="primary" class="primary-color-hover">חלק משימות מחדש</button>
+            </li>
+          </ul>
+        </section>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <div class="line-separator"></div>
+    <section class="columns-container">
+      <section class="done-column column">
+        <section class="column-header" color="primary">
+          <h4>Done</h4>
+        </section>
+        <app-task class="task-card" *ngFor="let task of doneTasks()" [task]="task" showEdit="true" showDelete="true"></app-task>
+      </section>
+      <section class="active-column column">
+        <section class="column-header" color="primary">
+          <h4>Active</h4>
+        </section>
+        <app-task class="task-card" *ngFor="let task of activeTasks()" [task]="task" showProgressBar="true" showEdit="true" showDelete="true"></app-task>
+      </section>
+      <section class="waiting-column column">
+        <section class="column-header" color="primary">
+          <h4>Waiting</h4>
+        </section>
+        <app-task class="task-card" *ngFor="let task of waitingTasks()" [task]="task" showEdit="true" showDelete="true"></app-task>
+      </section>
+    </section>
+  </section>
+</div>
