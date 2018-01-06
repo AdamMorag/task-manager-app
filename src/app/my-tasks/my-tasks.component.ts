@@ -10,10 +10,14 @@ import { ITask } from "../task/task.component";
 export class MyTasksComponent implements OnInit {
 
   public myTasks: ITask[];
+  public loadingMyTasks = true;
 
-  constructor(private _tasksService: TasksService) { 
+  constructor(private _tasksService: TasksService) {
     _tasksService.getUserTasks()
-      .subscribe(userTasks => this.myTasks = userTasks);
+      .subscribe(userTasks => {
+        this.myTasks = userTasks
+        this.loadingMyTasks= false;
+      });
   }
 
   ngOnInit() {

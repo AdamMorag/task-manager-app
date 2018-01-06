@@ -5,153 +5,113 @@ const ObjectID = require('mongodb').ObjectID;
 
 // Connect
 const connection = (closure) => {
-    return MongoClient.connect('mongodb://localhost:27017/TestDataBase', (err, db) => {
-        if (err) return console.log("connection error: - " + err);
+  return MongoClient.connect('mongodb://localhost:27017/TaskManagerAppDB', (err, db) => {
+    if (err) return console.log("connection error: - " + err);
 
-        closure(db);
-    });
+    closure(db);
+  });
 };
 
 // Error handling
 const sendError = (err, res) => {
-    response.status = 501;
-    response.message = typeof err == 'object' ? err.message : err;
-    res.status(501).json(response);
+  response.status = 501;
+  response.message = typeof err == 'object' ? err.message : err;
+  res.status(501).json(response);
 };
 
 // Response handling
 let response = {
-    status: 200,
-    data: [],
-    message: null
+  status: 200,
+  data: [],
+  message: null
 };
 
 router.get('/boardsUserIsShareWith', (req, res) => {
+  // This is for testing until we have google authentication
+  let tempUserId = "1";
+
   connection((db) => {
-    let myAwesomeDB = db.db('TestDataBase');
-    console.log("got db");
-    myAwesomeDB.collection('TestCollection')
-        .find()
-        .toArray()
-        .then((boards) => {            
-            res.json(boards);
-        })
-        .catch((err) => {
-            sendError(err, res);
-        });
+    let dbInstance = db.db('TaskManagerAppDB');
+    dbInstance.collection('Boards')
+      .find({
+        $and: [{
+          "boardMembers.id": tempUserId
+        }, {
+          "boardOwner.ownerId": { $ne: tempUserId }
+        }]
+      })
+      .toArray()
+      .then((boards) => {
+        res.json(boards);
+      })
+      .catch((err) => {
+        sendError(err, res);
+      });
   });
-    /*res.json([{
-        title: "פרוייקט גמר",
-        boardId: 2
-      },{
-        title: "ארגון יום הולדת לעדי",
-        boardId: 3
-      },{
-        title: "פרוייקט גמר",
-        boardId: 2
-      },{
-        title: "ארגון יום הולדת לעדי",
-        boardId: 3
-      },{
-        title: "פרוייקט גמר",
-        boardId: 2
-      },{
-        title: "ארגון יום הולדת לעדי",
-        boardId: 3
-      }]);*/
 });
 
 router.get('/boardsUserIsManagerOf', (req, res) => {
-  res.json([{
-      title: "לוח בניהולי 1",
-      boardId: 4
-    },{
-      title: "לוח בניהולי 2",
-      boardId: 5
-    }]);
+  // This is for testing until we have google authentication
+  let tempUserId = "1";
+
+  connection((db) => {
+    let dbInstance = db.db('TaskManagerAppDB');
+    dbInstance.collection('Boards')
+      .find({
+        "boardOwner.ownerId" : tempUserId
+      })
+      .toArray()
+      .then((boards) => {
+        res.json(boards);
+      })
+      .catch((err) => {
+        sendError(err, res);
+      });
+  });
 });
 
-router.get('/userTasks', (req, res) => {  
-  res.json([{
-    title: "להזמין כרטיסים",
-    boardName: "יציאה לסרט",
-    boardId: 1,
-    owner: "אדם מורג",
-    overallTime: 6,
-    remainingTime: 4
-  }, {
-    title: "לדאוג לרכב",
-    boardName: "יציאה לסרט",
-    boardId: 1,
-    owner: "אדם מורג",
-    overallTime: 6,
-    remainingTime: 4        
-  },{
-    title: "לצאת בזמן",
-    boardName: "יציאה לסרט",
-    boardId: 1,
-    owner: "אדם מורג",
-    overallTime: 6,
-    remainingTime: 0
-  }, {
-    title: "לראות את הסרט",
-    boardName: "יציאה לסרט",
-    boardId: 1,
-    owner: "אדם מורג",
-    overallTime: 16,
-    remainingTime: 4        
-  }]);
+router.get('/userTasks', (req, res) => {
+  // This is for testing until we have google authentication
+  let tempUserId = "1";
+
+  connection((db) => {
+    let dbInstance = db.db('TaskManagerAppDB');
+    dbInstance.collection('Boards')
+      .find({
+        $and: [{
+          "boardMembers.id": tempUserId
+        }, {
+          "tasks.ownerId": tempUserId
+        }]
+      })
+      .toArray()
+      .then((boards) => {
+        let taskArrays = boards.map(board => board.tasks.find(task => task.ownerId === tempUserId));
+        res.json(taskArrays);
+      })
+      .catch((err) => {
+        sendError(err, res);
+      });
+  });
 });
 
 router.get('/board/:boardId', (req, res) => {
-  setTimeout(() => {
-    
-  
-  res.json({
-    boardName: "הלוח של אדם",
-    boardMembers: [
-      "אדם",
-      "יעל",
-      "אריאל",
-      "אופיר",
-      "נאור"
-    ],
-    tasks: [{      
-      boardId: 5,
-      boardName: "הלוח של אדם",
-      owner: "אדם",
-      title: "נוסעים לסרט",
-      status: 'waiting',
-      overallTime: 6,
-      remainingTime: 4
-    }, {
-      boardId: 5,
-      boardName: "הלוח של אדם",
-      owner: "אדם",
-      title: "חוזרים מהסרט",
-      status: 'waiting',
-      overallTime: 6,
-      remainingTime: 4
-    },{
-      boardId: 5,
-      boardName: "הלוח של אדם",
-      owner: "אדם",
-      title: "מזמינים כרטיסים",
-      status: 'done',
-      overallTime: 6,
-      remainingTime: 4
-    },
-    {
-      boardId: 5,
-      boardName: "הלוח של אדם",
-      owner: "אדם",
-      title: "מזמינים כרטיסים",
-      status: 'active',
-      overallTime: 6,
-      remainingTime: 4
-    }]  
+  const boardId = req.params.boardId;  
+
+  connection((db) => {
+    let dbInstance = db.db('TaskManagerAppDB');
+    dbInstance.collection('Boards')
+      .find({
+        "boardId": boardId
+      })
+      .toArray()
+      .then((board) => {        
+        res.json(board[0]);
+      })
+      .catch((err) => {
+        sendError(err, res);
+      });
   });
-}, 10000);
 });
 
 module.exports = router;

@@ -1,5 +1,6 @@
 <h1>המשימות שלי</h1>
 <div class="line-separator"></div>
 <div class="cards-container">  
-  <app-task *ngFor="let task of myTasks" [task]="task" showProgressBar="true" showEdit="true" showDelete="true" showOpenBoard="true"></app-task>
+  <mat-spinner *ngIf="loadingMyTasks"></mat-spinner>
+  <app-task [hidden]="loadingMyTasks" *ngFor="let task of myTasks" [task]="task" showProgressBar="true" showEdit="true" showDelete="true" showOpenBoard="true"></app-task>
 </div>

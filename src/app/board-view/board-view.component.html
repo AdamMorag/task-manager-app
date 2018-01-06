@@ -14,7 +14,7 @@
           <h4>חברי הקבוצה</h4>
           <mat-grid-list cols="3">
             <mat-grid-tile class="group-member" *ngFor="let boardMember of board.boardMembers">
-              <label>{{boardMember}}</label>
+              <label>{{boardMember.name}}</label>
             </mat-grid-tile>
           </mat-grid-list>
         </section>
