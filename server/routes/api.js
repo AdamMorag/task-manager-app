@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
+const uuidv4 = require('uuid/v4');
 
 // Connect
 const connection = (closure) => {
@@ -58,7 +59,7 @@ router.get('/boardsUserIsManagerOf', (req, res) => {
     let dbInstance = db.db('TaskManagerAppDB');
     dbInstance.collection('Boards')
       .find({
-        "boardOwner.ownerId" : tempUserId
+        "boardOwner.ownerId": tempUserId
       })
       .toArray()
       .then((boards) => {
@@ -96,7 +97,7 @@ router.get('/userTasks', (req, res) => {
 });
 
 router.get('/board/:boardId', (req, res) => {
-  const boardId = req.params.boardId;  
+  const boardId = req.params.boardId;
 
   connection((db) => {
     let dbInstance = db.db('TaskManagerAppDB');
@@ -105,7 +106,7 @@ router.get('/board/:boardId', (req, res) => {
         "boardId": boardId
       })
       .toArray()
-      .then((board) => {        
+      .then((board) => {
         res.json(board[0]);
       })
       .catch((err) => {
@@ -114,4 +115,41 @@ router.get('/board/:boardId', (req, res) => {
   });
 });
 
+router.get('/users/all', (req, res) => {
+  const boardId = req.params.boardId;
+
+  connection((db) => {
+    let dbInstance = db.db('TaskManagerAppDB');
+    dbInstance.collection('Users')
+      .find()
+      .toArray()
+      .then((users) => {
+        res.json(users);
+      })
+      .catch((err) => {
+        sendError(err, res);
+      });
+  });
+});
+
+router.post('/board/saveBoard', (req, res) => {
+  // This is for testing until we have google authentication
+  let tempUserId = "1";
+  const board = req.body;
+
+  board.boardId = uuidv4();
+
+  connection((db) => {
+    let dbInstance = db.db('TaskManagerAppDB');
+    dbInstance.collection('Boards')
+      .insertOne(board)
+      .then(() => {
+        console.log("board saved");
+        res.status(200).json({});
+      })
+      .catch((err) => {
+        sendError(err, res);
+      });
+  });
+});
 module.exports = router;

@@ -12,7 +12,7 @@ export class BoardViewResolveService implements Resolve<any> {
   constructor(private _boardsService: BoardsService, private router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot): Promise<any> | boolean {
-    const id = +route.params['boardId'];
+    const id = route.params['boardId'];
 
     return new Promise((resolve, reject) => {
       this._boardsService.getBoard(id).subscribe(board => {

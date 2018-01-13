@@ -1,0 +1,23 @@
+h1 {
+    text-align: center;
+}
+
+.create-boards-container {
+    direction: rtl;
+}
+
+.dialog-actions {
+    direction: ltr;
+}
+
+input {
+    width: 100%;
+}
+
+mat-nav-list {
+    width: 50%;    
+}
+
+.board-members {
+    display: flex;
+}
