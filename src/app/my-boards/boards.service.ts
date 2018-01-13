@@ -28,6 +28,13 @@ export class BoardsService {
   public saveBoard(board: any): Observable<any> {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http.post("/api/board/saveBoard", board, { headers: headers });      
+    return this._http.post("/api/board/saveBoard", board, { headers: headers });
+  }
+
+  public addNewTask(task: object) {
+    const headers = new Headers()
+    headers.append('Content-Type', 'application/json');
+    return this._http.post("/api/addNewTask", task, {headers}).subscribe(result => {
+    })
   }
 }

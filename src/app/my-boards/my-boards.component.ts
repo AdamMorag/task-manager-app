@@ -50,7 +50,7 @@ export class MyBoardsComponent implements OnInit {
   public doNext() {
     if (this.next < this.boardsImShared.length) {
       this.staggeringboardsImShared.push(this.boardsImShared[this.next++]);
-    }    
+    }
   }
 
   public openCreateBoardDialog() {

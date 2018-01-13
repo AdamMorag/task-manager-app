@@ -152,4 +152,22 @@ router.post('/board/saveBoard', (req, res) => {
       });
   });
 });
+
+router.post('/addNewTask', (req, res) => {
+  const task = req.body
+
+  connection((db) => {
+    let dbInstance = db.db('TaskManagerAppDB');
+    dbInstance.collection('Boards').update(
+      {"boardId": task.boardId},
+      {"$push": {"tasks": task}}
+    ).then((board) => {
+      res.json(board[0]);
+    })
+    .catch((err) => {
+      sendError(err, res);
+    });
+  });
+});
+
 module.exports = router;

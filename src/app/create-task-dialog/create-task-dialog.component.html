@@ -1,3 +1,36 @@
 <h1>
-  create-task-dialog works!
+  Add New Task!
 </h1>
+
+<div>
+  <label for="task-title">Task Title</label>
+  <input [(ngModel)]="title" />
+</div>
+
+<div>
+  <label for="task-status">Task Status</label>
+  <select [(ngModel)]="status">
+    <option value="waiting">Waiting</option>
+    <option value="active">Active</option>
+    <option value="done">Done</option>
+  </select>
+</div>
+
+<div>
+  <label for="task-overallTime">Task Overall Time</label>
+  <input type="number" [(ngModel)]="overallTime" />
+</div>
+
+<div>
+  <label for="task-remainingTime">Task Remaining Time</label>
+  <input type="number" [(ngModel)]="remainingTime" />
+</div>
+
+<div>
+  <label for="owner-name">Owner Name</label>
+  <select [(ngModel)]="ownerId">
+    <option *ngFor="let member of data.board.boardMembers" [value]="member.id"> {{ member.name }} </option>
+  </select>
+</div>
+
+<button (click)="setValue()" type="submit">Add Task</button>
