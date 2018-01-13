@@ -94,7 +94,7 @@ export class BoardViewComponent implements OnInit, OnDestroy {
 
   public openCreateTaskDialog() {
     let dialogRef = this.dialog.open(CreateTaskDialogComponent, {
-      data: {board: this.board}
+      data: {board: this.board},
       width: '90%',
       height: '80%'
     });
