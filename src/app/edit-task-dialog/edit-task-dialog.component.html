@@ -1,3 +1,51 @@
-<p>
-  edit-task-dialog works!
-</p>
+<div class="edit-task-container">
+  <h1 mat-dialog-title>עריכת משימה</h1>
+  <div mat-dialog-content>
+    <section>
+      <label>שם משימה</label>
+      <mat-form-field>
+        <input matInput [(ngModel)]="task.title">
+      </mat-form-field>
+    </section>
+    <section>
+      <section>
+        <label>זמן כולל למשימה</label>
+        <mat-form-field>
+          <input matInput type="number" [(ngModel)]="task.overallTime">
+        </mat-form-field>
+      </section>
+      <section>
+        <label>הזמן שנשאר למשימה</label>
+        <mat-form-field>
+          <input matInput type="number" [(ngModel)]="task.remainingTime">
+        </mat-form-field>
+      </section>
+    </section>
+    <section>
+      <mat-form-field>
+        <mat-select [(ngModel)]="task.status">
+          <mat-option value="waiting">Waiting</mat-option>
+          <mat-option value="active">Active</mat-option>
+          <mat-option value="done">Done</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </section>
+    <section class="choose-task-owner">
+      <mat-form-field>
+        <mat-select [(ngModel)]="task.owner" [disabled]="!boardMembers">
+          <mat-option *ngFor="let member of boardMembers" [value]="member">
+            {{ member.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </section>
+  </div>
+  <div mat-dialog-actions class="dialog-actions">
+    <button mat-raised-button color="primary" [mat-dialog-close]="submitForm()">
+      עדכן
+    </button>
+    <button mat-raised-button color="primary" mat-dialog-close (click)="cancelDialog()">
+      ביטול
+    </button>
+  </div>
+</div>

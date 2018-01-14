@@ -161,7 +161,8 @@ router.post('/board/saveBoard', (req, res) => {
 
 router.post('/addNewTask', (req, res) => {
   const task = req.body
-
+  task.taskId = uuidv4();
+  
   connection((db) => {
     let dbInstance = db.db('TaskManagerAppDB');
     dbInstance.collection('Boards').update(
@@ -169,6 +170,23 @@ router.post('/addNewTask', (req, res) => {
       {"$push": {"tasks": task}}
     ).then((board) => {
       res.json(board[0]);
+    })
+    .catch((err) => {
+      sendError(err, res);
+    });
+  });
+});
+
+router.post('/updateTask', (req, res) => {
+  const task = req.body
+
+  connection((db) => {
+    let dbInstance = db.db('TaskManagerAppDB');
+    dbInstance.collection('Boards').updateOne(
+      { "boardId": task.boardId, "tasks.taskId": task.taskId},
+      {"$set": {"tasks.$": task}}
+    ).then((board) => {
+      res.status(200).json({});
     })
     .catch((err) => {
       sendError(err, res);

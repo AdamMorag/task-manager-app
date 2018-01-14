@@ -1,13 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { EditTaskDialogComponent } from '../edit-task-dialog/edit-task-dialog.component';
 import { DeleteTaskDialogComponent } from '../delete-task-dialog/delete-task-dialog.component';
+import { TasksService } from "../my-tasks/tasks.service";
+import { MatSnackBar } from "@angular/material";
 
 export interface ITask {
+  taskId: string,
   title: string,
   boardName: string,
-  boardId: number,
-  owner: string,
+  boardId: string,
+  owner: {
+    id: string,
+    name: string
+  },
   status: string,
   overallTime: number,
   remainingTime: number
@@ -25,7 +31,7 @@ export class TaskComponent implements OnInit {
   @Input() showEdit: boolean;
   @Input() showDelete: boolean;
   @Input() showOpenBoard: boolean;
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, public _taskService: TasksService, public snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -35,9 +41,31 @@ export class TaskComponent implements OnInit {
   }
 
   public openEditTaskDialog() {
-    this.dialog.open(EditTaskDialogComponent, {
-      width: '80%',
-      height: '80%'
+
+    let editDialog = this.dialog.open(EditTaskDialogComponent, {
+      data: JSON.parse(JSON.stringify(this.task))
+    });
+
+    editDialog.afterClosed().subscribe((result: ITask) => {
+      if (result) {
+        this.snackBar.open('מעדכן משימה', undefined, {
+          direction: 'rtl'
+        });
+
+        this._taskService.updateTask(result).subscribe(() => {
+          Object.assign(this.task, result);
+          this.snackBar.open('משימה עודכנה בהצלחה', undefined, {
+            direction: 'rtl',
+            duration: 300
+          });
+        }, (err) => {
+          this.snackBar.open('התרחשה שגיאה בזמן עדכון המשימה', undefined, {
+            direction: 'rtl',
+            duration: 300
+          });
+          console.log(err);
+        });
+      }
     });
   }
 
