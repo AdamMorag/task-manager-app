@@ -42,6 +42,7 @@ import { UsersService } from "./services/users.service";
 
 // Routes
 import { routing } from "./app.routes";
+import { MyScheduleComponent } from './my-schedule/my-schedule.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { routing } from "./app.routes";
     TaskComponent,
     EditTaskDialogComponent,
     DeleteTaskDialogComponent,
-    CreateBoardDialogComponent
+    CreateBoardDialogComponent,
+    MyScheduleComponent
   ],
   imports: [
     BrowserModule,
