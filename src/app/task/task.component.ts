@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { BoardsService } from "../my-boards/boards.service";
 import { EditTaskDialogComponent } from '../edit-task-dialog/edit-task-dialog.component';
 import { DeleteTaskDialogComponent } from '../delete-task-dialog/delete-task-dialog.component';
 import { TasksService } from "../my-tasks/tasks.service";
@@ -31,7 +32,8 @@ export class TaskComponent implements OnInit {
   @Input() showEdit: boolean;
   @Input() showDelete: boolean;
   @Input() showOpenBoard: boolean;
-  constructor(public dialog: MatDialog, public _taskService: TasksService, public snackBar: MatSnackBar) { }
+
+  constructor(private _boardsService: BoardsService, public dialog: MatDialog, public _taskService: TasksService, public snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -70,9 +72,11 @@ export class TaskComponent implements OnInit {
   }
 
   public openDeleteTaskDialog() {
-    this.dialog.open(DeleteTaskDialogComponent, {
-      width: '30%',
-      height: '30%'
-    });
+    // this.dialog.open(DeleteTaskDialogComponent, {
+    //   width: '30%',
+    //   height: '30%'
+    // });
+
+    this._boardsService.removeTask(this.task.boardId, this.task.taskId)
   }
 }

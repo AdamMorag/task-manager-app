@@ -37,4 +37,11 @@ export class BoardsService {
     return this._http.post("/api/addNewTask", task, {headers}).subscribe(result => {
     })
   }
+
+  public removeTask(boardId: string, taskId: string) {
+    const headers = new Headers()
+    headers.append('Content-Type', 'application/json');
+    return this._http.post("/api/removeTask", {boardId, taskId}, {headers}).subscribe(result => {
+    })
+  }
 }

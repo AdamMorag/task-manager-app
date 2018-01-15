@@ -86,11 +86,11 @@ router.get('/userTasks', (req, res) => {
         }]
       })
       .toArray()
-      .then((boards) => {        
-        let taskArrays = boards.map(board => board.tasks.filter(task => task.ownerId === tempUserId));        
+      .then((boards) => {
+        let taskArrays = boards.map(board => board.tasks.filter(task => task.ownerId === tempUserId));
         let result = [];
-        taskArrays.forEach(element => {                  
-          element.forEach(arr => {            
+        taskArrays.forEach(element => {
+          element.forEach(arr => {
             result.push(arr);
           });
         });
@@ -162,7 +162,7 @@ router.post('/board/saveBoard', (req, res) => {
 router.post('/addNewTask', (req, res) => {
   const task = req.body
   task.taskId = uuidv4();
-  
+
   connection((db) => {
     let dbInstance = db.db('TaskManagerAppDB');
     dbInstance.collection('Boards').update(
@@ -193,5 +193,23 @@ router.post('/updateTask', (req, res) => {
     });
   });
 });
+
+router.post('/removeTask', (req, res) => {
+  const {boardId, taskId} = req.body
+
+  connection((db) => {
+    let dbInstance = db.db('TaskManagerAppDB');
+    dbInstance.collection('Boards').update(
+      {"boardId": boardId},
+      {"$pull": {"tasks": {"taskId": taskId}}}
+    ).then((board) => {
+      res.json(board[0]);
+    })
+    .catch((err) => {
+      sendError(err, res);
+    });
+  });
+});
+
 
 module.exports = router;
