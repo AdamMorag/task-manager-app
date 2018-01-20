@@ -6,12 +6,12 @@ app-task {
     margin-left: auto;
     margin-right: auto;
     margin-top: 1%;
-    margin-bottom: 1%;    
+    margin-bottom: 1%;
+    display: block;    
     width: 75%;
 }
 
-.cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    direction: rtl;
+.cards-container { 
+    width: 100%;       
+    direction: rtl;    
 }

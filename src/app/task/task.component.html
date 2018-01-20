@@ -1,15 +1,18 @@
-<mat-card>    
+<mat-card>
   <mat-card-title>{{task.title}}</mat-card-title>
   <mat-card-subtitle>
-    <label>משויך ל:</label><span>{{task.owner.name}}</span>
+    <label>משויך ל:</label>
+    <span>{{task.owner.name}}</span>
     <br/>
-    <label>שם לוח:</label><a>{{task.boardName}}</a>
+    <section *ngIf="showOpenBoard">
+      <label>שם לוח:</label>
+      <a [routerLink]="['/board', task.boardId]">{{task.boardName}}</a>
+    </section>
   </mat-card-subtitle>
-  <mat-progress-bar *ngIf="showProgressBar" mode="determinate" 
-  [value]="calculateCompletedPrecentage(task)"></mat-progress-bar>    
-<mat-card-actions>
-    <button mat-raised-button (click)="openEditTaskDialog()" *ngIf="showEdit"  color="primary" class="primary-color-hover">ערוך</button>
-    <button mat-raised-button (click)="openDeleteTaskDialog()"*ngIf="showDelete" color="primary" class="primary-color-hover">מחק</button>        
+  <mat-progress-bar *ngIf="showProgressBar" mode="determinate" [value]="calculateCompletedPrecentage(task)"></mat-progress-bar>
+  <mat-card-actions>
+    <button mat-raised-button (click)="openEditTaskDialog()" *ngIf="showEdit" color="primary" class="primary-color-hover">ערוך</button>
+    <button mat-raised-button (click)="openDeleteTaskDialog()" *ngIf="showDelete" color="primary" class="primary-color-hover">מחק</button>
     <button mat-raised-button *ngIf="showOpenBoard" [routerLink]="['/board', task.boardId]" color="primary" class="primary-color-hover">פתח לוח</button>
   </mat-card-actions>
 </mat-card>

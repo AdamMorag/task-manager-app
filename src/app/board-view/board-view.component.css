@@ -19,22 +19,61 @@
 
 .group-members {    
     font-family: Arial, Helvetica, sans-serif;
-    width: 40%;    
+    width: 75%;
+    height: 100%;
     background-color: lightblue;
     border-radius: 10%;
 }
 
-.columns-container {
-    margin-top: 5%;
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    align-content: center;
+@media screen and (min-width: 577px) {
+    .columns-container {    
+        display: flex;
+        flex-wrap: nowrap;    
+        align-content: center;
+    }
+
+    .column {
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+    }
+
+    .done-column {
+        margin-right: 0;
+    }
+    
+    .waiting-column {
+        margin-left: 0;
+    }
 }
 
+@media screen and (max-width: 576px) { 
+    .columns-container {    
+        display: flex;   
+        flex-direction: column;                  
+    }
+    
+    .column {
+        margin: 2.5%;
+    }
+
+    .waiting-column {
+        order: 1;
+    }
+
+    .active-column {
+        order: 2;        
+    }
+
+    .done-column {
+        order: 3;
+    }
+}
+
+
 .column-header {
-    margin-top: 0;
-    margin-bottom: 5%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    margin-top: 0;    
     width: 100%;
     color: white;
     background-color: #3f51b5;
@@ -42,30 +81,41 @@
     height: 20%;
 }
 
-.column-header h4 {
-    margin-top: 0;
+.column-header h4 {    
     vertical-align: middle;
+    display: inline;
 }
 
-.column {
-    margin-left: 2.5%;
-    margin-right: 2.5%;
+.column {    
     min-height: 400px;      
     min-width: 30%;
     background-color: lightblue;
+    height: fit-content;
+}
+
+.column mat-list, .column mat-list-item {
+    height: fit-content;    
 }
 
 .actions button{
-    width: 200px;
-    margin: 2.5%;        
+    width: 100%;
+    margin: 2.5%;    
 }
 
 .task-card {    
-    width: 80%;
+    width: 100%;    
     margin-left: auto;
     margin-right: auto;
 }
 
 .task-card mat-card {
     margin-bottom: 2%;
+}
+
+.line-separator {
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
 }

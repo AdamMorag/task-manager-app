@@ -7,18 +7,12 @@
   <span>שלום, אורח</span>
 </mat-toolbar>
 <mat-sidenav-container class="nav-container">
-  <mat-sidenav opened=true mode="side" position="end" class="my-sidenav" color="accent">
-    <mat-list class="vertical-center">
-        <mat-list-item>
-          <button mat-button [routerLink]="['/my-boards']">הלוחות שלי</button>
-        </mat-list-item>
-        <mat-list-item>
-          <button mat-button [routerLink]="['/my-tasks']">המשימות שלי</button>
-        </mat-list-item>
-        <mat-list-item>
-          <button mat-button [routerLink]="['/my-schedule']">הלו"ז שלי</button>
-        </mat-list-item>
-    </mat-list>
+  <mat-sidenav opened=true mode="side" position="end" class="my-sidenav">
+    <mat-nav-list class="vertical-center">
+        <a mat-list-item [routerLink]="['/my-boards']">הלוחות שלי</a>
+        <a mat-list-item [routerLink]="['/my-tasks']">המשימות שלי</a>
+        <a mat-list-item [routerLink]="['/my-schedule']">הלו"ז שלי</a>        
+    </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <!--Main Section-->     

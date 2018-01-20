@@ -11,18 +11,18 @@
   }
 
 .my-sidenav {
-    background-color: lightblue;
-    width: 10%;    
-    text-align: center;
+    background-color: lightblue;     
+    direction: rtl;
+    text-align: center;    
 }
 
 .my-sidenav button{
     font-weight: bold;     
 }
 
-mat-sidenav-content {
+mat-sidenav-content {    
     text-align: center;  
-    background-color: lightcyan;  
+    background-color: lightcyan;      
 }
 
 .center {

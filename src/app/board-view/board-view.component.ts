@@ -1,19 +1,43 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { Subscription } from 'rxjs/Subscription';
 import { ITask } from "../task/task.component";
 import { BoardsService } from "../my-boards/boards.service";
 import { CreateTaskDialogComponent } from "../create-task-dialog/create-task-dialog.component";
 import { MatDialog } from '@angular/material/dialog';
+import { trigger, state, style, transition, animate, keyframes } from "@angular/animations";
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-board-view',
   templateUrl: './board-view.component.html',
-  styleUrls: ['./board-view.component.css']
+  styleUrls: ['./board-view.component.css'],
+  animations: [
+    trigger('flyInOut', [
+      state('in', style({ transform: 'translateX(0)' })),
+      transition('void => *', [
+        animate(500, keyframes([
+          style({ opacity: 0, transform: 'translateX(-100%)', offset: 0 }),
+          style({ opacity: 1, transform: 'translateX(15px)', offset: 0.3 }),
+          style({ opacity: 1, transform: 'translateX(0)', offset: 1.0 })
+        ]))
+      ]),
+      transition('* => void', [
+        animate(300, keyframes([
+          style({ opacity: 1, transform: 'translateX(0)', offset: 0 }),
+          style({ opacity: 1, transform: 'translateX(-15px)', offset: 0.7 }),
+          style({ opacity: 0, transform: 'translateX(100%)', offset: 1.0 })
+        ]))
+      ])
+    ])
+  ]
 })
 export class BoardViewComponent implements OnInit, OnDestroy {
 
   private sub: Subscription;
+
+  public columnNum: number;
+  public chartColspan: number;
 
   public boardId: number;
 
@@ -51,9 +75,7 @@ export class BoardViewComponent implements OnInit, OnDestroy {
   ];
 
   constructor(private route: ActivatedRoute, private _boardService: BoardsService,
-    public dialog: MatDialog) {
-    const _boardView = this;
-
+    public dialog: MatDialog, media: MediaMatcher) {
     this.sub = this.route.data.subscribe((data: { board: any }) => {
       this.board = data.board;
       this.doughnutChartData = [
@@ -64,6 +86,16 @@ export class BoardViewComponent implements OnInit, OnDestroy {
     });
 
     this.doughnutChartLabels = ["Waiting", "Active", "Done"];
+
+    const mediaQueryList = media.matchMedia('(min-width: 577px)');
+    
+    this.handleMediaChange(mediaQueryList);
+
+    mediaQueryList.addListener(this.handleMediaChange.bind(this));
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes.board);
   }
 
   ngOnInit() {
@@ -94,10 +126,28 @@ export class BoardViewComponent implements OnInit, OnDestroy {
 
   public openCreateTaskDialog() {
     let dialogRef = this.dialog.open(CreateTaskDialogComponent, {
-      data: {board: this.board},
+      data: { board: this.board },
       width: '90%',
       height: '80%'
     });
+  }
+
+  private chartData(): number[] {
+    return [
+      this.waitingTasks().length,
+      this.activeTasks().length,
+      this.doneTasks().length
+    ];
+  }
+
+  private handleMediaChange(mediaQueryList: MediaQueryList) : void {    
+    if (mediaQueryList.matches) {
+      this.columnNum = 3;
+      this.chartColspan = 1;
+    } else {
+      this.columnNum = 2;
+      this.chartColspan = 2;
+    }    
   }
 
 }

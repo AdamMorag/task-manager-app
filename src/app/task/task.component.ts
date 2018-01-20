@@ -31,7 +31,7 @@ export class TaskComponent implements OnInit {
   @Input() showProgressBar: boolean;
   @Input() showEdit: boolean;
   @Input() showDelete: boolean;
-  @Input() showOpenBoard: boolean;
+  @Input() showOpenBoard: boolean;  
 
   constructor(private _boardsService: BoardsService, public dialog: MatDialog, public _taskService: TasksService, public snackBar: MatSnackBar) { }
 
