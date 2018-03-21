@@ -5,7 +5,6 @@ import { MyTasksComponent } from "./my-tasks/my-tasks.component";
 import { BoardViewComponent } from "./board-view/board-view.component";
 import { BoardViewResolveService } from "./board-view/board-view-resolve.service";
 import { MyScheduleComponent } from "./my-schedule/my-schedule.component";
-import { LoginPageComponent  } from "./login-page/login-page.component";
 
 export const routes: Routes = [
   { path: 'my-boards', component: MyBoardsComponent },
@@ -15,8 +14,7 @@ export const routes: Routes = [
       board: BoardViewResolveService
     }
   },
-  { path: 'my-schedule', component: MyScheduleComponent },
-  { path: 'login-page', component: LoginPageComponent }
+  { path: 'my-schedule', component: MyScheduleComponent }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);

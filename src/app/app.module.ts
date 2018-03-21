@@ -10,17 +10,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { HttpModule } from '@angular/http';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
-import {DxSchedulerModule} from 'devextreme-angular';
-import * as AspNetData from 'devextreme-aspnet-data';
 
 
 // Third Party Modules
@@ -36,7 +34,6 @@ import { TaskComponent } from './task/task.component';
 import { EditTaskDialogComponent } from './edit-task-dialog/edit-task-dialog.component';
 import { DeleteTaskDialogComponent } from './delete-task-dialog/delete-task-dialog.component';
 import { CreateBoardDialogComponent } from './create-board-dialog/create-board-dialog.component';
-import { LoginPageComponent } from './login-page/login-page.component';
 
 // Services
 import { BoardsService } from "./my-boards/boards.service";
@@ -47,7 +44,6 @@ import { UsersService } from "./services/users.service";
 // Routes
 import { routing } from "./app.routes";
 import { MyScheduleComponent } from './my-schedule/my-schedule.component';
-import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
 
 @NgModule({
@@ -61,10 +57,7 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
     EditTaskDialogComponent,
     DeleteTaskDialogComponent,
     CreateBoardDialogComponent,
-    MyScheduleComponent,
-    LoginPageComponent,
-    BrowserModule,
-    DxSchedulerModule
+    MyScheduleComponent
   ],
   imports: [
     BrowserModule,
@@ -105,5 +98,3 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-platformBrowserDynamic().bootstrapModule(AppModule)

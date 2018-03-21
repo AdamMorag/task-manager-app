@@ -1,3 +1,2 @@
-﻿mongoimport --db TaskManagerAppDB --collection Boards --file "D:\Final Project\dbExports\boardsExport.json"
-mongoimport --db TaskManagerAppDB --collection Users --file "D:\Final Project\dbExports\usersExport.json"
-mongoimport --db TaskManagerAppDB --collection Users --file "D:\Final Project\dbExports\dbExport.json"
+﻿mongoimport --db TaskManagerAppDB --collection Boards --file "נתיב שלכם"\boardsExport.json
+mongoimport --db TaskManagerAppDB --collection Users --file "נתיב שלכם"\usersExport.json
