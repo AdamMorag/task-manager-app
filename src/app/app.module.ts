@@ -47,6 +47,8 @@ import { BoardsService } from "./my-boards/boards.service";
 import { TasksService } from "./my-tasks/tasks.service";
 import { BoardViewResolveService } from "./board-view/board-view-resolve.service";
 import { UsersService } from "./services/users.service";
+import { CalendarsService } from './services/calendars.service';
+import { MyScheduleResolveService } from './my-schedule/my-schedule-resolve.service';
 
 // Pipes
 import { TaskStatusPipe } from './board-view/task-status.pipe';
@@ -103,7 +105,9 @@ import { TaskStatusChartPipe } from './board-view/task-status-chart.pipe';
     BoardsService,
     TasksService,
     BoardViewResolveService,
-    UsersService
+    UsersService,
+    CalendarsService,
+    MyScheduleResolveService
   ],
   entryComponents: [
     CreateTaskDialogComponent,
