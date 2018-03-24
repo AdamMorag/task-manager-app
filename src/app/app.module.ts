@@ -27,6 +27,7 @@ import {
 
 // Third Party Modules
 import { ChartsModule } from 'ng2-charts';
+import { NgDragDropModule } from 'ng-drag-drop';
 
 // Components
 import { AppComponent } from './app.component';
@@ -93,7 +94,8 @@ import { TaskStatusChartPipe } from './board-view/task-status-chart.pipe';
     ReactiveFormsModule,
     MatSnackBarModule,
     MatSelectModule,
-    LayoutModule
+    LayoutModule,
+    NgDragDropModule.forRoot()
   ],
   providers: [
     BoardsService,

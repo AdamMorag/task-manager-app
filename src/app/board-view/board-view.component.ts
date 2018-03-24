@@ -7,6 +7,8 @@ import { CreateTaskDialogComponent } from "../create-task-dialog/create-task-dia
 import { MatDialog } from '@angular/material/dialog';
 import { trigger, state, style, transition, animate, keyframes } from "@angular/animations";
 import { MediaMatcher } from '@angular/cdk/layout';
+import { MatSnackBar } from '@angular/material';
+import { TasksService } from '../my-tasks/tasks.service';
 
 @Component({
   selector: 'app-board-view',
@@ -75,7 +77,8 @@ export class BoardViewComponent implements OnInit, OnDestroy {
   ];
 
   constructor(private route: ActivatedRoute, private _boardService: BoardsService,
-    public dialog: MatDialog, media: MediaMatcher) {
+    public dialog: MatDialog, media: MediaMatcher, public _taskService: TasksService, 
+    public snackBar: MatSnackBar) {
     this.sub = this.route.data.subscribe((data: { board: any }) => {
       this.board = data.board;
       this.doughnutChartData = [
@@ -148,6 +151,34 @@ export class BoardViewComponent implements OnInit, OnDestroy {
       this.columnNum = 2;
       this.chartColspan = 2;
     }    
+  }
+
+  private onTaskDrop(ev: any, status: string) {    
+    let task = ev.dragData as ITask;
+    if (task.status === status)
+      return;
+
+    let updateTask = Object.assign({}, task);
+    updateTask.status = status;
+
+    this.snackBar.open('מעדכן משימה', undefined, {
+      direction: 'rtl'
+    });
+
+    this._taskService.updateTask(updateTask).subscribe(() => { 
+      task.status = updateTask.status;
+
+      this.snackBar.open('משימה עודכנה בהצלחה', undefined, {
+        direction: 'rtl',
+        duration: 300
+      });
+    }, (err) => {
+      this.snackBar.open('התרחשה שגיאה בזמן עדכון המשימה', undefined, {
+        direction: 'rtl',
+        duration: 300
+      });
+      console.log(err);      
+    });
   }
 
 }

@@ -34,32 +34,32 @@
     </mat-grid-list>
     <div class="line-separator"></div>
     <section class="columns-container">
-      <section class="done-column column">
+      <section class="done-column column" droppable (onDrop)="onTaskDrop($event, 'done')">
         <section class="column-header" color="primary">
           <h4>Done</h4>
         </section>
         <mat-list>
-          <mat-list-item *ngFor="let task of board.tasks | taskStatus:'done'" [@flyInOut]>
+          <mat-list-item *ngFor="let task of board.tasks | taskStatus:'done'" draggable [dragData]="task">
             <app-task class="task-card" [task]="task" showEdit="true" showDelete="true"></app-task>
           </mat-list-item>
         </mat-list>
       </section>
-      <section class="active-column column">
+      <section class="active-column column" droppable (onDrop)="onTaskDrop($event, 'active')">
         <section class="column-header" color="primary">
           <h4>Active</h4>
         </section>
         <mat-list>
-          <mat-list-item *ngFor="let task of board.tasks | taskStatus:'active'" [@flyInOut]>
+          <mat-list-item *ngFor="let task of board.tasks | taskStatus:'active'" draggable [dragData]="task">
             <app-task class="task-card" [task]="task" showProgressBar="true" showEdit="true" showDelete="true"></app-task>
           </mat-list-item>
         </mat-list>
       </section>
-      <section class="waiting-column column">
+      <section class="waiting-column column" droppable (onDrop)="onTaskDrop($event, 'waiting')">
         <section class="column-header" color="primary">
           <h4>Waiting</h4>
         </section>
         <mat-list>
-          <mat-list-item *ngFor="let task of board.tasks | taskStatus:'waiting'" [@flyInOut]>
+          <mat-list-item *ngFor="let task of board.tasks | taskStatus:'waiting'" draggable [dragData]="task">
             <app-task class="task-card" [task]="task" showEdit="true" showDelete="true"></app-task>
           </mat-list-item>
         </mat-list>

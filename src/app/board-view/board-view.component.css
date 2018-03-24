@@ -26,33 +26,25 @@
 }
 
 @media screen and (min-width: 577px) {
-    .columns-container {    
-        display: flex;
-        flex-wrap: nowrap;    
-        align-content: center;
+    .columns-container {            
+        display: table;
+        width: 100%;
+        border-spacing: 10px;
     }
 
     .column {
-        margin-left: 2.5%;
-        margin-right: 2.5%;
-    }
-
-    .done-column {
-        margin-right: 0;
-    }
-    
-    .waiting-column {
-        margin-left: 0;
+        display: table-cell;
+        width: 30%;        
     }
 }
 
 @media screen and (max-width: 576px) { 
     .columns-container {    
         display: flex;   
-        flex-direction: column;                  
+        flex-direction: column;        
     }
     
-    .column {
+    .column {        
         margin: 2.5%;
     }
 
@@ -105,7 +97,7 @@
 .task-card {    
     width: 100%;    
     margin-left: auto;
-    margin-right: auto;
+    margin-right: auto;    
 }
 
 .task-card mat-card {

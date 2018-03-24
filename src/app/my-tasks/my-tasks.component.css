@@ -1,7 +1,3 @@
-mat-spinner {
-    margin: auto;
-}
-
 app-task {
     margin-left: auto;
     margin-right: auto;
@@ -14,4 +10,19 @@ app-task {
 .cards-container { 
     width: 100%;       
     direction: rtl;    
+}
+
+.my-tasks-container {
+    height: 50%;
+}
+
+.load-container {
+    display: table;
+    margin: auto;
+    height: 100%;
+}
+
+.vert-center {
+    display: table-cell;
+    vertical-align: middle;    
 }
