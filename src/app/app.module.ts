@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { LayoutModule } from '@angular/cdk/layout';
+import { Angular2SocialLoginModule } from 'angular2-social-login';
 
 // Angular Material Modules
 import {
@@ -43,6 +44,7 @@ import { DeleteTaskDialogComponent } from './delete-task-dialog/delete-task-dial
 import { CreateBoardDialogComponent } from './create-board-dialog/create-board-dialog.component';
 import { MyScheduleComponent } from './my-schedule/my-schedule.component';
 import { CreateEventDialogComponent } from './create-event-dialog/create-event-dialog.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 // Services
 import { BoardsService } from "./my-boards/boards.service";
@@ -59,7 +61,11 @@ import { TaskStatusPipe } from './board-view/task-status.pipe';
 import { routing } from "./app.routes";
 import { TaskStatusChartPipe } from './board-view/task-status-chart.pipe';
 
-
+const providers = {
+  'google': {
+    "clientId": "904864276720-q769p3h58j1ds3q9gadrma4je170iagm.apps.googleusercontent.com"
+  }
+};
 
 
 @NgModule({
@@ -74,6 +80,7 @@ import { TaskStatusChartPipe } from './board-view/task-status-chart.pipe';
     DeleteTaskDialogComponent,
     CreateBoardDialogComponent,
     MyScheduleComponent,
+    LoginPageComponent,
     TaskStatusPipe,
     TaskStatusChartPipe,
     CreateEventDialogComponent  
@@ -89,6 +96,7 @@ import { TaskStatusChartPipe } from './board-view/task-status-chart.pipe';
     MatCardModule,
     HttpModule,
     routing,
+    Angular2SocialLoginModule,
     ChartsModule,
     MatDialogModule,
     MatProgressBarModule,
@@ -126,3 +134,6 @@ import { TaskStatusChartPipe } from './board-view/task-status-chart.pipe';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+Angular2SocialLoginModule.loadProvidersScripts(providers);
+

@@ -244,4 +244,30 @@ router.post('/calendars/getUserCalendar', (req, res) => {
   });
 });
 
+router.post('/calendars/saveEvent', (req, res) => {
+  // This is for testing until we have google authentication
+  let tempUserId = "1";
+  const event = req.body;
+
+  event.eventId = uuidv4();
+  dbInstance.collection('Calendars').update(
+      {"userId": 1}, // TODO: when we have authentication
+      {"$push": {"$.events": event}
+  );
+
+
+  /*connection((db) => {
+    let dbInstance = db.db('TaskManagerAppDB');
+    dbInstance.collection('Calendars')
+      .insertOne(event)
+      .then(() => {
+        console.log("event saved");
+        res.status(200).json({});
+      })
+      .catch((err) => {
+        sendError(err, res);
+      });
+  });*/
+});
+
 module.exports = router;

@@ -38,7 +38,7 @@ export class MyScheduleComponent implements OnInit {
   viewDate = new Date();
   activeDayIsOpen: boolean = false;
 
-  constructor(private route: ActivatedRoute, private dialog: MatDialog,
+  constructor(private _calenderService: CalendarsService, private route: ActivatedRoute, private dialog: MatDialog,
     private snackBar: MatSnackBar) {
     this.sub = this.route.data.subscribe((data: { userEvents: any }) => {
       this.events = data.userEvents.map(ev => this.mapUserEventToCalendarEvent(ev));
@@ -54,7 +54,7 @@ export class MyScheduleComponent implements OnInit {
 
   private mapUserEventToCalendarEvent(userEvent: UserEvent): CalendarEvent {
     return {
-      id: userEvent.id,
+      id: userEvent.eventId,
       start: new Date(userEvent.startDate),
       end: new Date(userEvent.endDate),
       title: userEvent.title,
@@ -98,7 +98,21 @@ export class MyScheduleComponent implements OnInit {
         this.snackBar.open('מייצר אירוע', undefined, {
           direction: 'rtl'
         });
-        
+
+        this._calenderService.saveEvent(result)
+          .subscribe(res => {
+            this.snackBar.open("אירוע נשמר בהצלחה", undefined, {
+              direction: 'rtl',
+              duration: 300
+            });
+          }, err => {
+            console.log(err);
+            this.snackBar.open("התרחשה שגיאה בזמן שמירת האירוע", undefined, {
+              direction: 'rtl',
+              duration: 300
+            });
+          });
+
         // send request to server
         this.events.push(this.mapUserEventToCalendarEvent(result));
         this.refresh.next();

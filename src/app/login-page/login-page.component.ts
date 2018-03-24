@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'angular2-social-login';
+
 
 @Component({
   selector: 'app-login-page',
@@ -7,10 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPageComponent implements OnInit {
 
-constructor() {     
+constructor(public socialLogin: AuthService) {     
 }
 
   ngOnInit() {
+  }
+
+  googleLogin() {
+    this.socialLogin.login('google').subscribe(
+      (data: any) => {
+        alert(JSON.stringify(data));
+      }
+    );
   }
 
 }

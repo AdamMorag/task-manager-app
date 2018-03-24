@@ -33,7 +33,7 @@ export class CreateEventDialogComponent implements OnInit {
 
   public submitForm(): UserEvent {
     return {
-      id: "",
+      eventId: "",
       title: this.title.value,
       startDate: this.startDate.value,
       endDate: this.endDate.value

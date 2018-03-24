@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 export interface UserEvent {
-  id: string,
+  eventId: string,
   startDate: Date,
   endDate: Date,
   title: string
@@ -24,4 +24,9 @@ export class CalendarsService {
     });
   }
 
+  public saveEvent(event: any): Observable<any> {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this._http.post("/api/calendars/saveEvent", event);
+  }
 }
