@@ -28,6 +28,7 @@ import {
 // Third Party Modules
 import { ChartsModule } from 'ng2-charts';
 import { NgDragDropModule } from 'ng-drag-drop';
+import { CalendarModule  } from 'angular-calendar'
 
 // Components
 import { AppComponent } from './app.component';
@@ -95,7 +96,8 @@ import { TaskStatusChartPipe } from './board-view/task-status-chart.pipe';
     MatSnackBarModule,
     MatSelectModule,
     LayoutModule,
-    NgDragDropModule.forRoot()
+    NgDragDropModule.forRoot(),
+    CalendarModule.forRoot()
   ],
   providers: [
     BoardsService,
