@@ -24,7 +24,6 @@ export class EditTaskDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<EditTaskDialogComponent>,
     public _boardService: BoardsService) {      
     this.task = data;
-
     this._boardService.getBoard(data.boardId).subscribe(board => {
       this.boardMembers = board.boardMembers;
     });
@@ -39,6 +38,10 @@ export class EditTaskDialogComponent implements OnInit {
 
   public cancelDialog() {
     this.dialogRef.close();
+  }
+
+  public compareFn(firstUser: any, secondUser: any): boolean {
+    return firstUser.id === secondUser.id;
   }
 
 }

@@ -43,6 +43,7 @@
         <a mat-list-item *ngFor="let member of boardMembers"> {{ member.name }} </a>
       </mat-nav-list>
     </section>
+  </form>
     <div mat-dialog-actions class="dialog-actions">
       <button mat-raised-button color="primary" [mat-dialog-close]="submitForm()" [disabled]="formIsValid()">
         צור
@@ -50,6 +51,5 @@
       <button mat-raised-button color="primary" (click)="cancelDialog()">
         ביטול
       </button>
-    </div>
-  </form>
+    </div>  
 </div>

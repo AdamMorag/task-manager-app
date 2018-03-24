@@ -82,12 +82,12 @@ router.get('/userTasks', (req, res) => {
         $and: [{
           "boardMembers.id": tempUserId
         }, {
-          "tasks.ownerId": tempUserId
+          "tasks.owner.id": tempUserId
         }]
       })
       .toArray()
       .then((boards) => {
-        let taskArrays = boards.map(board => board.tasks.filter(task => task.ownerId === tempUserId));
+        let taskArrays = boards.map(board => board.tasks.filter(task => task.owner.id === tempUserId));
         let result = [];
         taskArrays.forEach(element => {
           element.forEach(arr => {
@@ -211,5 +211,37 @@ router.post('/removeTask', (req, res) => {
   });
 });
 
+router.post('/calendars/getUserCalendar', (req, res) => {
+  const { userId, startTime, endTime } = req.body;    
+
+  connection((db) => {
+    let dbInstance = db.db('TaskManagerAppDB');
+    dbInstance.collection('Calendars').find({
+      userId: userId
+    })
+    .toArray()
+    .then(userCalendars => {
+      // Validation
+      if (!userCalendars || !userCalendars.length === 0) {
+        res.json([]);
+        return;
+      }      
+
+      let userEvents = userCalendars[0].events;
+
+      if (startTime) {
+        userEvents = userEvents.filter(ev => ev.startTime >= startTime && ev.endTime >= startTime);
+      }
+
+      if (endTime) {
+        userEvents = userEvents.filter(ev => ev.startTime <= startTime && ev.endTime <= startTime);
+      }
+
+      res.json(userEvents);
+    }).catch((err) => {
+        sendError(err, res);
+    });
+  });
+});
 
 module.exports = router;

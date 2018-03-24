@@ -32,7 +32,7 @@
     </section>
     <section class="choose-task-owner">
       <mat-form-field>
-        <mat-select [(ngModel)]="task.owner" [disabled]="!boardMembers">
+        <mat-select [compareWith]="compareFn" [(ngModel)]="task.owner" [disabled]="!boardMembers" [value]="task.owner">
           <mat-option *ngFor="let member of boardMembers" [value]="member">
             {{ member.name }}
           </mat-option>
