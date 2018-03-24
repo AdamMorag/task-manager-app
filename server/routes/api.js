@@ -244,5 +244,4 @@ router.post('/calendars/getUserCalendar', (req, res) => {
   });
 });
 
-
 module.exports = router;

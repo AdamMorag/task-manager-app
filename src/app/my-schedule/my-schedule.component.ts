@@ -21,6 +21,8 @@ import { CalendarsService } from '../services/calendars.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { CreateEventDialogComponent } from '../create-event-dialog/create-event-dialog.component';
 
 @Component({
   selector: 'app-my-schedule',
@@ -36,20 +38,10 @@ export class MyScheduleComponent implements OnInit {
   viewDate = new Date();
   activeDayIsOpen: boolean = false;
 
-  constructor(private route: ActivatedRoute) {
-    this.sub = this.route.data.subscribe((data: {userEvents: any}) => {
-      this.events = data.userEvents.map(ev => {
-        return {
-          id: ev.id,
-          start: new Date(ev.startDate),
-          end: new Date(ev.endDate),
-          title: ev.title,
-          color: {
-            primary: "red",
-            secondary: "yellow"
-          }
-        };
-      });
+  constructor(private route: ActivatedRoute, private dialog: MatDialog,
+    private snackBar: MatSnackBar) {
+    this.sub = this.route.data.subscribe((data: { userEvents: any }) => {
+      this.events = data.userEvents.map(ev => this.mapUserEventToCalendarEvent(ev));
     });
   }
 
@@ -58,6 +50,19 @@ export class MyScheduleComponent implements OnInit {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  private mapUserEventToCalendarEvent(userEvent: UserEvent): CalendarEvent {
+    return {
+      id: userEvent.id,
+      start: new Date(userEvent.startDate),
+      end: new Date(userEvent.endDate),
+      title: userEvent.title,
+      color: {
+        primary: "red",
+        secondary: "yellow"
+      }
+    }; 
   }
 
   public dayClicked({
@@ -80,16 +85,25 @@ export class MyScheduleComponent implements OnInit {
     }
   }
 
-  public addEvent(date: Date): void {
-    // Open modal, get details, save to server
-    this.events.push({
-      start: date,
-      title: 'New event',
-      color: {
-        primary:"red",
-        secondary: "yellow"
+  public addEvent(day: { date: Date, events: CalendarEvent[] }): void {
+
+    let dialogRef = this.dialog.open(CreateEventDialogComponent, {
+      data: {
+        date: day.date
       }
     });
-    this.refresh.next();
+
+    dialogRef.afterClosed().subscribe((result: UserEvent) => {
+      if (result) {
+        this.snackBar.open('מייצר אירוע', undefined, {
+          direction: 'rtl'
+        });
+        
+        // send request to server
+        this.events.push(this.mapUserEventToCalendarEvent(result));
+        this.refresh.next();
+        this.snackBar.dismiss();
+      }
+    });    
   }
 }

@@ -29,6 +29,7 @@ import {
 import { ChartsModule } from 'ng2-charts';
 import { NgDragDropModule } from 'ng-drag-drop';
 import { CalendarModule  } from 'angular-calendar'
+import { ContextMenuModule } from 'ngx-contextmenu';
 
 // Components
 import { AppComponent } from './app.component';
@@ -41,6 +42,7 @@ import { EditTaskDialogComponent } from './edit-task-dialog/edit-task-dialog.com
 import { DeleteTaskDialogComponent } from './delete-task-dialog/delete-task-dialog.component';
 import { CreateBoardDialogComponent } from './create-board-dialog/create-board-dialog.component';
 import { MyScheduleComponent } from './my-schedule/my-schedule.component';
+import { CreateEventDialogComponent } from './create-event-dialog/create-event-dialog.component';
 
 // Services
 import { BoardsService } from "./my-boards/boards.service";
@@ -59,6 +61,7 @@ import { TaskStatusChartPipe } from './board-view/task-status-chart.pipe';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +75,8 @@ import { TaskStatusChartPipe } from './board-view/task-status-chart.pipe';
     CreateBoardDialogComponent,
     MyScheduleComponent,
     TaskStatusPipe,
-    TaskStatusChartPipe
+    TaskStatusChartPipe,
+    CreateEventDialogComponent  
   ],
   imports: [
     BrowserModule,
@@ -99,7 +103,10 @@ import { TaskStatusChartPipe } from './board-view/task-status-chart.pipe';
     MatSelectModule,
     LayoutModule,
     NgDragDropModule.forRoot(),
-    CalendarModule.forRoot()
+    CalendarModule.forRoot(),
+    ContextMenuModule.forRoot({
+      useBootstrap4: true
+    })
   ],
   providers: [
     BoardsService,
@@ -113,7 +120,8 @@ import { TaskStatusChartPipe } from './board-view/task-status-chart.pipe';
     CreateTaskDialogComponent,
     EditTaskDialogComponent,
     DeleteTaskDialogComponent,
-    CreateBoardDialogComponent
+    CreateBoardDialogComponent,
+    CreateEventDialogComponent
   ],
   bootstrap: [AppComponent]
 })
