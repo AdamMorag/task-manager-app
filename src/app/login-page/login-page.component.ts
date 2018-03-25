@@ -10,6 +10,7 @@ import { UsersService } from '../services/users.service';
 })
 export class LoginPageComponent implements OnInit {
 
+public loadingLogin: boolean = false;
 @Output() onLoginChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 constructor(public socialLogin: AuthService, private _userService: UsersService) {
@@ -19,6 +20,7 @@ constructor(public socialLogin: AuthService, private _userService: UsersService)
   }
 
   googleLogin() {
+    this.loadingLogin = true;
     this.socialLogin.login('google').subscribe(
       (data: any) => {
         localStorage.setItem("uid", data.uid);

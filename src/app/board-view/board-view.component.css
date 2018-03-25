@@ -2,6 +2,14 @@
     direction: rtl;
 }
 
+.member-img {
+  height: 32px;
+  width: 32px;
+  margin-top: 5px;
+  margin-left: 10px;
+  border-radius: 50%;
+}
+
 .board-view-content {
     width: 90%;
     height: 100%;
@@ -17,7 +25,7 @@
     margin-top: 1%;
 }
 
-.group-members {    
+.group-members {
     font-family: Arial, Helvetica, sans-serif;
     width: 75%;
     height: 100%;
@@ -26,7 +34,7 @@
 }
 
 @media screen and (min-width: 577px) {
-    .columns-container {            
+    .columns-container {
         display: table;
         width: 100%;
         border-spacing: 10px;
@@ -34,17 +42,17 @@
 
     .column {
         display: table-cell;
-        width: 30%;        
+        width: 30%;
     }
 }
 
-@media screen and (max-width: 576px) { 
-    .columns-container {    
-        display: flex;   
-        flex-direction: column;        
+@media screen and (max-width: 576px) {
+    .columns-container {
+        display: flex;
+        flex-direction: column;
     }
-    
-    .column {        
+
+    .column {
         margin: 2.5%;
     }
 
@@ -53,7 +61,7 @@
     }
 
     .active-column {
-        order: 2;        
+        order: 2;
     }
 
     .done-column {
@@ -65,7 +73,7 @@
 .column-header {
     padding-top: 2.5%;
     padding-bottom: 2.5%;
-    margin-top: 0;    
+    margin-top: 0;
     width: 100%;
     color: white;
     background-color: #3f51b5;
@@ -73,31 +81,31 @@
     height: 20%;
 }
 
-.column-header h4 {    
+.column-header h4 {
     vertical-align: middle;
     display: inline;
 }
 
-.column {    
-    min-height: 400px;      
+.column {
+    min-height: 400px;
     min-width: 30%;
     background-color: lightblue;
     height: fit-content;
 }
 
 .column mat-list, .column mat-list-item {
-    height: fit-content;    
+    height: fit-content;
 }
 
 .actions button{
     width: 100%;
-    margin: 2.5%;    
+    margin: 2.5%;
 }
 
-.task-card {    
-    width: 100%;    
+.task-card {
+    width: 100%;
     margin-left: auto;
-    margin-right: auto;    
+    margin-right: auto;
 }
 
 .task-card mat-card {

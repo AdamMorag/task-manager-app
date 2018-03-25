@@ -26,8 +26,9 @@
           <h4>חברי הקבוצה</h4>
           <mat-grid-list cols="3">
             <mat-grid-tile class="group-member" *ngFor="let boardMember of board.boardMembers">
+              <img *ngIf="boardMember.image !== undefined" [src]="boardMember.image" class="member-img">
+              <img *ngIf="boardMember.image === undefined" src="/assets/src/unknown.jpg" class="member-img">
               <label>{{boardMember.name}}</label>
-              <!-- TODO: add picture-->
             </mat-grid-tile>
           </mat-grid-list>
         </section>

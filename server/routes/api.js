@@ -69,23 +69,22 @@ router.get('/boardsUserIsManagerOf/:userId', (req, res) => {
   });
 });
 
-router.get('/userTasks', (req, res) => {
-  // This is for testing until we have google authentication
-  let tempUserId = "1";
+router.get('/userTasks/:userId', (req, res) => {
+  const UserId = req.params.userId;
 
   connection((db) => {
     let dbInstance = db.db('TaskManagerAppDB');
     dbInstance.collection('Boards')
       .find({
         $and: [{
-          "boardMembers.id": tempUserId
+          "boardMembers.id": UserId
         }, {
-          "tasks.owner.id": tempUserId
+          "tasks.owner.id": UserId
         }]
       })
       .toArray()
       .then((boards) => {
-        let taskArrays = boards.map(board => board.tasks.filter(task => task.owner.id === tempUserId));
+        let taskArrays = boards.map(board => board.tasks.filter(task => task.owner.id === UserId));
         let result = [];
         taskArrays.forEach(element => {
           element.forEach(arr => {

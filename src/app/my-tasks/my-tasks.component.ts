@@ -13,7 +13,7 @@ export class MyTasksComponent implements OnInit {
   public loadingMyTasks = true;
 
   constructor(private _tasksService: TasksService) {
-    _tasksService.getUserTasks()
+    _tasksService.getUserTasks(localStorage.getItem("uid"))
       .subscribe(userTasks => {
         this.myTasks = userTasks
         this.loadingMyTasks= false;
