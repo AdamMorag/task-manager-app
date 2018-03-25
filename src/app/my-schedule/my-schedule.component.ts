@@ -33,10 +33,10 @@ export class MyScheduleComponent implements OnInit {
 
   private sub: Subscription;
   private refresh: Subject<any> = new Subject();
-
+  view: string = 'month';
   events: Array<CalendarEvent<any>>;
   viewDate = new Date();
-  activeDayIsOpen: boolean = false;
+  activeDayIsOpen: boolean = true;
 
   constructor(private _calenderService: CalendarsService, private route: ActivatedRoute, private dialog: MatDialog,
     private snackBar: MatSnackBar) {
