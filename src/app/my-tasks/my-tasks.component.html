@@ -8,6 +8,6 @@
   </div>
   <div class="cards-container">
     <app-task [hidden]="loadingMyTasks" *ngFor="let task of myTasks" [task]="task" showProgressBar="true" showEdit="true" showDelete="true"
-      showOpenBoard="true"></app-task>
+      showOpenBoard="true" (onDeleted)="onTaskDeleted($event)"></app-task>
   </div>
 </div>

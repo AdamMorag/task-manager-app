@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { BoardsService } from "../my-boards/boards.service";
 import { EditTaskDialogComponent } from '../edit-task-dialog/edit-task-dialog.component';
 import { DeleteTaskDialogComponent } from '../delete-task-dialog/delete-task-dialog.component';
 import { TasksService } from "../my-tasks/tasks.service";
 import { MatSnackBar } from "@angular/material";
+import { shouldCallLifecycleInitHook } from '@angular/core/src/view';
 
 export interface ITask {
   taskId: string,
@@ -31,7 +32,9 @@ export class TaskComponent implements OnInit {
   @Input() showProgressBar: boolean;
   @Input() showEdit: boolean;
   @Input() showDelete: boolean;
-  @Input() showOpenBoard: boolean;  
+  @Input() showOpenBoard: boolean;
+
+  @Output() onDeleted = new EventEmitter<string>();
 
   constructor(private _boardsService: BoardsService, public dialog: MatDialog, public _taskService: TasksService, public snackBar: MatSnackBar) { }
 
@@ -72,11 +75,17 @@ export class TaskComponent implements OnInit {
   }
 
   public openDeleteTaskDialog() {
-    // this.dialog.open(DeleteTaskDialogComponent, {
-    //   width: '30%',
-    //   height: '30%'
-    // });
-
-    this._boardsService.removeTask(this.task.boardId, this.task.taskId)
+    this.dialog.open(DeleteTaskDialogComponent).afterClosed().subscribe((shouldDelete: boolean) => {
+      if (shouldDelete) {
+        this._boardsService.removeTask(this.task.boardId, this.task.taskId)
+          .subscribe(() => {
+            this.onDeleted.emit(this.task.taskId);
+            this.snackBar.open("משימה נמחקה בהצלחה", undefined ,{
+              direction: 'rtl',
+              duration: 500
+            });
+          });
+      }
+    });
   }
 }
