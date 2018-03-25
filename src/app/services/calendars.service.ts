@@ -14,9 +14,9 @@ export class CalendarsService {
 
   constructor(private _http: Http) { }
 
-  public getUserEvents(uid: string): Observable<Array<UserEvent>> {
+  public getUserEvents(userId: string): Observable<Array<UserEvent>> {    
     const body = {
-      userId: uid
+      userId: userId
     };
 
     return this._http.post("/api/calendars/getUserCalendar", body).map(response => {
@@ -24,9 +24,12 @@ export class CalendarsService {
     });
   }
 
-  public saveEvent(event: any, uid: string): Observable<any> {
+  public saveEvent(event: any, userId: string): Observable<any> {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this._http.post("/api/calendars/saveEvent", {userId: uid, event : event});
+    return this._http.post("/api/calendars/saveEvent", {
+      event: event,
+      userId: userId
+    });
   }
 }
