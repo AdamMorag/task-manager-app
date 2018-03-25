@@ -38,10 +38,9 @@ export class BoardsService {
     })
   }
 
-  public removeTask(boardId: string, taskId: string) {
+  public removeTask(boardId: string, taskId: string): Observable<any> {
     const headers = new Headers()
     headers.append('Content-Type', 'application/json');
-    return this._http.post("/api/removeTask", {boardId, taskId}, {headers}).subscribe(result => {
-    })
+    return this._http.post("/api/removeTask", {boardId, taskId}, {headers});
   }
 }

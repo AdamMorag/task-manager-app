@@ -12,4 +12,11 @@ export class DeleteTaskDialogComponent implements OnInit {
   ngOnInit() {
   }
 
+  public submitForm(): boolean {
+    return true;
+  }
+
+  public cancelDialog(): boolean {
+    return false;
+  }
 }
