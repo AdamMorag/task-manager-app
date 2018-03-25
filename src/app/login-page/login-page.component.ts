@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { AuthService } from 'angular2-social-login';
 import { UsersService } from '../services/users.service';
 
@@ -10,6 +10,8 @@ import { UsersService } from '../services/users.service';
 })
 export class LoginPageComponent implements OnInit {
 
+@Output() onLoginChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
 constructor(public socialLogin: AuthService, private _userService: UsersService) {
 }
 
@@ -19,20 +21,17 @@ constructor(public socialLogin: AuthService, private _userService: UsersService)
   googleLogin() {
     this.socialLogin.login('google').subscribe(
       (data: any) => {
-        localStorage.setItem("isAuthenticated", "true");
         localStorage.setItem("uid", data.uid);
         localStorage.setItem("name", data.name);
         localStorage.setItem("image", data.image);
-        
+
         this._userService.addUser({uid : data.uid, name: data.name, image: data.image}).subscribe(res => {
-          alert("משתמש נשמר בהצלחה");
+          localStorage.setItem("isAuthenticated", "true");
+          this.onLoginChange.emit(true);
         }, err => {
           console.log(err);
           }
         );
-        // TODO: redirect to my-boards
-        // TODO: how to refresh title name ?!
-        //alert(JSON.stringify(data));
       });
   }
 }

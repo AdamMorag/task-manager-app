@@ -15,9 +15,17 @@ input {
 }
 
 mat-nav-list {
-    width: 50%;    
+    width: 50%;
 }
 
 .board-members {
     display: flex;
+}
+
+.member-img {
+  height: 16px;
+  width: 16px;
+  margin-top: 5px;
+  margin-left: 10px;
+  border-radius: 50%;
 }

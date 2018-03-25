@@ -1,23 +1,32 @@
 <mat-toolbar color="primary">
-  <span>   
-   <img src="/assets/src/Flow.png" />
+  <span>
+    <a [routerLink]="['/my-boards']" >
+   <img class="logo" src="/assets/src/Flow.png" />
+ </a>
   </span>
-  
+
   <!-- This fills the remaining space of the current row -->
   <span class="example-fill-remaining-space"></span>
-  
-  <span>שלום, אורח</span>
+
+  <span class="auth-details">
+    <img src="{{this.imgSrc}}" class="auth-img">
+    <b>
+    שלום, {{this.loginName}}
+    </b>
+    <img src="/assets/src/logout.png" class="logout" (click)="Logout()" *ngIf="isAuthenticated">
+  </span>
 </mat-toolbar>
-<mat-sidenav-container class="nav-container">
+<app-login-page *ngIf="!isAuthenticated" (onLoginChange)="loginHandler($event)"></app-login-page>
+<mat-sidenav-container class="nav-container" *ngIf="isAuthenticated">
   <mat-sidenav opened=true mode="side" position="end" class="my-sidenav">
     <mat-nav-list class="vertical-center">
         <a mat-list-item [routerLink]="['/my-boards']">הלוחות שלי</a>
         <a mat-list-item [routerLink]="['/my-tasks']">המשימות שלי</a>
-        <a mat-list-item [routerLink]="['/my-schedule']">הלו"ז שלי</a>        
+        <a mat-list-item [routerLink]="['/my-schedule']">הלו"ז שלי</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <!--Main Section-->     
+    <!--Main Section-->
     <router-outlet *ngIf="!loading"></router-outlet>
     <div class="center">
       <mat-spinner *ngIf="loading"></mat-spinner>

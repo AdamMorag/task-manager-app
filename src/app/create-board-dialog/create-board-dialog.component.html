@@ -29,9 +29,11 @@
     </section>
     <section class="board-members">
       <mat-form-field>
-        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="selectBoardMemebrs" [matAutocomplete]="auto">
+        <input type="text" placeholder="בחר משתמש" aria-label="Number" matInput [formControl]="selectBoardMemebrs" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="addMember($event)" [displayWith]="displayFn">
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            <img *ngIf="option.image !== undefined" [src]="option.image" class="member-img">
+            <img *ngIf="option.image === undefined" src="/assets/src/unknown.jpg" class="member-img">
             {{ option.name }}
           </mat-option>
         </mat-autocomplete>
@@ -40,7 +42,12 @@
         </mat-error>
       </mat-form-field>
       <mat-nav-list>
-        <a mat-list-item *ngFor="let member of boardMembers"> {{ member.name }} </a>
+        <a mat-list-item *ngFor="let member of boardMembers">
+          <img *ngIf="member.image !== undefined" [src]="member.image" class="member-img">
+          <img *ngIf="member.image === undefined" src="/assets/src/unknown.jpg" class="member-img">
+          {{ member.name }}
+          <img src="/assets/src/cancel.png" class="member-img" (click)="removeMember(member)">
+        </a>
       </mat-nav-list>
     </section>
   </form>
@@ -51,5 +58,5 @@
       <button mat-raised-button color="primary" (click)="cancelDialog()">
         ביטול
       </button>
-    </div>  
+    </div>
 </div>

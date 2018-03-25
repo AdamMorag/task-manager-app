@@ -8,7 +8,7 @@ import { UsersService } from '../services/users.service';
 import { MatDialogRef } from "@angular/material";
 
 export class User {
-  constructor(public name: string, public id?: string) { }
+  constructor(public name: string, public image: string, public id?: string) { }
 }
 
 @Component({
@@ -42,7 +42,7 @@ export class CreateBoardDialogComponent implements OnInit {
 
   constructor(private _users: UsersService, public dialogRef: MatDialogRef<CreateBoardDialogComponent>) {
     this._users.getAllUsers().subscribe(users => {
-      this.options = users.map(u => new User(u.name, u.id));
+      this.options = users.map(u => new User(u.name, u.image, u.uid));
     });
   }
 
@@ -67,6 +67,12 @@ export class CreateBoardDialogComponent implements OnInit {
     this.selectBoardMemebrs.setValue("");
   }
 
+  public removeMember(member: any) {
+    this.options.push(member);
+    const index = this.boardMembers.indexOf(member);
+    this.boardMembers.splice(index, 1);
+  }
+
   public submitForm() {
     return {
       title: this.boardName.value,
@@ -76,8 +82,8 @@ export class CreateBoardDialogComponent implements OnInit {
       tasks: [],
       // Once we have authntication get the real values
       boardOwner: {
-        ownerId: "2",
-        name: "פז"
+        ownerId: localStorage.getItem("uid"),
+        name: localStorage.getItem("name")
       }
     };
   }

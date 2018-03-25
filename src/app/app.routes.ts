@@ -22,7 +22,7 @@ export const routes: Routes = [
       userEvents: MyScheduleResolveService
     }
   },
-  { path: '**', component: LoginPageComponent }
+  { path: '**', component: MyBoardsComponent }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);

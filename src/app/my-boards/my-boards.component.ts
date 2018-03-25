@@ -81,7 +81,7 @@ export class MyBoardsComponent implements OnInit {
   }
 
   private loadBoardsUserIsSharedWith() {
-    this._boardsService.getBoardsUserIsShareWith()
+    this._boardsService.getBoardsUserIsShareWith(localStorage.getItem("uid"))
       .subscribe(boards => {
         this.boardsImShared = boards;
         this.loadingBoardsImSharedWith = false;
@@ -90,7 +90,7 @@ export class MyBoardsComponent implements OnInit {
   }
 
   private loadBoardsUserIsOwnerOf() {
-    this._boardsService.getBoardsUserIsManagerOf()
+    this._boardsService.getBoardsUserIsManagerOf(localStorage.getItem("uid"))
       .subscribe(boards => {
         this.boardsIManage = boards;
         this.loadingBoardsIManage = false;

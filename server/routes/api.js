@@ -27,18 +27,17 @@ let response = {
   message: null
 };
 
-router.get('/boardsUserIsShareWith', (req, res) => {
-  // This is for testing until we have google authentication
-  let tempUserId = "1";
+router.get('/boardsUserIsShareWith/:userId', (req, res) => {
+  const UserId = req.params.userId;
 
   connection((db) => {
     let dbInstance = db.db('TaskManagerAppDB');
     dbInstance.collection('Boards')
       .find({
         $and: [{
-          "boardMembers.id": tempUserId
+          "boardMembers.id": UserId
         }, {
-          "boardOwner.ownerId": { $ne: tempUserId }
+          "boardOwner.ownerId": { $ne: UserId }
         }]
       })
       .toArray()
@@ -51,15 +50,14 @@ router.get('/boardsUserIsShareWith', (req, res) => {
   });
 });
 
-router.get('/boardsUserIsManagerOf', (req, res) => {
-  // This is for testing until we have google authentication
-  let tempUserId = "1";
+router.get('/boardsUserIsManagerOf/:userId', (req, res) => {
+  const UserId = req.params.userId;
 
   connection((db) => {
     let dbInstance = db.db('TaskManagerAppDB');
     dbInstance.collection('Boards')
       .find({
-        "boardOwner.ownerId": tempUserId
+        "boardOwner.ownerId": UserId
       })
       .toArray()
       .then((boards) => {
@@ -122,8 +120,6 @@ router.get('/board/:boardId', (req, res) => {
 });
 
 router.get('/users/all', (req, res) => {
-  const boardId = req.params.boardId;
-
   connection((db) => {
     let dbInstance = db.db('TaskManagerAppDB');
     dbInstance.collection('Users')
@@ -277,9 +273,10 @@ router.post('/addUser', (req, res) => {
     dbInstance.collection('Users').update(
         {"uid": user.uid}, // TODO: when we have authentication
         user,
-        {"upsert": true}).then((event) => {
+        {"upsert": true}).then((user) => {
 
             console.log("user saved");
+          res.json(user[0]);
     })
     .catch((err) => {
 

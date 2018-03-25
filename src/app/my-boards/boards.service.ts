@@ -8,14 +8,14 @@ export class BoardsService {
 
   constructor(private _http: Http) { }
 
-  public getBoardsUserIsShareWith() {
-    return this._http.get("/api/boardsUserIsShareWith")
+  public getBoardsUserIsShareWith(userId: string) {
+    return this._http.get("/api/boardsUserIsShareWith/" + userId)
       .map(result =>
         result.json());
   }
 
-  public getBoardsUserIsManagerOf() {
-    return this._http.get("/api/boardsUserIsManagerOf")
+  public getBoardsUserIsManagerOf(userId: string) {
+    return this._http.get("/api/boardsUserIsManagerOf/" + userId)
       .map(result =>
         result.json());
   }
