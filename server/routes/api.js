@@ -217,7 +217,7 @@ router.post('/calendars/getUserCalendar', (req, res) => {
     .toArray()
     .then(userCalendars => {
       // Validation
-      if (!userCalendars || !userCalendars.length === 0) {
+      if (!userCalendars || userCalendars.length === 0) {
         res.json([]);
         return;
       }
@@ -241,15 +241,14 @@ router.post('/calendars/getUserCalendar', (req, res) => {
 
 router.post('/calendars/saveEvent', (req, res) => {
   // This is for testing until we have google authentication
-  let tempUserId = "1";
-  const event = req.body;
+  const { userId, event } = req.body;
 
   event.eventId = uuidv4();
 
   connection((db) => {
     let dbInstance = db.db('TaskManagerAppDB');
     dbInstance.collection('Calendars').update(
-        {"userId": "2"}, // TODO: when we have authentication
+        {"userId": userId},
         {"$push": {"events": event}},
         {"upsert": true}).then((event) => {
 
@@ -273,13 +272,9 @@ router.post('/addUser', (req, res) => {
         {"uid": user.uid}, // TODO: when we have authentication
         user,
         {"upsert": true}).then((user) => {
-
-            console.log("user saved");
           res.json(user[0]);
     })
     .catch((err) => {
-
-        console.log("user save failed");
       sendError(err, res);
     });
   });

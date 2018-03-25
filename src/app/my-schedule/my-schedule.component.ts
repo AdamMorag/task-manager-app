@@ -62,7 +62,7 @@ export class MyScheduleComponent implements OnInit {
         primary: "red",
         secondary: "yellow"
       }
-    }; 
+    };
   }
 
   public dayClicked({
@@ -99,7 +99,7 @@ export class MyScheduleComponent implements OnInit {
           direction: 'rtl'
         });
 
-        this._calenderService.saveEvent(result)
+        this._calenderService.saveEvent(result, localStorage.getItem("uid"))
           .subscribe(res => {
             this.snackBar.open("אירוע נשמר בהצלחה", undefined, {
               direction: 'rtl',
@@ -118,6 +118,6 @@ export class MyScheduleComponent implements OnInit {
         this.refresh.next();
         this.snackBar.dismiss();
       }
-    });    
+    });
   }
 }
