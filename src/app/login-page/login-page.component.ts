@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'angular2-social-login';
+import { UsersService } from '../services/users.service';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { AuthService } from 'angular2-social-login';
 })
 export class LoginPageComponent implements OnInit {
 
-constructor(public socialLogin: AuthService) {     
+constructor(public socialLogin: AuthService, private _userService: UsersService) {
 }
 
   ngOnInit() {
@@ -18,9 +19,20 @@ constructor(public socialLogin: AuthService) {
   googleLogin() {
     this.socialLogin.login('google').subscribe(
       (data: any) => {
-        alert(JSON.stringify(data));
-      }
-    );
+        localStorage.setItem("isAuthenticated", "true");
+        localStorage.setItem("uid", data.uid);
+        localStorage.setItem("name", data.name);
+        localStorage.setItem("image", data.image);
+        
+        this._userService.addUser({uid : data.uid, name: data.name, image: data.image}).subscribe(res => {
+          alert("משתמש נשמר בהצלחה");
+        }, err => {
+          console.log(err);
+          }
+        );
+        // TODO: redirect to my-boards
+        // TODO: how to refresh title name ?!
+        //alert(JSON.stringify(data));
+      });
   }
-
 }

@@ -21,7 +21,8 @@ export const routes: Routes = [
     path: 'my-schedule', component: MyScheduleComponent, resolve: {
       userEvents: MyScheduleResolveService
     }
-  }
+  },
+  { path: '**', component: LoginPageComponent }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);

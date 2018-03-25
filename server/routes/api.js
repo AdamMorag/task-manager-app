@@ -212,7 +212,7 @@ router.post('/removeTask', (req, res) => {
 });
 
 router.post('/calendars/getUserCalendar', (req, res) => {
-  const { userId, startTime, endTime } = req.body;    
+  const { userId, startTime, endTime } = req.body;
 
   connection((db) => {
     let dbInstance = db.db('TaskManagerAppDB');
@@ -225,7 +225,7 @@ router.post('/calendars/getUserCalendar', (req, res) => {
       if (!userCalendars || !userCalendars.length === 0) {
         res.json([]);
         return;
-      }      
+      }
 
       let userEvents = userCalendars[0].events;
 
@@ -250,24 +250,44 @@ router.post('/calendars/saveEvent', (req, res) => {
   const event = req.body;
 
   event.eventId = uuidv4();
-  dbInstance.collection('Calendars').update(
-      {"userId": 1}, // TODO: when we have authentication
-      {"$push": {"$.events": event}
-  );
 
-
-  /*connection((db) => {
+  connection((db) => {
     let dbInstance = db.db('TaskManagerAppDB');
-    dbInstance.collection('Calendars')
-      .insertOne(event)
-      .then(() => {
-        console.log("event saved");
-        res.status(200).json({});
-      })
-      .catch((err) => {
-        sendError(err, res);
-      });
-  });*/
+    dbInstance.collection('Calendars').update(
+        {"userId": "2"}, // TODO: when we have authentication
+        {"$push": {"events": event}},
+        {"upsert": true}).then((event) => {
+
+            console.log("event saved");
+      res.json(event[0]);
+    })
+    .catch((err) => {
+
+        console.log("event failed");
+      sendError(err, res);
+    });
+  });
 });
+
+router.post('/addUser', (req, res) => {
+  const user = req.body
+
+  connection((db) => {
+    let dbInstance = db.db('TaskManagerAppDB');
+    dbInstance.collection('Users').update(
+        {"uid": user.uid}, // TODO: when we have authentication
+        user,
+        {"upsert": true}).then((event) => {
+
+            console.log("user saved");
+    })
+    .catch((err) => {
+
+        console.log("user save failed");
+      sendError(err, res);
+    });
+  });
+});
+
 
 module.exports = router;

@@ -12,4 +12,10 @@ export class UsersService {
       .map(result =>
         result.json());
   }
+
+  public addUser(user: object) {
+    const headers = new Headers()
+    headers.append('Content-Type', 'application/json');
+    return this._http.post("/api/addUser", user, {headers});
+  }
 }
