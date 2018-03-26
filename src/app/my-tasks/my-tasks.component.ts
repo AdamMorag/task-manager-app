@@ -23,4 +23,8 @@ export class MyTasksComponent implements OnInit {
   ngOnInit() {
   }
 
+  public onTaskDeleted(taskId: string): void {
+    const taskIndex = this.myTasks.findIndex(t => t.taskId === taskId);
+    this.myTasks.splice(taskIndex, 1);
+  }
 }

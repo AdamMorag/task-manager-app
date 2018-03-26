@@ -42,7 +42,7 @@
         </section>
         <mat-list>
           <mat-list-item *ngFor="let task of board.tasks | taskStatus:'done'" draggable [dragData]="task">
-            <app-task class="task-card" [task]="task" showEdit="true" showDelete="true"></app-task>
+            <app-task class="task-card" [task]="task" showEdit="true" showDelete="true" (onDeleted)="onTaskDeleted($event, 'done')"></app-task>
           </mat-list-item>
         </mat-list>
       </section>
@@ -52,7 +52,7 @@
         </section>
         <mat-list>
           <mat-list-item *ngFor="let task of board.tasks | taskStatus:'active'" draggable [dragData]="task">
-            <app-task class="task-card" [task]="task" showProgressBar="true" showEdit="true" showDelete="true"></app-task>
+            <app-task class="task-card" [task]="task" showProgressBar="true" showEdit="true" showDelete="true" (onDeleted)="onTaskDeleted($event, 'active')"></app-task>
           </mat-list-item>
         </mat-list>
       </section>
@@ -62,7 +62,7 @@
         </section>
         <mat-list>
           <mat-list-item *ngFor="let task of board.tasks | taskStatus:'waiting'" draggable [dragData]="task">
-            <app-task class="task-card" [task]="task" showEdit="true" showDelete="true"></app-task>
+            <app-task class="task-card" [task]="task" showEdit="true" showDelete="true" (onDeleted)="onTaskDeleted($event, 'waiting')"></app-task>
           </mat-list-item>
         </mat-list>
       </section>
