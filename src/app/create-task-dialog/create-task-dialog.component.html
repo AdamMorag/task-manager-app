@@ -1,5 +1,5 @@
 <div class="create-task-container">
-  <h1 mat-dialog-title>עריכת משימה</h1>
+  <h1 mat-dialog-title>יצירת משימה</h1>
   <div mat-dialog-content>
     <section>
       <label>שם משימה</label>
@@ -33,7 +33,7 @@
     <section class="choose-task-owner">
       <mat-form-field>
         <mat-select placeholder="בחר משתמש" [compareWith]="compareFn" [(ngModel)]="task.owner" [disabled]="!boardMembers" [value]="task.owner">
-          <mat-option *ngFor="let member of boardMembers" [value]="member.id">
+          <mat-option *ngFor="let member of boardMembers" [value]="member">
             <img *ngIf="member.image !== undefined" [src]="member.image" class="member-img">
             <img *ngIf="member.image === undefined" src="/assets/src/unknown.jpg" class="member-img">
             {{ member.name }}

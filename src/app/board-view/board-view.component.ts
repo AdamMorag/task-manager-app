@@ -77,7 +77,7 @@ export class BoardViewComponent implements OnInit, OnDestroy {
   ];
 
   constructor(private route: ActivatedRoute, private _boardService: BoardsService,
-    public dialog: MatDialog, media: MediaMatcher, public _taskService: TasksService, 
+    public dialog: MatDialog, media: MediaMatcher, public _taskService: TasksService,
     public snackBar: MatSnackBar) {
     this.sub = this.route.data.subscribe((data: { board: any }) => {
       this.board = data.board;
@@ -91,7 +91,7 @@ export class BoardViewComponent implements OnInit, OnDestroy {
     this.doughnutChartLabels = ["Waiting", "Active", "Done"];
 
     const mediaQueryList = media.matchMedia('(min-width: 577px)');
-    
+
     this.handleMediaChange(mediaQueryList);
 
     mediaQueryList.addListener(this.handleMediaChange.bind(this));
@@ -129,9 +129,31 @@ export class BoardViewComponent implements OnInit, OnDestroy {
 
   public openCreateTaskDialog() {
     let dialogRef = this.dialog.open(CreateTaskDialogComponent, {
-      data: { board: this.board },
-      width: '90%',
-      height: '80%'
+      data: JSON.parse(JSON.stringify(this.board))
+    });
+
+    dialogRef.afterClosed().subscribe((result: ITask) => {
+      if (result) {
+        this.snackBar.open('מוסיף משימה', undefined, {
+          direction: 'rtl'
+        });
+
+        this._boardService.addNewTask(result).subscribe(() => {
+          this.snackBar.open('משימה נוספה בהצלחה', undefined, {
+            direction: 'rtl',
+            duration: 300
+          });
+
+          let newTask = result as ITask;
+          this.board.tasks.push(newTask);
+        }, (err) => {
+          this.snackBar.open('התרחשה שגיאה בזמן הוספת המשימה', undefined, {
+            direction: 'rtl',
+            duration: 300
+          });
+          console.log(err);
+        });
+      }
     });
   }
 
@@ -143,17 +165,17 @@ export class BoardViewComponent implements OnInit, OnDestroy {
     ];
   }
 
-  private handleMediaChange(mediaQueryList: MediaQueryList) : void {    
+  private handleMediaChange(mediaQueryList: MediaQueryList) : void {
     if (mediaQueryList.matches) {
       this.columnNum = 3;
       this.chartColspan = 1;
     } else {
       this.columnNum = 2;
       this.chartColspan = 2;
-    }    
+    }
   }
 
-  private onTaskDrop(ev: any, status: string) {    
+  private onTaskDrop(ev: any, status: string) {
     let task = ev.dragData as ITask;
     if (task.status === status)
       return;
@@ -165,7 +187,7 @@ export class BoardViewComponent implements OnInit, OnDestroy {
       direction: 'rtl'
     });
 
-    this._taskService.updateTask(updateTask).subscribe(() => { 
+    this._taskService.updateTask(updateTask).subscribe(() => {
       task.status = updateTask.status;
 
       this.snackBar.open('משימה עודכנה בהצלחה', undefined, {
@@ -177,7 +199,7 @@ export class BoardViewComponent implements OnInit, OnDestroy {
         direction: 'rtl',
         duration: 300
       });
-      console.log(err);      
+      console.log(err);
     });
   }
 

@@ -1,5 +1,4 @@
 import { Component, OnInit, NgModule, Inject } from '@angular/core';
-import { BoardsService } from "../my-boards/boards.service";
 import { MAT_DIALOG_DATA , MatDialogRef } from '@angular/material';
 import { ITask } from '../task/task.component';
 
@@ -14,7 +13,7 @@ export class CreateTaskDialogComponent implements OnInit {
   private boardMembers: any[];
   private board: any;
 
-  constructor(private _boardsService: BoardsService,public dialogRef: MatDialogRef<CreateTaskDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(public dialogRef: MatDialogRef<CreateTaskDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.board = data;
     this.boardMembers = this.board.boardMembers;
     this.task = {
@@ -38,8 +37,6 @@ export class CreateTaskDialogComponent implements OnInit {
 
   public submitForm() {
     return this.task;
-
-    //this._boardsService.addNewTask(newTask)
   }
 
   public cancelDialog() {

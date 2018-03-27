@@ -34,8 +34,7 @@ export class BoardsService {
   public addNewTask(task: object) {
     const headers = new Headers()
     headers.append('Content-Type', 'application/json');
-    return this._http.post("/api/addNewTask", task, {headers}).subscribe(result => {
-    })
+    return this._http.post("/api/addNewTask", task, {headers});
   }
 
   public removeTask(boardId: string, taskId: string): Observable<any> {
