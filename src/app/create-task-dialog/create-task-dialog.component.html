@@ -1,36 +1,53 @@
-<h1>
-  Add New Task!
-</h1>
-
-<div>
-  <label for="task-title">Task Title</label>
-  <input [(ngModel)]="title" />
+<div class="create-task-container">
+  <h1 mat-dialog-title>עריכת משימה</h1>
+  <div mat-dialog-content>
+    <section>
+      <label>שם משימה</label>
+      <mat-form-field>
+        <input matInput [(ngModel)]="task.title">
+      </mat-form-field>
+    </section>
+    <section>
+      <section>
+        <label>זמן כולל למשימה</label>
+        <mat-form-field>
+          <input matInput type="number" [(ngModel)]="task.overallTime">
+        </mat-form-field>
+      </section>
+      <section>
+        <label>הזמן שנשאר למשימה</label>
+        <mat-form-field>
+          <input matInput type="number" [(ngModel)]="task.remainingTime">
+        </mat-form-field>
+      </section>
+    </section>
+    <section>
+      <mat-form-field>
+        <mat-select placeholder="סטטוס" [(ngModel)]="task.status">
+          <mat-option value="waiting">Waiting</mat-option>
+          <mat-option value="active">Active</mat-option>
+          <mat-option value="done">Done</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </section>
+    <section class="choose-task-owner">
+      <mat-form-field>
+        <mat-select placeholder="בחר משתמש" [compareWith]="compareFn" [(ngModel)]="task.owner" [disabled]="!boardMembers" [value]="task.owner">
+          <mat-option *ngFor="let member of boardMembers" [value]="member.id">
+            <img *ngIf="member.image !== undefined" [src]="member.image" class="member-img">
+            <img *ngIf="member.image === undefined" src="/assets/src/unknown.jpg" class="member-img">
+            {{ member.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </section>
+  </div>
+  <div mat-dialog-actions class="dialog-actions">
+    <button mat-raised-button color="primary" [mat-dialog-close]="submitForm()">
+      הוסף
+    </button>
+    <button mat-raised-button color="primary" mat-dialog-close (click)="cancelDialog()">
+      ביטול
+    </button>
+  </div>
 </div>
-
-<div>
-  <label for="task-status">Task Status</label>
-  <select [(ngModel)]="status">
-    <option value="waiting">Waiting</option>
-    <option value="active">Active</option>
-    <option value="done">Done</option>
-  </select>
-</div>
-
-<div>
-  <label for="task-overallTime">Task Overall Time</label>
-  <input type="number" [(ngModel)]="overallTime" />
-</div>
-
-<div>
-  <label for="task-remainingTime">Task Remaining Time</label>
-  <input type="number" [(ngModel)]="remainingTime" />
-</div>
-
-<div>
-  <label for="owner-name">Owner Name</label>
-  <select [(ngModel)]="ownerId">
-    <option *ngFor="let member of data.board.boardMembers" [value]="member.id"> {{ member.name }} </option>
-  </select>
-</div>
-
-<button (click)="setValue()" mat-dialog-close type="submit">Add Task</button>

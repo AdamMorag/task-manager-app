@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CalendarEvent } from 'angular-calendar';
+import { CalendarEvent, CalendarMonthViewDay } from 'angular-calendar';
 
 import { UserEvent } from '../services/calendars.service';
 
@@ -13,7 +13,8 @@ import {
   endOfWeek,
   startOfDay,
   endOfDay,
-  format
+  format,
+  subDays
 } from 'date-fns';
 
 import { Observable } from 'rxjs/Observable';

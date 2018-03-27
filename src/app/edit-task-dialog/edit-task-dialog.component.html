@@ -34,6 +34,8 @@
       <mat-form-field>
         <mat-select [compareWith]="compareFn" [(ngModel)]="task.owner" [disabled]="!boardMembers" [value]="task.owner">
           <mat-option *ngFor="let member of boardMembers" [value]="member">
+            <img *ngIf="member.image !== undefined" [src]="member.image" class="member-img">
+            <img *ngIf="member.image === undefined" src="/assets/src/unknown.jpg" class="member-img">
             {{ member.name }}
           </mat-option>
         </mat-select>

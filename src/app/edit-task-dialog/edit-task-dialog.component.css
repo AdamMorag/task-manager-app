@@ -13,3 +13,11 @@ h1 {
 input {
     width: 100%;
 }
+
+.member-img {
+  height: 16px;
+  width: 16px;
+  margin-top: 5px;
+  margin-left: 10px;
+  border-radius: 50%;
+}

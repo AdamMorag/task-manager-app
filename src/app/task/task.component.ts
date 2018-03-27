@@ -14,7 +14,8 @@ export interface ITask {
   boardId: string,
   owner: {
     id: string,
-    name: string
+    name: string,
+    image: string
   },
   status: string,
   overallTime: number,

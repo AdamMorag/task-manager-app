@@ -9,11 +9,11 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./create-event-dialog.component.css']
 })
 export class CreateEventDialogComponent implements OnInit {
-  
+
   title: FormControl = new FormControl("", [
     Validators.required
   ]);
-  
+
   startDate: FormControl = new FormControl(new Date(), [
     Validators.required
   ]);

@@ -1,0 +1,31 @@
+h1 {
+    text-align: center;
+}
+
+.create-task-container {
+    direction: rtl;
+}
+
+.dialog-actions {
+    direction: ltr;
+}
+
+input {
+    width: 100%;
+}
+
+mat-nav-list {
+    width: 50%;
+}
+
+.board-members {
+    display: flex;
+}
+
+.member-img {
+  height: 16px;
+  width: 16px;
+  margin-top: 5px;
+  margin-left: 10px;
+  border-radius: 50%;
+}

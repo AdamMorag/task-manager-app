@@ -1,6 +1,6 @@
 import { Component, OnInit, NgModule, Inject } from '@angular/core';
 import { BoardsService } from "../my-boards/boards.service";
-import {MAT_DIALOG_DATA} from '@angular/material';
+import { MAT_DIALOG_DATA , MatDialogRef } from '@angular/material';
 import { ITask } from '../task/task.component';
 
 @Component({
@@ -10,34 +10,43 @@ import { ITask } from '../task/task.component';
 })
 export class CreateTaskDialogComponent implements OnInit {
 
-  constructor(private _boardsService: BoardsService, @Inject(MAT_DIALOG_DATA) public data: any) { }
+  private task: ITask;
+  private boardMembers: any[];
+  private board: any;
 
-  title: string = '';
-  status: string = 'waiting';
-  overallTime: number = 0;
-  remainingTime: number = 0;
-  ownerId: string = '';
+  constructor(private _boardsService: BoardsService,public dialogRef: MatDialogRef<CreateTaskDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.board = data;
+    this.boardMembers = this.board.boardMembers;
+    this.task = {
+      taskId: "",
+      title: "",
+      boardName: this.board.title,
+      boardId: this.board.boardId,
+      owner: {
+        id: "",
+        name: "",
+        image: ""
+      },
+      status: "",
+      overallTime: 0,
+      remainingTime: 0
+    };
+   }
 
   ngOnInit() {
   }
 
-  public setValue() {
-    const {title, status, overallTime, remainingTime, ownerId, data: {board: {title: boardTitle, boardId, boardMembers}}} = this
+  public submitForm() {
+    return this.task;
 
-    const newTask: ITask = {
-      taskId: 'tempId',
-      title,
-      status,
-      overallTime,
-      remainingTime,
-      boardId,
-      boardName: boardTitle,
-      owner: {
-        id: ownerId,
-        name: boardMembers.find(member => member.id === ownerId).name
-      }            
-    }
+    //this._boardsService.addNewTask(newTask)
+  }
 
-    this._boardsService.addNewTask(newTask)
+  public cancelDialog() {
+    this.dialogRef.close();
+  }
+
+  public compareFn(firstUser: any, secondUser: any): boolean {
+    return firstUser.id === secondUser.id;
   }
 }
