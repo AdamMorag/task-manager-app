@@ -134,8 +134,6 @@ router.get('/users/all', (req, res) => {
 });
 
 router.post('/board/saveBoard', (req, res) => {
-  // This is for testing until we have google authentication
-  let tempUserId = "1";
   const board = req.body;
 
   board.boardId = uuidv4();
@@ -154,6 +152,48 @@ router.post('/board/saveBoard', (req, res) => {
   });
 });
 
+router.get('/board/assignTasks/:boardId', (req, res) => {
+  const boardId = req.params.boardId;
+
+  connection((db) => {
+    let dbInstance = db.db('TaskManagerAppDB');
+    dbInstance.collection('Boards')
+      .find({
+        "boardId": boardId
+      })
+      .toArray()
+      .then((boards) => {
+        if (!boards || boards.length === 0) {
+          res.status(500).json({ message: "Failed to find board" });
+          return;
+        }
+
+        const boardMembers = boards[0].boardMembers;
+
+        boards[0].tasks.forEach(task => {
+          if (task.status !== 'done')
+            task.owner = boardMembers[Math.floor(Math.random() * boardMembers.length)]
+        });
+
+        return boards[0];
+      }).then((board) => {
+        if (!board)
+          return;
+
+        return dbInstance.collection('Boards').replaceOne({ "boardId": board.boardId }, board)
+          .then(() => { return board });
+      }).then((board) => {
+        if (!board)
+          return;
+
+        res.status(200).json(board);
+      })
+      .catch((err) => {
+        sendError(err, res);
+      });
+  });
+});
+
 router.post('/addNewTask', (req, res) => {
   const task = req.body
   task.taskId = uuidv4();
@@ -161,14 +201,14 @@ router.post('/addNewTask', (req, res) => {
   connection((db) => {
     let dbInstance = db.db('TaskManagerAppDB');
     dbInstance.collection('Boards').update(
-      {"boardId": task.boardId},
-      {"$push": {"tasks": task}}
+      { "boardId": task.boardId },
+      { "$push": { "tasks": task } }
     ).then((board) => {
       res.json(board[0]);
     })
-    .catch((err) => {
-      sendError(err, res);
-    });
+      .catch((err) => {
+        sendError(err, res);
+      });
   });
 });
 
@@ -178,31 +218,31 @@ router.post('/updateTask', (req, res) => {
   connection((db) => {
     let dbInstance = db.db('TaskManagerAppDB');
     dbInstance.collection('Boards').updateOne(
-      { "boardId": task.boardId, "tasks.taskId": task.taskId},
-      {"$set": {"tasks.$": task}}
+      { "boardId": task.boardId, "tasks.taskId": task.taskId },
+      { "$set": { "tasks.$": task } }
     ).then((board) => {
       res.status(200).json({});
     })
-    .catch((err) => {
-      sendError(err, res);
-    });
+      .catch((err) => {
+        sendError(err, res);
+      });
   });
 });
 
 router.post('/removeTask', (req, res) => {
-  const {boardId, taskId} = req.body
+  const { boardId, taskId } = req.body
 
   connection((db) => {
     let dbInstance = db.db('TaskManagerAppDB');
     dbInstance.collection('Boards').update(
-      {"boardId": boardId},
-      {"$pull": {"tasks": {"taskId": taskId}}}
+      { "boardId": boardId },
+      { "$pull": { "tasks": { "taskId": taskId } } }
     ).then((board) => {
       res.json(board[0]);
     })
-    .catch((err) => {
-      sendError(err, res);
-    });
+      .catch((err) => {
+        sendError(err, res);
+      });
   });
 });
 
@@ -214,28 +254,28 @@ router.post('/calendars/getUserCalendar', (req, res) => {
     dbInstance.collection('Calendars').find({
       userId: userId
     })
-    .toArray()
-    .then(userCalendars => {
-      // Validation
-      if (!userCalendars || userCalendars.length === 0) {
-        res.json([]);
-        return;
-      }
+      .toArray()
+      .then(userCalendars => {
+        // Validation
+        if (!userCalendars || userCalendars.length === 0) {
+          res.json([]);
+          return;
+        }
 
-      let userEvents = userCalendars[0].events;
+        let userEvents = userCalendars[0].events;
 
-      if (startTime) {
-        userEvents = userEvents.filter(ev => ev.startTime >= startTime && ev.endTime >= startTime);
-      }
+        if (startTime) {
+          userEvents = userEvents.filter(ev => ev.startTime >= startTime && ev.endTime >= startTime);
+        }
 
-      if (endTime) {
-        userEvents = userEvents.filter(ev => ev.startTime <= startTime && ev.endTime <= startTime);
-      }
+        if (endTime) {
+          userEvents = userEvents.filter(ev => ev.startTime <= startTime && ev.endTime <= startTime);
+        }
 
-      res.json(userEvents);
-    }).catch((err) => {
+        res.json(userEvents);
+      }).catch((err) => {
         sendError(err, res);
-    });
+      });
   });
 });
 
@@ -248,18 +288,18 @@ router.post('/calendars/saveEvent', (req, res) => {
   connection((db) => {
     let dbInstance = db.db('TaskManagerAppDB');
     dbInstance.collection('Calendars').update(
-        {"userId": userId},
-        {"$push": {"events": event}},
-        {"upsert": true}).then((event) => {
+      { "userId": userId },
+      { "$push": { "events": event } },
+      { "upsert": true }).then((event) => {
 
-            console.log("event saved");
-      res.json(event[0]);
-    })
-    .catch((err) => {
+        console.log("event saved");
+        res.json(event[0]);
+      })
+      .catch((err) => {
 
         console.log("event failed");
-      sendError(err, res);
-    });
+        sendError(err, res);
+      });
   });
 });
 
@@ -269,16 +309,15 @@ router.post('/addUser', (req, res) => {
   connection((db) => {
     let dbInstance = db.db('TaskManagerAppDB');
     dbInstance.collection('Users').update(
-        {"uid": user.uid}, // TODO: when we have authentication
-        user,
-        {"upsert": true}).then((user) => {
-          res.json(user[0]);
-    })
-    .catch((err) => {
-      sendError(err, res);
-    });
+      { "uid": user.uid }, // TODO: when we have authentication
+      user,
+      { "upsert": true }).then((user) => {
+        res.json(user[0]);
+      })
+      .catch((err) => {
+        sendError(err, res);
+      });
   });
 });
-
 
 module.exports = router;

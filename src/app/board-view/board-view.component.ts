@@ -41,8 +41,6 @@ export class BoardViewComponent implements OnInit, OnDestroy {
   public columnNum: number;
   public chartColspan: number;
 
-  public boardId: number;
-
   public board: any;
 
   public doughnutChartLabels: string[];
@@ -165,7 +163,7 @@ export class BoardViewComponent implements OnInit, OnDestroy {
     ];
   }
 
-  private handleMediaChange(mediaQueryList: MediaQueryList) : void {
+  private handleMediaChange(mediaQueryList: MediaQueryList): void {
     if (mediaQueryList.matches) {
       this.columnNum = 3;
       this.chartColspan = 1;
@@ -206,5 +204,16 @@ export class BoardViewComponent implements OnInit, OnDestroy {
   public onTaskDeleted(taskId: string, status: string): void {
     const taskIndex = this.board.tasks.findIndex(t => t.taskId === taskId);
     this.board.tasks.splice(taskIndex, 1);
+  }
+
+  public assignBoardTasks(): void {
+    this.snackBar.open('מחלק מחדש משימות', undefined, { direction: 'rtl' });
+
+    this._boardService.assignBoardTasks(this.board.boardId).subscribe(board => {
+      if (board) {
+        this.snackBar.open('המשימות חולקו', undefined, { duration: 500, direction: 'rtl' });
+        this.board = board;
+      }
+    });
   }
 }

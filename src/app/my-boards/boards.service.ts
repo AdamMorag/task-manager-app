@@ -34,12 +34,19 @@ export class BoardsService {
   public addNewTask(task: object) {
     const headers = new Headers()
     headers.append('Content-Type', 'application/json');
-    return this._http.post("/api/addNewTask", task, {headers});
+    return this._http.post("/api/addNewTask", task, { headers });
   }
 
   public removeTask(boardId: string, taskId: string): Observable<any> {
     const headers = new Headers()
     headers.append('Content-Type', 'application/json');
-    return this._http.post("/api/removeTask", {boardId, taskId}, {headers});
+    return this._http.post("/api/removeTask", { boardId, taskId }, { headers });
+  }
+
+  public assignBoardTasks(boardId: string): Observable<any> {
+    return this._http.get('/api/board/assignTasks/' + boardId)
+      .map(response => { 
+        return response.json();
+      });      
   }
 }
