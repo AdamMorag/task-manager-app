@@ -46,7 +46,7 @@
           <img *ngIf="member.image !== undefined" [src]="member.image" class="member-img">
           <img *ngIf="member.image === undefined" src="/assets/src/unknown.jpg" class="member-img">
           {{ member.name }}
-          <img src="/assets/src/cancel.png" class="member-img" (click)="removeMember(member)">
+          <img src="/assets/src/cancel.png" class="member-img cancel-member-button" (click)="removeMember(member)">
         </a>
       </mat-nav-list>
     </section>
