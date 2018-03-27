@@ -1,10 +1,12 @@
 <div class="create-event-container">
   <h1 mat-dialog-title>עריכת אירוע</h1>
   <div mat-dialog-content>
-    <section>
-      <label>שם אירוע</label>
+    <section>      
       <mat-form-field>
-        <input matInput [(ngModel)]="title.value">
+        <input matInput [formControl]="title" placeholder="שם אירוע">
+        <mat-error *ngIf="title.hasError('required')">
+          שם אירוע הוא שדה חובה
+        </mat-error>
       </mat-form-field>
     </section>
     <section>
@@ -27,7 +29,7 @@
     </section>
   </div>
   <div mat-dialog-actions class="dialog-actions">
-    <button mat-raised-button color="primary" [mat-dialog-close]="submitForm()">
+    <button mat-raised-button color="primary" [mat-dialog-close]="submitForm()" [disabled]="!formIsValid()">
       צור
     </button>
     <button mat-raised-button color="primary" mat-dialog-close (click)="cancelDialog()">

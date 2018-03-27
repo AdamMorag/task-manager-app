@@ -10,7 +10,7 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class CreateEventDialogComponent implements OnInit {
 
-  title: FormControl = new FormControl("", [
+  title: FormControl = new FormControl(null, [
     Validators.required
   ]);
 
@@ -24,8 +24,8 @@ export class CreateEventDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<CreateEventDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { date: Date }) {
-      this.startDate.setValue(data.date);
-      this.endDate.setValue(data.date);
+    this.startDate.setValue(data.date);
+    this.endDate.setValue(data.date);
   }
 
   ngOnInit() {
@@ -44,4 +44,11 @@ export class CreateEventDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  public formIsValid(): boolean {
+    const valid = !this.title.hasError('required') &&
+           !this.startDate.hasError('required') &&
+           !this.endDate.hasError('required');
+
+    return valid;
+  }
 }
