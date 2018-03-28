@@ -60,6 +60,8 @@ import { TaskStatusPipe } from './board-view/task-status.pipe';
 // Routes
 import { routing } from "./app.routes";
 import { TaskStatusChartPipe } from './board-view/task-status-chart.pipe';
+import { EditEventDialogComponent } from './edit-event-dialog/edit-event-dialog.component';
+import { DeleteEventDialogComponent } from './delete-event-dialog/delete-event-dialog.component';
 
 const providers = {
   'google': {
@@ -83,7 +85,9 @@ const providers = {
     LoginPageComponent,
     TaskStatusPipe,
     TaskStatusChartPipe,
-    CreateEventDialogComponent  
+    CreateEventDialogComponent,
+    EditEventDialogComponent,
+    DeleteEventDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -129,11 +133,12 @@ const providers = {
     EditTaskDialogComponent,
     DeleteTaskDialogComponent,
     CreateBoardDialogComponent,
-    CreateEventDialogComponent
+    CreateEventDialogComponent,
+    EditEventDialogComponent,
+    DeleteEventDialogComponent
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 
 Angular2SocialLoginModule.loadProvidersScripts(providers);
-

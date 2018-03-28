@@ -1,30 +1,24 @@
-<div class="create-event-container">
-  <h1 mat-dialog-title>הוספת אירוע</h1>
+<div class="edit-event-container">
+  <h1 mat-dialog-title>עריכת אירוע</h1>
   <div mat-dialog-content>
     <section>
       <mat-form-field>
-        <input matInput [formControl]="title" placeholder="שם אירוע">
-        <mat-error *ngIf="title.hasError('required')">
+        <input matInput [(ngModel)]="event.title" placeholder="שם אירוע">
+        <mat-error *ngIf="event.title === undefined">
           שם אירוע הוא שדה חובה
         </mat-error>
       </mat-form-field>
     </section>
     <section>
       <mat-form-field>
-        <input matInput [matDatepicker]="start" placeholder="תאריך תחילה" [formControl]="startDate" [max]=endDate.value>
+        <input matInput [matDatepicker]="start" placeholder="תאריך תחילה" [(ngModel)]="event.startDate" [max]=endDate.value>
         <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
         <mat-datepicker #start></mat-datepicker>
-        <mat-error *ngIf="startDate.hasError('required')">
-          תאריך תחילה הוא שדה חובה
-        </mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input matInput [matDatepicker]="end" placeholder="תאריך סיום" [formControl]="endDate" [min]="startDate.value">
+        <input matInput [matDatepicker]="end" placeholder="תאריך סיום" [(ngModel)]="event.endDate" [min]="startDate.value">
         <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
         <mat-datepicker #end></mat-datepicker>
-        <mat-error *ngIf="endDate.hasError('required')">
-          תאריך סיום הוא שדה חובה
-        </mat-error>
       </mat-form-field>
     </section>
   </div>

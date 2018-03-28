@@ -1,0 +1,15 @@
+h1 {
+    text-align: center;
+}
+
+.edit-event-container {
+    direction: rtl;
+}
+
+.dialog-actions {
+    direction: ltr;
+}
+
+input {
+    width: 100%;
+}

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 export interface UserEvent {
@@ -14,7 +14,7 @@ export class CalendarsService {
 
   constructor(private _http: Http) { }
 
-  public getUserEvents(userId: string): Observable<Array<UserEvent>> {    
+  public getUserEvents(userId: string): Observable<Array<UserEvent>> {
     const body = {
       userId: userId
     };
@@ -31,5 +31,18 @@ export class CalendarsService {
       event: event,
       userId: userId
     });
+  }
+
+  public removeEvent(userId: string, eventId: string): Observable<any> {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this._http.post("/api/removeEvent", { userId, eventId }, { headers });
+  }
+
+  public updateEvent(event: UserEvent, userId: string) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this._http.post("/api/updateEvent", { userId, event }, { headers: headers });
   }
 }

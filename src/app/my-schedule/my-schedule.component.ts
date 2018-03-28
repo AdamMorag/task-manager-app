@@ -24,6 +24,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { CreateEventDialogComponent } from '../create-event-dialog/create-event-dialog.component';
+import { DeleteEventDialogComponent } from '../delete-event-dialog/delete-event-dialog.component';
+import { EditEventDialogComponent } from '../edit-event-dialog/edit-event-dialog.component';
 
 @Component({
   selector: 'app-my-schedule',
@@ -62,7 +64,21 @@ export class MyScheduleComponent implements OnInit {
       color: {
         primary: "red",
         secondary: "yellow"
-      }
+      },
+      actions: [
+        {
+          label: '<i class="fa fa-fw fa-pencil"></i>',
+          onClick: ({ event }: { event: CalendarEvent }): void => {
+            this.openEditEventDialog(event);
+          }
+        },
+        {
+          label: '<i class="fa fa-fw fa-times"></i>',
+          onClick: ({ event }: { event: CalendarEvent }): void => {
+            this.openDeleteEventDialog(event.id.toString());
+          }
+        }
+      ]
     };
   }
 
@@ -120,5 +136,62 @@ export class MyScheduleComponent implements OnInit {
         this.snackBar.dismiss();
       }
     });
+  }
+
+  public openDeleteEventDialog(eventId: string) {
+    this.dialog.open(DeleteEventDialogComponent).afterClosed().subscribe((shouldDelete: boolean) => {
+      if (shouldDelete) {
+        this._calenderService.removeEvent(localStorage.getItem("uid"), eventId)
+          .subscribe(() => {
+            //this.onDeleted.emit(this.task.taskId);
+            this.snackBar.open("אירוע נמחק בהצלחה", undefined ,{
+              direction: 'rtl',
+              duration: 500
+            });
+          });
+
+          this.onEventDeleted(eventId);
+          this.refresh.next();
+          this.snackBar.dismiss();
+      }
+    });
+  }
+
+  public openEditEventDialog(eventToUpdate: UserEvent) {
+
+    let editDialog = this.dialog.open(EditEventDialogComponent, {
+      data: JSON.parse(JSON.stringify(eventToUpdate))
+    });
+
+    editDialog.afterClosed().subscribe((result: UserEvent) => {
+      if (result) {
+        this.snackBar.open('מעדכן אירוע', undefined, {
+          direction: 'rtl'
+        });
+
+        this._calenderService.updateEvent(result, localStorage.getItem("uid")).subscribe(() => {
+          Object.assign(eventToUpdate, result);
+          this.snackBar.open('אירוע עודכן בהצלחה', undefined, {
+            direction: 'rtl',
+            duration: 300
+          });
+        }, (err) => {
+          this.snackBar.open('התרחשה שגיאה בזמן עדכון האירוע', undefined, {
+            direction: 'rtl',
+            duration: 300
+          });
+          console.log(err);
+        });
+
+
+        this.refresh.next();
+        this.snackBar.dismiss();
+      }
+    });
+  }
+
+  public onEventDeleted(eventId: string): void {
+    const eventIndex = this.events.findIndex(t => t.id === eventId);
+    this.events.splice(eventIndex, 1);
   }
 }

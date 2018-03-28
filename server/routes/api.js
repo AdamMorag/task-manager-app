@@ -320,4 +320,38 @@ router.post('/addUser', (req, res) => {
   });
 });
 
+router.post('/removeEvent', (req, res) => {
+  const { userId, eventId } = req.body
+
+  connection((db) => {
+    let dbInstance = db.db('TaskManagerAppDB');
+    dbInstance.collection('Calendars').update(
+      { "userId": userId },
+      { "$pull": { "events": { "eventId": eventId } } }
+    ).then((calender) => {
+      res.json(calender[0]);
+    })
+      .catch((err) => {
+        sendError(err, res);
+      });
+  });
+});
+
+router.post('/updateEvent', (req, res) => {
+  const { userId, event } = req.body
+
+  connection((db) => {
+    let dbInstance = db.db('TaskManagerAppDB');
+    dbInstance.collection('Calendars').updateOne(
+      { "userId": userId, "events.eventId": event.eventId },
+      { "$set": { "events.$": event } }
+    ).then((calender) => {
+      res.status(200).json({});
+    })
+      .catch((err) => {
+        sendError(err, res);
+      });
+  });
+});
+
 module.exports = router;
