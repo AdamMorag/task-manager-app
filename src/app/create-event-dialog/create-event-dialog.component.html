@@ -9,7 +9,21 @@
         </mat-error>
       </mat-form-field>
     </section>
-    <section>
+    <section class="datetime-picker">
+      <label>תאריך תחילה</label>
+        <date-time-picker
+          [(ngModel)]="startDate"
+          placeholder="תאריך תחילה">
+        </date-time-picker>
+    </section>
+    <section class="datetime-picker">
+        <label>תאריך סיום</label>
+        <date-time-picker
+          [(ngModel)]="endDate"
+          placeholder="תאריך סיום">
+        </date-time-picker>
+    </section>
+    <!--<section>
       <mat-form-field>
         <input matInput [matDatepicker]="start" placeholder="תאריך תחילה" [formControl]="startDate" [max]=endDate.value>
         <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
@@ -26,7 +40,7 @@
           תאריך סיום הוא שדה חובה
         </mat-error>
       </mat-form-field>
-    </section>
+    </section>-->
   </div>
   <div mat-dialog-actions class="dialog-actions">
     <button mat-raised-button color="primary" [mat-dialog-close]="submitForm()" [disabled]="!formIsValid()">

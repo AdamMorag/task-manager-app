@@ -6,6 +6,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { LayoutModule } from '@angular/cdk/layout';
 import { Angular2SocialLoginModule } from 'angular2-social-login';
+import {
+  NgbModalModule,
+  NgbDatepickerModule,
+  NgbTimepickerModule
+} from '@ng-bootstrap/ng-bootstrap';
 
 // Angular Material Modules
 import {
@@ -62,6 +67,7 @@ import { routing } from "./app.routes";
 import { TaskStatusChartPipe } from './board-view/task-status-chart.pipe';
 import { EditEventDialogComponent } from './edit-event-dialog/edit-event-dialog.component';
 import { DeleteEventDialogComponent } from './delete-event-dialog/delete-event-dialog.component';
+import { DatetimePickerComponent } from './datetime-picker/datetime-picker.component';
 
 const providers = {
   'google': {
@@ -87,7 +93,8 @@ const providers = {
     TaskStatusChartPipe,
     CreateEventDialogComponent,
     EditEventDialogComponent,
-    DeleteEventDialogComponent
+    DeleteEventDialogComponent,
+    DatetimePickerComponent
   ],
   imports: [
     BrowserModule,
@@ -114,7 +121,10 @@ const providers = {
     MatSnackBarModule,
     MatSelectModule,
     LayoutModule,
+    NgbDatepickerModule.forRoot(),
+    NgbTimepickerModule.forRoot(),
     NgDragDropModule.forRoot(),
+    NgbModalModule.forRoot(),
     CalendarModule.forRoot(),
     ContextMenuModule.forRoot({
       useBootstrap4: true

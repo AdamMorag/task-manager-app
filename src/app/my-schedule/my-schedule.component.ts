@@ -67,9 +67,9 @@ export class MyScheduleComponent implements OnInit {
       },
       actions: [
         {
-          label: '<i class="fa fa-fw fa-pencil"></i>',
+          label: '<i class="fas fa-edit"></i>',
           onClick: ({ event }: { event: CalendarEvent }): void => {
-            this.openEditEventDialog(event);
+            this.openEditEventDialog(userEvent);
           }
         },
         {

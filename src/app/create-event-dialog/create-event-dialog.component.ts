@@ -14,18 +14,14 @@ export class CreateEventDialogComponent implements OnInit {
     Validators.required
   ]);
 
-  startDate: FormControl = new FormControl(new Date(), [
-    Validators.required
-  ]);
+  startDate: Date;
 
-  endDate: FormControl = new FormControl(new Date(), [
-    Validators.required
-  ]);
+  endDate: Date;
 
   constructor(public dialogRef: MatDialogRef<CreateEventDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { date: Date }) {
-    this.startDate.setValue(data.date);
-    this.endDate.setValue(data.date);
+    this.startDate = data.date;
+    this.endDate = data.date;
   }
 
   ngOnInit() {
@@ -35,8 +31,8 @@ export class CreateEventDialogComponent implements OnInit {
     return {
       eventId: "",
       title: this.title.value,
-      startDate: this.startDate.value,
-      endDate: this.endDate.value
+      startDate: this.startDate,
+      endDate: this.endDate
     }
   }
 
@@ -45,9 +41,7 @@ export class CreateEventDialogComponent implements OnInit {
   }
 
   public formIsValid(): boolean {
-    const valid = !this.title.hasError('required') &&
-           !this.startDate.hasError('required') &&
-           !this.endDate.hasError('required');
+    const valid = !this.title.hasError('required');
 
     return valid;
   }

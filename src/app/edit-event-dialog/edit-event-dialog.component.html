@@ -4,27 +4,26 @@
     <section>
       <mat-form-field>
         <input matInput [(ngModel)]="event.title" placeholder="שם אירוע">
-        <mat-error *ngIf="event.title === undefined">
-          שם אירוע הוא שדה חובה
-        </mat-error>
       </mat-form-field>
     </section>
-    <section>
-      <mat-form-field>
-        <input matInput [matDatepicker]="start" placeholder="תאריך תחילה" [(ngModel)]="event.startDate" [max]=endDate.value>
-        <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
-        <mat-datepicker #start></mat-datepicker>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput [matDatepicker]="end" placeholder="תאריך סיום" [(ngModel)]="event.endDate" [min]="startDate.value">
-        <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
-        <mat-datepicker #end></mat-datepicker>
-      </mat-form-field>
+    <section class="datetime-picker">
+      <label>תאריך תחילה</label>
+        <date-time-picker
+          [(ngModel)]="event.startDate"
+          placeholder="תאריך תחילה">
+        </date-time-picker>
+    </section>
+    <section class="datetime-picker">
+        <label>תאריך סיום</label>
+        <date-time-picker
+          [(ngModel)]="event.endDate"
+          placeholder="תאריך סיום">
+        </date-time-picker>
     </section>
   </div>
   <div mat-dialog-actions class="dialog-actions">
-    <button mat-raised-button color="primary" [mat-dialog-close]="submitForm()" [disabled]="!formIsValid()">
-      צור
+    <button mat-raised-button color="primary" [mat-dialog-close]="submitForm()">
+      עדכן
     </button>
     <button mat-raised-button color="primary" mat-dialog-close (click)="cancelDialog()">
       ביטול

@@ -13,3 +13,7 @@ h1 {
 input {
     width: 100%;
 }
+
+.datetime-picker {
+  display: inline-block;
+}

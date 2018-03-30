@@ -2,6 +2,8 @@
   <mat-card-title>{{task.title}}</mat-card-title>
   <mat-card-subtitle>
     <label>משויך ל:</label>
+    <img *ngIf="task.owner.image !== undefined" [src]="task.owner.image" class="member-img">
+    <img *ngIf="task.owner.image === undefined" src="/assets/src/unknown.jpg" class="member-img">
     <span>{{task.owner.name}}</span>
     <br/>
     <section *ngIf="showOpenBoard">
