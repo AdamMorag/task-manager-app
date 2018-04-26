@@ -35,9 +35,9 @@ router.get('/boardsUserIsShareWith/:userId', (req, res) => {
     dbInstance.collection('Boards')
       .find({
         $and: [{
-          "boardMembers.id": UserId
+          "boardMembers.uid": UserId
         }, {
-          "boardOwner.ownerId": { $ne: UserId }
+          "boardOwner.uid": { $ne: UserId }
         }]
       })
       .toArray()
@@ -57,7 +57,7 @@ router.get('/boardsUserIsManagerOf/:userId', (req, res) => {
     let dbInstance = db.db('TaskManagerAppDB');
     dbInstance.collection('Boards')
       .find({
-        "boardOwner.ownerId": UserId
+        "boardOwner.uid": UserId
       })
       .toArray()
       .then((boards) => {
@@ -77,9 +77,9 @@ router.get('/userTasks/:userId', (req, res) => {
     dbInstance.collection('Boards')
       .find({
         $and: [{
-          "boardMembers.id": UserId
+          "boardMembers.uid": UserId
         }, {
-          "tasks.owner.id": UserId
+          "tasks.owner.uid": UserId
         }]
       })
       .toArray()
@@ -288,7 +288,7 @@ router.post('/calendars/saveEvent', (req, res) => {
   connection((db) => {
     let dbInstance = db.db('TaskManagerAppDB');
     dbInstance.collection('Calendars').update(
-      { "userId": userId },
+      { "uid": userId },
       { "$push": { "events": event } },
       { "upsert": true }).then((event) => {
 
@@ -326,7 +326,7 @@ router.post('/removeEvent', (req, res) => {
   connection((db) => {
     let dbInstance = db.db('TaskManagerAppDB');
     dbInstance.collection('Calendars').update(
-      { "userId": userId },
+      { "uid": userId },
       { "$pull": { "events": { "eventId": eventId } } }
     ).then((calender) => {
       res.json(calender[0]);
@@ -343,12 +343,13 @@ router.post('/updateEvent', (req, res) => {
   connection((db) => {
     let dbInstance = db.db('TaskManagerAppDB');
     dbInstance.collection('Calendars').updateOne(
-      { "userId": userId, "events.eventId": event.eventId },
+      { "uid": userId, "events.eventId": event.eventId },
       { "$set": { "events.$": event } }
     ).then((calender) => {
       res.status(200).json({});
     })
       .catch((err) => {
+        console.log("event failed");
         sendError(err, res);
       });
   });

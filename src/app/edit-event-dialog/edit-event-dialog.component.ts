@@ -22,6 +22,8 @@ export class EditEventDialogComponent implements OnInit {
   }
 
   public submitForm(): UserEvent {
+    this.event.startDate = new Date(this.event.startDate);
+    this.event.endDate = new Date(this.event.endDate);
     return this.event;
   }
 

@@ -102,11 +102,11 @@ export class MyScheduleComponent implements OnInit {
     }
   }
 
-  public addEvent(day: { date: Date, events: CalendarEvent[] }): void {
+  public addEvent(day: any: void {
 
     let dialogRef = this.dialog.open(CreateEventDialogComponent, {
       data: {
-        date: day.date
+        date: Date.parse(day.toDateString())
       }
     });
 

@@ -31,8 +31,8 @@ export class CreateEventDialogComponent implements OnInit {
     return {
       eventId: "",
       title: this.title.value,
-      startDate: this.startDate,
-      endDate: this.endDate
+      startDate: new Date(this.startDate),
+      endDate: new Date(this.endDate)
     }
   }
 
