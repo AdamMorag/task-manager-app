@@ -1,18 +1,18 @@
 <div class="create-task-container">
   <h1 mat-dialog-title>יצירת משימה</h1>
   <div mat-dialog-content>
-    <section>      
+    <section>
       <mat-form-field>
         <input matInput [(ngModel)]="task.title" placeholder="שם משימה">
       </mat-form-field>
     </section>
     <section>
-      <section>        
+      <section>
         <mat-form-field>
           <input matInput type="number" [(ngModel)]="task.overallTime" placeholder="זמן כולל למשימה">
         </mat-form-field>
       </section>
-      <section>        
+      <section>
         <mat-form-field>
           <input matInput type="number" [(ngModel)]="task.remainingTime" placeholder="הזמן שנשאר למשימה">
         </mat-form-field>
@@ -40,10 +40,10 @@
     </section>
   </div>
   <div mat-dialog-actions class="dialog-actions">
-    <button mat-raised-button color="primary" [mat-dialog-close]="submitForm()">
+    <button mat-raised-button class="primary-color-hover" color="primary" [mat-dialog-close]="submitForm()">
       הוסף
     </button>
-    <button mat-raised-button color="primary" mat-dialog-close (click)="cancelDialog()">
+    <button mat-raised-button class="primary-color-hover" color="primary" mat-dialog-close (click)="cancelDialog()">
       ביטול
     </button>
   </div>

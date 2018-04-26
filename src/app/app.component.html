@@ -20,9 +20,9 @@
 <mat-sidenav-container class="nav-container" *ngIf="isAuthenticated">
   <mat-sidenav opened=true mode="side" position="end" class="my-sidenav">
     <mat-nav-list class="vertical-center">
-        <a mat-list-item [routerLink]="['/my-boards']">הלוחות שלי</a>
-        <a mat-list-item [routerLink]="['/my-tasks']">המשימות שלי</a>
-        <a mat-list-item [routerLink]="['/my-schedule']">הלו"ז שלי</a>
+        <a class="sideBarItem" mat-list-item [routerLink]="['/my-boards']"><span class="sideBarIcon fa fa-star"></span><span class="sideBarText">הלוחות שלי</span></a>
+        <a class="sideBarItem" mat-list-item [routerLink]="['/my-tasks']"><span class="sideBarIcon fa fa-star"></span><span class="sideBarText">המשימות שלי</span></a>
+        <a class="sideBarItem" mat-list-item [routerLink]="['/my-schedule']"><span class="sideBarIcon fa fa-star"></span><span class="sideBarText">הלו"ז שלי</span></a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

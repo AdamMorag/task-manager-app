@@ -4,14 +4,14 @@
   <section>
     <h2>לוחות בניהולי</h2>
     <section>
-      <button mat-raised-button color="primary" (click)="openCreateBoardDialog()">צור לוח</button>
+      <button mat-raised-button class="primary-color-hover" color="primary" (click)="openCreateBoardDialog()">צור לוח</button>
     </section>
     <section class="cards-container">
       <mat-spinner *ngIf="loadingBoardsIManage"></mat-spinner>
-      <mat-card [hidden]="loadingBoardsIManage" *ngFor="let board of boardsIManage">      
+      <mat-card [hidden]="loadingBoardsIManage" *ngFor="let board of boardsIManage">
         <mat-card-title>{{board.title}}</mat-card-title>
         <mat-card-actions>
-            <button mat-raised-button color="primary" [routerLink]="['/board', board.boardId]" class="primary-color-hover">נהל לוח</button>          
+            <button mat-raised-button color="primary" [routerLink]="['/board', board.boardId]" class="primary-color-hover">נהל לוח</button>
           </mat-card-actions>
       </mat-card>
     </section>
@@ -25,7 +25,7 @@
       *ngFor="let board of staggeringboardsImShared">
         <mat-card-title>{{board.title}}</mat-card-title>
         <mat-card-actions>
-            <button mat-raised-button color="primary" [routerLink]="['/board', board.boardId]" class="primary-color-hover">פתח לוח</button>          
+            <button mat-raised-button color="primary" [routerLink]="['/board', board.boardId]" class="primary-color-hover">פתח לוח</button>
           </mat-card-actions>
       </mat-card>
     </section>
