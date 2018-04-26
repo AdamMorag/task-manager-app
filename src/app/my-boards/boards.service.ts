@@ -3,6 +3,19 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 
+export interface IBoard {
+  title: string,
+  startDate: Date,
+  endDate: Date,
+  boardMembers: any,
+  tasks: any,
+  // Once we have authntication get the real values
+  boardOwner: {
+    uid: string,
+    name: string
+  }
+}
+
 @Injectable()
 export class BoardsService {
 
@@ -25,7 +38,7 @@ export class BoardsService {
       .map(board => board.json());
   }
 
-  public saveBoard(board: any): Observable<any> {
+  public saveBoard(board: IBoard): Observable<any> {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this._http.post("/api/board/saveBoard", board, { headers: headers });

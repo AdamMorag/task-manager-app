@@ -13,7 +13,7 @@ export interface ITask {
   boardName: string,
   boardId: string,
   owner: {
-    id: string,
+    uid: string,
     name: string,
     image: string
   },

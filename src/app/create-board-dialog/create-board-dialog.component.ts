@@ -6,9 +6,10 @@ import { map } from 'rxjs/operators/map';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { UsersService } from '../services/users.service';
 import { MatDialogRef } from "@angular/material";
+import { IBoard } from "../my-boards/boards.service";
 
 export class User {
-  constructor(public name: string, public image: string, public id?: string) { }
+  constructor(public name: string, public image: string, public uid?: string) { }
 }
 
 @Component({
@@ -73,7 +74,7 @@ export class CreateBoardDialogComponent implements OnInit {
     this.boardMembers.splice(index, 1);
   }
 
-  public submitForm() {
+  public submitForm(): IBoard {
     return {
       title: this.boardName.value,
       startDate: this.startDate.value,
@@ -82,7 +83,7 @@ export class CreateBoardDialogComponent implements OnInit {
       tasks: [],
       // Once we have authntication get the real values
       boardOwner: {
-        ownerId: localStorage.getItem("uid"),
+        uid: localStorage.getItem("uid"),
         name: localStorage.getItem("name")
       }
     };

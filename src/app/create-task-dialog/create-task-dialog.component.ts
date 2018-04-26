@@ -22,7 +22,7 @@ export class CreateTaskDialogComponent implements OnInit {
       boardName: this.board.title,
       boardId: this.board.boardId,
       owner: {
-        id: "",
+        uid: "",
         name: "",
         image: ""
       },
