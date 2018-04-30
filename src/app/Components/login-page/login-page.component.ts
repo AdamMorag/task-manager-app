@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { AuthService } from 'angular2-social-login';
 import { UsersService } from '../../Services/users.service';
-
+import { User } from "../../Objects/User";
 
 @Component({
   selector: 'app-login-page',
@@ -12,8 +12,14 @@ export class LoginPageComponent implements OnInit {
 
 public loadingLogin: boolean = false;
 @Output() onLoginChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-
+private allUsers: User[];
 constructor(public socialLogin: AuthService, private _userService: UsersService) {
+  this._userService.getAllUsers().subscribe(res => {
+    this.allUsers = res;
+  }, err => {
+    console.log(err);
+    }
+  );
 }
 
   ngOnInit() {
@@ -27,13 +33,22 @@ constructor(public socialLogin: AuthService, private _userService: UsersService)
         localStorage.setItem("name", data.name);
         localStorage.setItem("image", data.image);
 
-        this._userService.addUser({uid : data.uid, name: data.name, image: data.image}).subscribe(res => {
+        var randomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+
+        const userIndex = this.allUsers.findIndex(u => u.uid === data.uid);
+
+        if (userIndex !== -1) {
           localStorage.setItem("isAuthenticated", "true");
           this.onLoginChange.emit(true);
-        }, err => {
-          console.log(err);
-          }
-        );
+        } else {
+          this._userService.addUser({uid : data.uid, name: data.name, image: data.image, color: randomColor}).subscribe(res => {
+            localStorage.setItem("isAuthenticated", "true");
+            this.onLoginChange.emit(true);
+          }, err => {
+            console.log(err);
+            }
+          );
+        }
       });
   }
 }

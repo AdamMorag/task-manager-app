@@ -1,0 +1,21 @@
+.profile {
+  text-align: right;
+  margin-right: 10%;
+  margin-top: 15px;
+  direction: rtl;
+}
+
+.profile-details {
+  direction: rtl;
+  height: 40px;
+  font-size: 1.5em;
+}
+
+.profile-img {
+  height: 64px;
+  width: 64px;
+  margin-left: 15px;
+  border-radius: 50%;
+  display: inline-block;
+  float: right;
+}

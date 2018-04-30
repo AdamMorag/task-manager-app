@@ -18,4 +18,9 @@ export class UsersService {
     headers.append('Content-Type', 'application/json');
     return this._http.post("/api/addUser", user, {headers});
   }
+
+  public getUser(uid: string) {
+    return this._http.get("/api/users/" + uid)
+      .map(user => user.json());
+  }
 }

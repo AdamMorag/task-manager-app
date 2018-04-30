@@ -355,4 +355,24 @@ router.post('/updateEvent', (req, res) => {
   });
 });
 
+router.get('/users/:uid', (req, res) => {
+  const userId = req.params.uid;
+
+  connection((db) => {
+    let dbInstance = db.db('TaskManagerAppDB');
+    dbInstance.collection('Users')
+      .find({
+        "uid": userId
+      })
+      .toArray()
+      .then((user) => {
+        res.json(user[0]);
+      })
+      .catch((err) => {
+        sendError(err, res);
+      });
+  });
+});
+
+
 module.exports = router;

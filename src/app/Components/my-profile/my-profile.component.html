@@ -1,3 +1,19 @@
-<p>
-  my-profile works!
-</p>
+<div>
+  <h1>הפרופיל שלי</h1>
+  <div class="line-separator"></div>
+  <mat-spinner *ngIf="loadingProfile"></mat-spinner>
+  <section class="profile" [hidden]="loadingProfile">
+    <img src="{{this.currUser.image}}" class="profile-img">
+    <span class="profile-details">
+      <div>
+      <u>
+      שם היוזר:</u><b>  {{this.currUser.name}}
+      </b>
+    </div>
+    <div>
+      <u>צבע מועדף:</u>
+      <input type="color" value="{{this.currUser.color}}"/>
+    </div>
+    </span>
+  </section>
+</div>
