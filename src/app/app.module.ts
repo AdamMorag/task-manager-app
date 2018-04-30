@@ -39,35 +39,36 @@ import { ContextMenuModule } from 'ngx-contextmenu';
 
 // Components
 import { AppComponent } from './app.component';
-import { MyBoardsComponent } from './my-boards/my-boards.component';
-import { MyTasksComponent } from './my-tasks/my-tasks.component';
-import { BoardViewComponent } from './board-view/board-view.component';
-import { CreateTaskDialogComponent } from './create-task-dialog/create-task-dialog.component';
-import { TaskComponent } from './task/task.component';
-import { EditTaskDialogComponent } from './edit-task-dialog/edit-task-dialog.component';
-import { DeleteTaskDialogComponent } from './delete-task-dialog/delete-task-dialog.component';
-import { CreateBoardDialogComponent } from './create-board-dialog/create-board-dialog.component';
-import { MyScheduleComponent } from './my-schedule/my-schedule.component';
-import { CreateEventDialogComponent } from './create-event-dialog/create-event-dialog.component';
-import { LoginPageComponent } from './login-page/login-page.component';
+import { MyBoardsComponent } from './Components/my-boards/my-boards.component';
+import { MyTasksComponent } from './Components/my-tasks/my-tasks.component';
+import { BoardViewComponent } from './Components/board-view/board-view.component';
+import { CreateTaskDialogComponent } from './Dialogs/create-task-dialog/create-task-dialog.component';
+import { TaskComponent } from './Components/task/task.component';
+import { EditTaskDialogComponent } from './Dialogs/edit-task-dialog/edit-task-dialog.component';
+import { DeleteTaskDialogComponent } from './Dialogs/delete-task-dialog/delete-task-dialog.component';
+import { CreateBoardDialogComponent } from './Dialogs/create-board-dialog/create-board-dialog.component';
+import { MyScheduleComponent } from './Components/my-schedule/my-schedule.component';
+import { CreateEventDialogComponent } from './Dialogs/create-event-dialog/create-event-dialog.component';
+import { LoginPageComponent } from './Components/login-page/login-page.component';
+import { MyProfileComponent } from './Components/my-profile/my-profile.component';
+import { EditEventDialogComponent } from './Dialogs/edit-event-dialog/edit-event-dialog.component';
+import { DeleteEventDialogComponent } from './Dialogs/delete-event-dialog/delete-event-dialog.component';
+import { DatetimePickerComponent } from './Others/datetime-picker/datetime-picker.component';
 
 // Services
-import { BoardsService } from "./my-boards/boards.service";
-import { TasksService } from "./my-tasks/tasks.service";
-import { BoardViewResolveService } from "./board-view/board-view-resolve.service";
-import { UsersService } from "./services/users.service";
-import { CalendarsService } from './services/calendars.service';
-import { MyScheduleResolveService } from './my-schedule/my-schedule-resolve.service';
+import { BoardsService } from "./Services/boards.service";
+import { TasksService } from "./Services/tasks.service";
+import { BoardViewResolveService } from "./Services/board-view-resolve.service";
+import { UsersService } from "./Services/users.service";
+import { CalendarsService } from './Services/calendars.service';
+import { MyScheduleResolveService } from './Services/my-schedule-resolve.service';
 
 // Pipes
-import { TaskStatusPipe } from './board-view/task-status.pipe';
+import { TaskStatusPipe } from './Components/board-view/task-status.pipe';
+import { TaskStatusChartPipe } from './Components/board-view/task-status-chart.pipe';
 
 // Routes
 import { routing } from "./app.routes";
-import { TaskStatusChartPipe } from './board-view/task-status-chart.pipe';
-import { EditEventDialogComponent } from './edit-event-dialog/edit-event-dialog.component';
-import { DeleteEventDialogComponent } from './delete-event-dialog/delete-event-dialog.component';
-import { DatetimePickerComponent } from './datetime-picker/datetime-picker.component';
 
 const providers = {
   'google': {
@@ -94,7 +95,8 @@ const providers = {
     CreateEventDialogComponent,
     EditEventDialogComponent,
     DeleteEventDialogComponent,
-    DatetimePickerComponent
+    DatetimePickerComponent,
+    MyProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -1,13 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-
-export interface UserEvent {
-  eventId: string,
-  startDate: Date,
-  endDate: Date,
-  title: string
-}
+import { UserEvent } from '../Objects/UserEvent';
 
 @Injectable()
 export class CalendarsService {
