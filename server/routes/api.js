@@ -229,6 +229,23 @@ router.post('/updateTask', (req, res) => {
   });
 });
 
+router.post('/updateUser', (req, res) => {
+  const user = req.body
+
+  connection((db) => {
+    let dbInstance = db.db('TaskManagerAppDB');
+    dbInstance.collection('Users').update(
+      { "uid": user.uid }, // TODO: when we have authentication
+      user,
+      { "upsert": true }).then((user) => {
+        res.json(user[0]);
+      })
+      .catch((err) => {
+        sendError(err, res);
+      });
+  });
+});
+
 router.post('/removeTask', (req, res) => {
   const { boardId, taskId } = req.body
 

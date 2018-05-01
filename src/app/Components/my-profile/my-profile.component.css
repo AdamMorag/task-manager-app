@@ -19,3 +19,7 @@
   display: inline-block;
   float: right;
 }
+
+button {
+  margin-top: 20px;
+}
