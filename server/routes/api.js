@@ -269,7 +269,7 @@ router.post('/calendars/getUserCalendar', (req, res) => {
   connection((db) => {
     let dbInstance = db.db('TaskManagerAppDB');
     dbInstance.collection('Calendars').find({
-      userId: userId
+      uid: userId
     })
       .toArray()
       .then(userCalendars => {
