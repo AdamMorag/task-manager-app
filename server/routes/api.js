@@ -84,7 +84,7 @@ router.get('/userTasks/:userId', (req, res) => {
       })
       .toArray()
       .then((boards) => {
-        let taskArrays = boards.map(board => board.tasks.filter(task => task.owner.id === UserId));
+        let taskArrays = boards.map(board => board.tasks.filter(task => task.owner.uid === UserId));
         let result = [];
         taskArrays.forEach(element => {
           element.forEach(arr => {
