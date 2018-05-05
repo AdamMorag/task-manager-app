@@ -204,6 +204,11 @@ export class BoardViewComponent implements OnInit, OnDestroy {
   public onTaskDeleted(taskId: string, status: string): void {
     const taskIndex = this.board.tasks.findIndex(t => t.taskId === taskId);
     this.board.tasks.splice(taskIndex, 1);
+    this._boardService.removeTask(this.board.boardId, taskId).subscribe(() => {      
+      console.log("deleted task");
+    }, (err) => {
+      console.log(err);
+    });
   }
 
   public assignBoardTasks(): void {
