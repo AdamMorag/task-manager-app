@@ -142,8 +142,7 @@ export class MyScheduleComponent implements OnInit {
     this.dialog.open(DeleteEventDialogComponent).afterClosed().subscribe((shouldDelete: boolean) => {
       if (shouldDelete) {
         this._calenderService.removeEvent(localStorage.getItem("uid"), eventId)
-          .subscribe(() => {
-            //this.onDeleted.emit(this.task.taskId);
+          .subscribe(() => {            
             this.snackBar.open("אירוע נמחק בהצלחה", undefined ,{
               direction: 'rtl',
               duration: 500
@@ -157,8 +156,7 @@ export class MyScheduleComponent implements OnInit {
     });
   }
 
-  public openEditEventDialog(eventToUpdate: UserEvent) {
-
+  public openEditEventDialog(eventToUpdate: UserEvent) {    
     let editDialog = this.dialog.open(EditEventDialogComponent, {
       data: JSON.parse(JSON.stringify(eventToUpdate))
     });
