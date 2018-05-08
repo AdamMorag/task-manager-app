@@ -24,7 +24,8 @@ export class CreateTaskDialogComponent implements OnInit {
       owner: {
         uid: "",
         name: "",
-        image: ""
+        image: "",
+        color: ""
       },
       status: "",
       overallTime: 0,
@@ -44,6 +45,6 @@ export class CreateTaskDialogComponent implements OnInit {
   }
 
   public compareFn(firstUser: any, secondUser: any): boolean {
-    return firstUser.id === secondUser.id;
+    return firstUser.uid === secondUser.uid;
   }
 }

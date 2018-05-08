@@ -6,7 +6,8 @@ export interface Task {
   owner: {
     uid: string,
     name: string,
-    image: string
+    image: string,
+    color: string
   },
   status: string,
   overallTime: number,

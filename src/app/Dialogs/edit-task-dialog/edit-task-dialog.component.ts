@@ -41,7 +41,7 @@ export class EditTaskDialogComponent implements OnInit {
   }
 
   public compareFn(firstUser: any, secondUser: any): boolean {
-    return firstUser.id === secondUser.id;
+    return firstUser.uid === secondUser.uid;
   }
 
 }

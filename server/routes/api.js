@@ -84,7 +84,7 @@ router.get('/userTasks/:userId', (req, res) => {
       })
       .toArray()
       .then((boards) => {
-        let taskArrays = boards.map(board => board.tasks.filter(task => task.owner.id === UserId));
+        let taskArrays = boards.map(board => board.tasks.filter(task => task.owner.uid === UserId));
         let result = [];
         taskArrays.forEach(element => {
           element.forEach(arr => {
@@ -238,10 +238,38 @@ router.post('/updateUser', (req, res) => {
       { "uid": user.uid }, // TODO: when we have authentication
       user,
       { "upsert": true }).then((user) => {
+        console.log("user updates");
         res.json(user[0]);
       })
       .catch((err) => {
         sendError(err, res);
+      });
+
+      dbInstance.collection('Boards').update(
+        {  "boardOwner.uid": user.uid },
+        { "$set": { "boardOwner": user }},
+        {upsert:false,
+        multi:true}
+      ).then((owner) => {
+        console.log("board owner updates");
+      });
+
+      dbInstance.collection('Boards').update(
+        {  "boardMembers.uid": user.uid },
+        { "$set": { "boardMembers.$": user }},
+        {upsert:false,
+        multi:true}
+      ).then((owner) => {
+        console.log("board member updates");
+      });
+
+      dbInstance.collection('Boards').update(
+        {  "tasks.owner.uid": user.uid },
+        { "$set": { "tasks.$.owner": user }},
+        {upsert:false,
+        multi:true}
+      ).then((owner) => {
+        console.log("tasks updates");
       });
   });
 });
@@ -269,7 +297,7 @@ router.post('/calendars/getUserCalendar', (req, res) => {
   connection((db) => {
     let dbInstance = db.db('TaskManagerAppDB');
     dbInstance.collection('Calendars').find({
-      userId: userId
+      "uid": userId
     })
       .toArray()
       .then(userCalendars => {
