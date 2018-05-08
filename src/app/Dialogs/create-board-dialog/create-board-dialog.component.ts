@@ -40,7 +40,7 @@ export class CreateBoardDialogComponent implements OnInit {
 
   constructor(private _users: UsersService, public dialogRef: MatDialogRef<CreateBoardDialogComponent>) {
     this._users.getAllUsers().subscribe(users => {
-      this.options = users.map(u => new User(u.name, u.image, u.color, u.uid));
+      this.options = users.map(u => new User(u.name, u.image,u.color, u.uid));
     });
   }
 

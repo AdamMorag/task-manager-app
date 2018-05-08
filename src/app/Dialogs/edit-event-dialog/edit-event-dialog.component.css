@@ -16,4 +16,5 @@ input {
 
 .datetime-picker {
   display: inline-block;
+  direction: ltr;
 }
