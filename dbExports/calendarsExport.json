@@ -1,1 +1,0 @@
-{"_id":{"$oid":"5ab65746d211662aacbbc3e9"},"userId":"1","events":[{"eventId":"1","startDate":{"$date":"2018-03-24T12:00:00.000Z"},"endDate":{"$date":"2018-03-24T15:00:00.000Z"},"title":"first event"},{"eventId":"2","startDate":{"$date":"2018-03-23T12:00:00.000Z"},"endDate":{"$date":"2018-03-23T13:00:00.000Z"},"title":"secone event"}]}

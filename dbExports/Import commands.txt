@@ -1,3 +1,3 @@
-﻿mongoimport --db TaskManagerAppDB --collection Boards --file "נתיב שלכם"\boardsExport.json
-mongoimport --db TaskManagerAppDB --collection Users --file "נתיב שלכם"\usersExport.json
-mongoimport --db TaskManagerAppDB --collection Calendars --file "נתיב שלכם"\calendarsExport.json
+﻿mongoimport --db FlowDB --collection Boards --file "נתיב שלכם"\Boards.json
+mongoimport --db FlowDB --collection Users --file "נתיב שלכם"\Users.json
+mongoimport --db FlowDB --collection Calendars --file "נתיב שלכם"\Calendars.json

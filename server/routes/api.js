@@ -4,9 +4,12 @@ const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 const uuidv4 = require('uuid/v4');
 
+// dbname
+const dbName = 'FlowDB';
+
 // Connect
 const connection = (closure) => {
-  return MongoClient.connect('mongodb://localhost:27017/TaskManagerAppDB', (err, db) => {
+  return MongoClient.connect('mongodb://localhost:27017/' + dbName, (err, db) => {
     if (err) return console.log("connection error: - " + err);
 
     closure(db);
@@ -31,7 +34,7 @@ router.get('/boardsUserIsShareWith/:userId', (req, res) => {
   const UserId = req.params.userId;
 
   connection((db) => {
-    let dbInstance = db.db('TaskManagerAppDB');
+    let dbInstance = db.db(dbName);
     dbInstance.collection('Boards')
       .find({
         $and: [{
@@ -54,7 +57,7 @@ router.get('/boardsUserIsManagerOf/:userId', (req, res) => {
   const UserId = req.params.userId;
 
   connection((db) => {
-    let dbInstance = db.db('TaskManagerAppDB');
+    let dbInstance = db.db(dbName);
     dbInstance.collection('Boards')
       .find({
         "boardOwner.uid": UserId
@@ -73,7 +76,7 @@ router.get('/userTasks/:userId', (req, res) => {
   const UserId = req.params.userId;
 
   connection((db) => {
-    let dbInstance = db.db('TaskManagerAppDB');
+    let dbInstance = db.db(dbName);
     dbInstance.collection('Boards')
       .find({
         $and: [{
@@ -103,7 +106,7 @@ router.get('/board/:boardId', (req, res) => {
   const boardId = req.params.boardId;
 
   connection((db) => {
-    let dbInstance = db.db('TaskManagerAppDB');
+    let dbInstance = db.db(dbName);
     dbInstance.collection('Boards')
       .find({
         "boardId": boardId
@@ -120,7 +123,7 @@ router.get('/board/:boardId', (req, res) => {
 
 router.get('/users/all', (req, res) => {
   connection((db) => {
-    let dbInstance = db.db('TaskManagerAppDB');
+    let dbInstance = db.db(dbName);
     dbInstance.collection('Users')
       .find()
       .toArray()
@@ -139,7 +142,7 @@ router.post('/board/saveBoard', (req, res) => {
   board.boardId = uuidv4();
 
   connection((db) => {
-    let dbInstance = db.db('TaskManagerAppDB');
+    let dbInstance = db.db(dbName);
     dbInstance.collection('Boards')
       .insertOne(board)
       .then(() => {
@@ -156,7 +159,7 @@ router.get('/board/assignTasks/:boardId', (req, res) => {
   const boardId = req.params.boardId;
 
   connection((db) => {
-    let dbInstance = db.db('TaskManagerAppDB');
+    let dbInstance = db.db(dbName);
     dbInstance.collection('Boards')
       .find({
         "boardId": boardId
@@ -199,7 +202,7 @@ router.post('/addNewTask', (req, res) => {
   task.taskId = uuidv4();
 
   connection((db) => {
-    let dbInstance = db.db('TaskManagerAppDB');
+    let dbInstance = db.db(dbName);
     dbInstance.collection('Boards').update(
       { "boardId": task.boardId },
       { "$push": { "tasks": task } }
@@ -216,7 +219,7 @@ router.post('/updateTask', (req, res) => {
   const task = req.body
 
   connection((db) => {
-    let dbInstance = db.db('TaskManagerAppDB');
+    let dbInstance = db.db(dbName);
     dbInstance.collection('Boards').updateOne(
       { "boardId": task.boardId, "tasks.taskId": task.taskId },
       { "$set": { "tasks.$": task } }
@@ -233,7 +236,7 @@ router.post('/updateUser', (req, res) => {
   const user = req.body
 
   connection((db) => {
-    let dbInstance = db.db('TaskManagerAppDB');
+    let dbInstance = db.db(dbName);
     dbInstance.collection('Users').update(
       { "uid": user.uid }, // TODO: when we have authentication
       user,
@@ -255,19 +258,18 @@ router.post('/updateUser', (req, res) => {
       });
 
       dbInstance.collection('Boards').update(
-        {  "boardMembers.uid": user.uid },
-        { "$set": { "boardMembers.$": user }},
-        {upsert:false,
-        multi:true}
+        { "boardMembers.uid": user.uid },
+        { "$set": { "boardMembers.$[elem]": user } },
+        { "arrayFilters": [{ "elem.uid": user.uid }], "multi": true }
       ).then((owner) => {
         console.log("board member updates");
       });
 
+
       dbInstance.collection('Boards').update(
-        {  "tasks.owner.uid": user.uid },
-        { "$set": { "tasks.$.owner": user }},
-        {upsert:false,
-        multi:true}
+        { "tasks.owner.uid": user.uid },
+        { "$set": { "tasks.$[elem].owner": user } },
+        { "arrayFilters": [{ "elem.owner.uid": user.uid }], "multi": true }
       ).then((owner) => {
         console.log("tasks updates");
       });
@@ -278,7 +280,7 @@ router.post('/removeTask', (req, res) => {
   const { boardId, taskId } = req.body
 
   connection((db) => {
-    let dbInstance = db.db('TaskManagerAppDB');
+    let dbInstance = db.db(dbName);
     dbInstance.collection('Boards').update(
       { "boardId": boardId },
       { "$pull": { "tasks": { "taskId": taskId } } }
@@ -295,7 +297,7 @@ router.post('/calendars/getUserCalendar', (req, res) => {
   const { userId, startTime, endTime } = req.body;
 
   connection((db) => {
-    let dbInstance = db.db('TaskManagerAppDB');
+    let dbInstance = db.db(dbName);
     dbInstance.collection('Calendars').find({
       "uid": userId
     })
@@ -331,7 +333,7 @@ router.post('/calendars/saveEvent', (req, res) => {
   event.eventId = uuidv4();
 
   connection((db) => {
-    let dbInstance = db.db('TaskManagerAppDB');
+    let dbInstance = db.db(dbName);
     dbInstance.collection('Calendars').update(
       { "uid": userId },
       { "$push": { "events": event } },
@@ -352,7 +354,7 @@ router.post('/addUser', (req, res) => {
   const user = req.body
 
   connection((db) => {
-    let dbInstance = db.db('TaskManagerAppDB');
+    let dbInstance = db.db(dbName);
     dbInstance.collection('Users').update(
       { "uid": user.uid }, // TODO: when we have authentication
       user,
@@ -369,7 +371,7 @@ router.post('/removeEvent', (req, res) => {
   const { userId, eventId } = req.body
 
   connection((db) => {
-    let dbInstance = db.db('TaskManagerAppDB');
+    let dbInstance = db.db(dbName);
     dbInstance.collection('Calendars').update(
       { "uid": userId },
       { "$pull": { "events": { "eventId": eventId } } }
@@ -386,7 +388,7 @@ router.post('/updateEvent', (req, res) => {
   const { userId, event } = req.body
 
   connection((db) => {
-    let dbInstance = db.db('TaskManagerAppDB');
+    let dbInstance = db.db(dbName);
     dbInstance.collection('Calendars').updateOne(
       { "uid": userId, "events.eventId": event.eventId },
       { "$set": { "events.$": event } }
@@ -404,7 +406,7 @@ router.get('/users/:uid', (req, res) => {
   const userId = req.params.uid;
 
   connection((db) => {
-    let dbInstance = db.db('TaskManagerAppDB');
+    let dbInstance = db.db(dbName);
     dbInstance.collection('Users')
       .find({
         "uid": userId

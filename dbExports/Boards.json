@@ -1,0 +1,203 @@
+{ 
+    "_id" : ObjectId("5ae06b5110740c2e580be2b6"), 
+    "title" : "פרוייקט גמר", 
+    "startDate" : "2018-04-25T11:56:46.546Z", 
+    "endDate" : "2018-05-29T21:00:00.000Z", 
+    "boardMembers" : [
+        {
+            "name" : "פז אשרף", 
+            "image" : "https://lh5.googleusercontent.com/-9aJopvbyQ8k/AAAAAAAAAAI/AAAAAAAAABM/NUJJFpxgd2A/s96-c/photo.jpg", 
+            "id" : "100744793220693249709"
+        }
+    ], 
+    "tasks" : [
+        {
+            "taskId" : "c4a1b2b7-7696-4231-b0d9-3a0d0a4c80f6", 
+            "title" : "כתיבת ספר פרוייקט", 
+            "boardName" : "פרוייקט גמר", 
+            "boardId" : "eaaecce2-bd6d-4b07-b25d-b1022384b47f", 
+            "owner" : {
+                "name" : "פז אשרף", 
+                "image" : "https://lh5.googleusercontent.com/-9aJopvbyQ8k/AAAAAAAAAAI/AAAAAAAAABM/NUJJFpxgd2A/s96-c/photo.jpg", 
+                "id" : "100744793220693249709"
+            }, 
+            "status" : "active", 
+            "overallTime" : NumberInt(2), 
+            "remainingTime" : NumberInt(2)
+        }, 
+        {
+            "taskId" : "9201c306-dd02-42a4-88f4-8719775b0cb4", 
+            "title" : "פיתוח socket.io", 
+            "boardName" : "פרוייקט גמר", 
+            "boardId" : "eaaecce2-bd6d-4b07-b25d-b1022384b47f", 
+            "owner" : {
+                "name" : "פז אשרף", 
+                "image" : "https://lh5.googleusercontent.com/-9aJopvbyQ8k/AAAAAAAAAAI/AAAAAAAAABM/NUJJFpxgd2A/s96-c/photo.jpg", 
+                "id" : "100744793220693249709"
+            }, 
+            "status" : "waiting", 
+            "overallTime" : NumberInt(5), 
+            "remainingTime" : NumberInt(5)
+        }
+    ], 
+    "boardOwner" : {
+        "ownerId" : "100744793220693249709", 
+        "name" : "פז אשרף"
+    }, 
+    "boardId" : "eaaecce2-bd6d-4b07-b25d-b1022384b47f"
+},
+{ 
+    "_id" : ObjectId("5ae0719e10740c2e580be2b7"), 
+    "title" : "בדיקה", 
+    "startDate" : "2018-04-25T12:23:45.503Z", 
+    "endDate" : "2018-04-25T12:23:45.503Z", 
+    "boardMembers" : [
+        {
+            "name" : "Adam Morag", 
+            "image" : "https://lh6.googleusercontent.com/-eEIXgdBvoaU/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWDfcjGSgJevfG9A1GHHAP9X2ULYvg/s96-c/photo.jpg", 
+            "id" : "114421445712031526338"
+        }, 
+        {
+            "name" : "פז אשרף", 
+            "image" : "https://lh5.googleusercontent.com/-9aJopvbyQ8k/AAAAAAAAAAI/AAAAAAAAABM/NUJJFpxgd2A/s96-c/photo.jpg", 
+            "id" : "100744793220693249709"
+        }, 
+        {
+            "name" : "יובל רון", 
+            "image" : "https://lh6.googleusercontent.com/-o5-HGty5oSA/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWAQkFlAKJvLhT5Zs5NZkR_uaCPAbQ/s96-c/photo.jpg", 
+            "id" : "104602684129680002327"
+        }
+    ], 
+    "tasks" : [
+        {
+            "taskId" : "db23215b-b5b4-4287-9e62-f7dda00d99fa", 
+            "title" : "1", 
+            "boardName" : "בדיקה", 
+            "boardId" : "3cc34482-40b9-4ed7-a75d-0e4e3bad4f7e", 
+            "owner" : {
+                "name" : "Adam Morag", 
+                "image" : "https://lh6.googleusercontent.com/-eEIXgdBvoaU/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWDfcjGSgJevfG9A1GHHAP9X2ULYvg/s96-c/photo.jpg", 
+                "id" : "114421445712031526338"
+            }, 
+            "status" : "waiting", 
+            "overallTime" : NumberInt(5), 
+            "remainingTime" : NumberInt(2)
+        }, 
+        {
+            "taskId" : "ff0b8314-a198-4ba2-83f2-34a7aab155a7", 
+            "title" : "2", 
+            "boardName" : "בדיקה", 
+            "boardId" : "3cc34482-40b9-4ed7-a75d-0e4e3bad4f7e", 
+            "owner" : {
+                "name" : "פז אשרף", 
+                "image" : "https://lh5.googleusercontent.com/-9aJopvbyQ8k/AAAAAAAAAAI/AAAAAAAAABM/NUJJFpxgd2A/s96-c/photo.jpg", 
+                "id" : "100744793220693249709"
+            }, 
+            "status" : "done", 
+            "overallTime" : NumberInt(1), 
+            "remainingTime" : NumberInt(-2)
+        }
+    ], 
+    "boardOwner" : {
+        "ownerId" : "100744793220693249709", 
+        "name" : "פז אשרף"
+    }, 
+    "boardId" : "3cc34482-40b9-4ed7-a75d-0e4e3bad4f7e"
+},
+{ 
+    "_id" : ObjectId("5ae0781610740c2e580be2b8"), 
+    "title" : "שרף המלך", 
+    "startDate" : "2018-04-25T12:51:22.231Z", 
+    "endDate" : "2018-04-25T12:51:22.231Z", 
+    "boardMembers" : [
+        {
+            "name" : "פז אשרף", 
+            "image" : "https://lh5.googleusercontent.com/-9aJopvbyQ8k/AAAAAAAAAAI/AAAAAAAAABM/NUJJFpxgd2A/s96-c/photo.jpg", 
+            "id" : "100744793220693249709"
+        }
+    ], 
+    "tasks" : [
+        {
+            "taskId" : "3942f6d3-1f10-436e-997c-c692a8f9f50c", 
+            "title" : "שגב", 
+            "boardName" : "שרף המלך", 
+            "boardId" : "f953d63c-7c8c-4614-81e6-e749b1a9521d", 
+            "owner" : {
+                "name" : "פז אשרף", 
+                "image" : "https://lh5.googleusercontent.com/-9aJopvbyQ8k/AAAAAAAAAAI/AAAAAAAAABM/NUJJFpxgd2A/s96-c/photo.jpg", 
+                "id" : "100744793220693249709"
+            }, 
+            "status" : "waiting", 
+            "overallTime" : NumberInt(2), 
+            "remainingTime" : NumberInt(2)
+        }
+    ], 
+    "boardOwner" : {
+        "ownerId" : "108135626899236356085", 
+        "name" : "עומר שרף"
+    }, 
+    "boardId" : "f953d63c-7c8c-4614-81e6-e749b1a9521d"
+},
+{ 
+    "_id" : ObjectId("5ae9aeb010740c2e580be2b9"), 
+    "title" : "הלוח של אדם", 
+    "startDate" : "2018-05-02T12:34:54.077Z", 
+    "endDate" : "2018-05-04T21:00:00.000Z", 
+    "boardMembers" : [
+        {
+            "name" : "Adam Morag", 
+            "image" : "https://lh6.googleusercontent.com/-eEIXgdBvoaU/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWDfcjGSgJevfG9A1GHHAP9X2ULYvg/s96-c/photo.jpg", 
+            "id" : "114421445712031526338"
+        }, 
+        {
+            "name" : "Adi Elbaz", 
+            "image" : "https://lh5.googleusercontent.com/-7reWPgn3GIY/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWDiMN-MYrSxE0_r53onhAmS4_E35w/s96-c/photo.jpg", 
+            "id" : "106829557185653587254"
+        }, 
+        {
+            "name" : "פז אשרף", 
+            "image" : "https://lh5.googleusercontent.com/-9aJopvbyQ8k/AAAAAAAAAAI/AAAAAAAAABM/NUJJFpxgd2A/s96-c/photo.jpg", 
+            "id" : "100744793220693249709"
+        }, 
+        {
+            "name" : "יובל רון", 
+            "image" : "https://lh6.googleusercontent.com/-o5-HGty5oSA/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWAQkFlAKJvLhT5Zs5NZkR_uaCPAbQ/s96-c/photo.jpg", 
+            "id" : "104602684129680002327"
+        }
+    ], 
+    "tasks" : [
+        {
+            "taskId" : "868dec5b-6174-4249-908c-2314464b365a", 
+            "title" : "הוספת socket.io", 
+            "boardName" : "הלוח של אדם", 
+            "boardId" : "8930a769-3181-4136-be03-f45ad137d2dd", 
+            "owner" : {
+                "name" : "Adi Elbaz", 
+                "image" : "https://lh5.googleusercontent.com/-7reWPgn3GIY/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWDiMN-MYrSxE0_r53onhAmS4_E35w/s96-c/photo.jpg", 
+                "id" : "106829557185653587254"
+            }, 
+            "status" : "active", 
+            "overallTime" : NumberInt(50), 
+            "remainingTime" : NumberInt(25)
+        }, 
+        {
+            "taskId" : "e820da33-afb5-4f8c-b18e-4da84e1f6821", 
+            "title" : "הוספת socket.io", 
+            "boardName" : "הלוח של אדם", 
+            "boardId" : "8930a769-3181-4136-be03-f45ad137d2dd", 
+            "owner" : {
+                "name" : "פז אשרף", 
+                "image" : "https://lh5.googleusercontent.com/-9aJopvbyQ8k/AAAAAAAAAAI/AAAAAAAAABM/NUJJFpxgd2A/s96-c/photo.jpg", 
+                "id" : "100744793220693249709"
+            }, 
+            "status" : "waiting", 
+            "overallTime" : NumberInt(50), 
+            "remainingTime" : NumberInt(25)
+        }
+    ], 
+    "boardOwner" : {
+        "ownerId" : "114421445712031526338", 
+        "name" : "Adam Morag"
+    }, 
+    "boardId" : "8930a769-3181-4136-be03-f45ad137d2dd"
+}
