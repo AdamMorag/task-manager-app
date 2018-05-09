@@ -1,38 +1,35 @@
 { 
     "_id" : ObjectId("5ae061e3cfc57dc09d208ae7"), 
-    "uid" : "100744793220693249709", 
     "name" : "פז אשרף", 
     "image" : "https://lh5.googleusercontent.com/-9aJopvbyQ8k/AAAAAAAAAAI/AAAAAAAAABM/NUJJFpxgd2A/s96-c/photo.jpg", 
-    "color" : "#ff00ff"
-},
+    "color" : "#0080ff", 
+    "uid" : "100744793220693249709"
+}
 { 
     "_id" : ObjectId("5ae06f24cfc57dc09d20a4ba"), 
     "uid" : "114421445712031526338", 
     "name" : "Adam Morag", 
     "image" : "https://lh6.googleusercontent.com/-eEIXgdBvoaU/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWDfcjGSgJevfG9A1GHHAP9X2ULYvg/s96-c/photo.jpg", 
-    "color" : "#0000ff"
-},
+    "color" : "#fa050c"
+}
 { 
     "_id" : ObjectId("5ae06fe4cfc57dc09d20a9fc"), 
     "uid" : "104602684129680002327", 
     "name" : "יובל רון", 
-    "image" : "https://lh6.googleusercontent.com/-o5-HGty5oSA/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWAQkFlAKJvLhT5Zs5NZkR_uaCPAbQ/s96-c/photo.jpg"
-},
+    "image" : "https://lh6.googleusercontent.com/-o5-HGty5oSA/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWAQkFlAKJvLhT5Zs5NZkR_uaCPAbQ/s96-c/photo.jpg", 
+    "color" : "#ff80ff"
+}
 { 
     "_id" : ObjectId("5ae0767ecfc57dc09d2119cc"), 
     "uid" : "113249740494246978925", 
     "name" : "רועי חדש", 
-    "image" : "https://lh4.googleusercontent.com/-hmsHAdkHVEI/AAAAAAAAAAI/AAAAAAAAAA4/niDIPg30IBU/s96-c/photo.jpg"
-},
+    "image" : "https://lh4.googleusercontent.com/-hmsHAdkHVEI/AAAAAAAAAAI/AAAAAAAAAA4/niDIPg30IBU/s96-c/photo.jpg", 
+    "color" : "#00c161"
+}
 { 
     "_id" : ObjectId("5ae0a5b6cfc57dc09d25dbe4"), 
     "uid" : "106829557185653587254", 
     "name" : "Adi Elbaz", 
-    "image" : "https://lh5.googleusercontent.com/-7reWPgn3GIY/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWDiMN-MYrSxE0_r53onhAmS4_E35w/s96-c/photo.jpg"
-},
-{ 
-    "_id" : ObjectId("5ae195ebcfc57dc09d3f5e9f"), 
-    "uid" : "106813200996402216562", 
-    "name" : "ענבר יחזקאל", 
-    "image" : "https://lh5.googleusercontent.com/-1dv6ljywzgc/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWAu3adEnEbpmwzTKcWQayAN1CatoQ/s96-c/photo.jpg"
+    "image" : "https://lh5.googleusercontent.com/-7reWPgn3GIY/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWDiMN-MYrSxE0_r53onhAmS4_E35w/s96-c/photo.jpg", 
+    "color" : "#ff9a35"
 }
