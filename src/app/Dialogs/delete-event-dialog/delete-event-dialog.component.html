@@ -1,10 +1,10 @@
 <div class="delete-event-container">
   <h1 mat-dialog-title>האם ברצונך למחוק את האירוע?</h1>
   <div mat-dialog-actions class="dialog-actions">
-    <button mat-raised-button class="primary-color-hover" color="primary" [mat-dialog-close]="submitForm()">
+    <button mat-raised-button class="primary-color-hover" color="primary" [mat-dialog-close]="submitForm()"><span class="fa fa-trash-alt"></span>
       מחק
     </button>
-    <button mat-raised-button class="primary-color-hover" color="primary" mat-dialog-close (click)="cancelDialog()">
+    <button mat-raised-button class="primary-color-hover" color="primary" mat-dialog-close (click)="cancelDialog()"><span class="fa fa-times-circle"></span> 
       ביטול
     </button>
   </div>

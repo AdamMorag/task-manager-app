@@ -43,10 +43,10 @@
     </section>-->
   </div>
   <div mat-dialog-actions class="dialog-actions">
-    <button mat-raised-button class="primary-color-hover" color="primary" [mat-dialog-close]="submitForm()" [disabled]="!formIsValid()">
+    <button mat-raised-button class="primary-color-hover" color="primary" [mat-dialog-close]="submitForm()" [disabled]="!formIsValid()"><span class="fa fa-calendar-alt"></span>
       צור
     </button>
-    <button mat-raised-button class="primary-color-hover" color="primary" mat-dialog-close (click)="cancelDialog()">
+    <button mat-raised-button class="primary-color-hover" color="primary" mat-dialog-close (click)="cancelDialog()"><span class="fa fa-times-circle"></span> 
       ביטול
     </button>
   </div>

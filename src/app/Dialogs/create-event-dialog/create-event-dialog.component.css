@@ -18,3 +18,7 @@ input {
   display: inline-block;
   direction: ltr;
 }
+
+button {
+  direction: rtl;
+}

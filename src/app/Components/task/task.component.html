@@ -13,8 +13,8 @@
   </mat-card-subtitle>
   <mat-progress-bar *ngIf="showProgressBar" mode="determinate" [value]="calculateCompletedPrecentage(task)"></mat-progress-bar>
   <mat-card-actions>
-    <button mat-raised-button (click)="openEditTaskDialog()" *ngIf="showEdit" color="primary" class="primary-color-hover">ערוך</button>
-    <button mat-raised-button (click)="openDeleteTaskDialog()" *ngIf="showDelete" color="primary" class="primary-color-hover">מחק</button>
-    <button mat-raised-button *ngIf="showOpenBoard" [routerLink]="['/board', task.boardId]" color="primary" class="primary-color-hover">פתח לוח</button>
+    <button mat-raised-button (click)="openEditTaskDialog()" *ngIf="showEdit" color="primary" class="primary-color-hover"><span class="fa fa-edit"></span> ערוך</button>
+    <button mat-raised-button (click)="openDeleteTaskDialog()" *ngIf="showDelete" color="primary" class="primary-color-hover"><span class="fa fa-trash-alt"></span> מחק</button>
+    <button mat-raised-button *ngIf="showOpenBoard" [routerLink]="['/board', task.boardId]" color="primary" class="primary-color-hover"><span class="fa fa-clipboard-list"></span> פתח לוח</button>
   </mat-card-actions>
 </mat-card>

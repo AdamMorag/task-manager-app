@@ -3,11 +3,11 @@ mat-spinner {
 }
 
 mat-card {
-    width: 25%;        
+    width: 25%;
 }
 
 section {
-    margin: 5%;    
+    margin: 5%;
 }
 
 section mat-card {
@@ -17,6 +17,10 @@ section mat-card {
 
 mat-card-actions {
     text-align: left
+}
+
+button {
+  direction: rtl;
 }
 
 .cards-container {

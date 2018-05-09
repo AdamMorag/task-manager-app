@@ -5,3 +5,7 @@
 .dialog-actions {
     direction: ltr;
 }
+
+button {
+  direction: rtl;
+}

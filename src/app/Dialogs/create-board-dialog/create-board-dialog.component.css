@@ -24,11 +24,15 @@ mat-nav-list {
 
 .member-img {
   height: 16px;
-  width: 16px;  
+  width: 16px;
   margin-left: 10px;
   border-radius: 50%;
 }
 
 .cancel-member-button {
-    margin-right: 5px;   
+    margin-right: 5px;
+}
+
+button {
+  direction: rtl;
 }

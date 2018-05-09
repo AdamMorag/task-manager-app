@@ -33,3 +33,7 @@ mat-nav-list {
 mat-select {
     direction: ltr;
 }
+
+button {
+  direction: rtl;
+}

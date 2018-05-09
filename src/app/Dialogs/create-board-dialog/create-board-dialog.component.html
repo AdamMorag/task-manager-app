@@ -52,10 +52,10 @@
     </section>
   </form>
     <div mat-dialog-actions class="dialog-actions">
-      <button mat-raised-button color="primary" class="primary-color-hover" [mat-dialog-close]="submitForm()" [disabled]="formIsValid()">
+      <button mat-raised-button color="primary" class="primary-color-hover" [mat-dialog-close]="submitForm()" [disabled]="formIsValid()"><span class="fa fa-plus-circle"></span>
         צור
       </button>
-      <button mat-raised-button color="primary" class="primary-color-hover" (click)="cancelDialog()">
+      <button mat-raised-button color="primary" class="primary-color-hover" (click)="cancelDialog()"><span class="fa fa-times-circle"></span> 
         ביטול
       </button>
     </div>
