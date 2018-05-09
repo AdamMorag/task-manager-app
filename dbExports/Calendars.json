@@ -1,11 +1,11 @@
-{ 
-    "_id" : ObjectId("5ae06bfecfc57dc09d209433"), 
-    "userId" : "100744793220693249709", 
+{
+    "_id" : ObjectId("5ae06bfecfc57dc09d209433"),
+    "uid" : "100744793220693249709", 
     "events" : [
         {
-            "eventId" : "7a818fe2-84a7-42db-aaa3-2cde87760689", 
-            "title" : "ממש עסוקה", 
-            "startDate" : "2018-04-26T08:00:00.000Z", 
+            "eventId" : "7a818fe2-84a7-42db-aaa3-2cde87760689",
+            "title" : "ממש עסוקה",
+            "startDate" : "2018-04-26T08:00:00.000Z",
             "endDate" : "2018-04-26T11:00:00.000Z"
         }
     ]
