@@ -2,11 +2,19 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "~angular-calendar/css/angular-calendar.css";
 @import "~ng-drag-drop/style.css";
+@import url('https://fonts.googleapis.com/css?family=Varela+Round');
+
+html, body, app-root {
+    height: 100%;
+}
+
+*:not(.fa) {
+    font-family: 'Varela Round', sans-serif;
+}
 
 body {
     margin: 0px;
-    font-family: 'Tahoma';
-        background-color: lightcyan;  
+    direction: rtl;
 }
 
 .line-separator{
@@ -27,4 +35,8 @@ body {
 
 .primary-color-hover:hover{
     background-color: #3f51b5cc;
+}
+
+.my-boards-container {
+    padding: 20px;
 }

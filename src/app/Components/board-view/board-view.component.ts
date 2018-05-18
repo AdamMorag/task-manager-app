@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Task } from "../../Objects/Task";
 import { BoardsService } from "../../Services/boards.service";
 import { CreateTaskDialogComponent } from "../../Dialogs/create-task-dialog/create-task-dialog.component";
+import { StatisticsDialogComponent } from "../../Dialogs/statistics-dialog/statistics-dialog.component";
 import { MatDialog } from '@angular/material/dialog';
 import { trigger, state, style, transition, animate, keyframes } from "@angular/animations";
 import { MediaMatcher } from '@angular/cdk/layout';
@@ -88,7 +89,7 @@ export class BoardViewComponent implements OnInit, OnDestroy {
 
     this.doughnutChartLabels = ["Waiting", "Active", "Done"];
 
-    const mediaQueryList = media.matchMedia('(min-width: 577px)');
+    const mediaQueryList = media.matchMedia('(min-width: 100px)');
 
     this.handleMediaChange(mediaQueryList);
 
@@ -155,6 +156,12 @@ export class BoardViewComponent implements OnInit, OnDestroy {
     });
   }
 
+  public openStatistics() {
+    let dialogRef = this.dialog.open(StatisticsDialogComponent, {
+      data: this.board.tasks
+    });
+  }
+
   private chartData(): number[] {
     return [
       this.waitingTasks().length,
@@ -204,7 +211,7 @@ export class BoardViewComponent implements OnInit, OnDestroy {
   public onTaskDeleted(taskId: string, status: string): void {
     const taskIndex = this.board.tasks.findIndex(t => t.taskId === taskId);
     this.board.tasks.splice(taskIndex, 1);
-    this._boardService.removeTask(this.board.boardId, taskId).subscribe(() => {      
+    this._boardService.removeTask(this.board.boardId, taskId).subscribe(() => {
       console.log("deleted task");
     }, (err) => {
       console.log(err);
