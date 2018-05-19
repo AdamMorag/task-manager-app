@@ -43,6 +43,7 @@ import { MyBoardsComponent } from './Components/my-boards/my-boards.component';
 import { MyTasksComponent } from './Components/my-tasks/my-tasks.component';
 import { BoardViewComponent } from './Components/board-view/board-view.component';
 import { CreateTaskDialogComponent } from './Dialogs/create-task-dialog/create-task-dialog.component';
+import { StatisticsDialogComponent } from './Dialogs/statistics-dialog/statistics-dialog.component';
 import { TaskComponent } from './Components/task/task.component';
 import { EditTaskDialogComponent } from './Dialogs/edit-task-dialog/edit-task-dialog.component';
 import { DeleteTaskDialogComponent } from './Dialogs/delete-task-dialog/delete-task-dialog.component';
@@ -84,6 +85,7 @@ const providers = {
     MyTasksComponent,
     BoardViewComponent,
     CreateTaskDialogComponent,
+    StatisticsDialogComponent,
     TaskComponent,
     EditTaskDialogComponent,
     DeleteTaskDialogComponent,
@@ -142,6 +144,7 @@ const providers = {
   ],
   entryComponents: [
     CreateTaskDialogComponent,
+    StatisticsDialogComponent,
     EditTaskDialogComponent,
     DeleteTaskDialogComponent,
     CreateBoardDialogComponent,

@@ -1,12 +1,12 @@
 <div>
   <h1>הלוחות שלי</h1>
   <div class="line-separator"></div>
-  <section>
+  <div class="my-boards-container">
     <h2>לוחות בניהולי</h2>
-    <section>
+    <div>
       <button mat-raised-button class="primary-color-hover" color="primary" (click)="openCreateBoardDialog()"><span class="fa fa-plus-circle"></span> צור לוח</button>
-    </section>
-    <section class="cards-container">
+    </div>
+    <div class="cards-container">
       <mat-spinner *ngIf="loadingBoardsIManage"></mat-spinner>
       <mat-card [hidden]="loadingBoardsIManage" *ngFor="let board of boardsIManage">
         <mat-card-title>{{board.title}}</mat-card-title>
@@ -14,12 +14,12 @@
             <button mat-raised-button color="primary" [routerLink]="['/board', board.boardId]" class="primary-color-hover"><span class="fa fa-edit"></span> נהל לוח</button>
           </mat-card-actions>
       </mat-card>
-    </section>
-  </section>
+    </div>
+  </div>
   <div class="line-separator"></div>
-  <section>
+  <div class="my-boards-container">
     <h2>לוחות שאני שותף בהם</h2>
-    <section class="cards-container">
+    <div class="cards-container">
       <mat-spinner *ngIf="loadingBoardsImSharedWith"></mat-spinner>
       <mat-card [hidden]="loadingBoardsImSharedWith" [@flyInOut] (@flyInOut.done)="doNext()"
       *ngFor="let board of staggeringboardsImShared">
@@ -28,6 +28,6 @@
             <button mat-raised-button color="primary" [routerLink]="['/board', board.boardId]" class="primary-color-hover"><span class="fa fa-clipboard-list"></span> פתח לוח</button>
           </mat-card-actions>
       </mat-card>
-    </section>
-  </section>
+    </div>
+  </div>
 </div>

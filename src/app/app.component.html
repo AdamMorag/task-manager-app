@@ -1,8 +1,8 @@
 <mat-toolbar color="primary">
   <span>
-    <a [routerLink]="['/my-boards']" >
-   <img class="logo" src="/assets/src/Flow.png" />
- </a>
+    <a class="icon-container" [routerLink]="['/my-boards']" >
+     <img class="logo" src="/assets/src/Flow.png" />
+   </a>
   </span>
 
   <!-- This fills the remaining space of the current row -->
@@ -10,15 +10,15 @@
 
   <span class="auth-details">
     <img src="{{this.imgSrc}}" class="auth-img">
-    <b>
+    <span class="text">
     שלום, {{this.loginName}}
-    </b>
+    </span>
     <img src="/assets/src/logout.png" class="logout" (click)="Logout()" *ngIf="isAuthenticated">
   </span>
 </mat-toolbar>
 <app-login-page *ngIf="!isAuthenticated" (onLoginChange)="loginHandler($event)"></app-login-page>
 <mat-sidenav-container class="nav-container" *ngIf="isAuthenticated">
-  <mat-sidenav opened=true mode="side" position="end" class="my-sidenav">
+  <mat-sidenav opened=true mode="side" class="my-sidenav">
     <mat-nav-list class="vertical-center">
         <a class="sideBarItem" mat-list-item [routerLink]="['/my-profile']"><span class="sideBarIcon fa fa-user"></span><span class="sideBarText">הפרופיל שלי</span></a>
         <a class="sideBarItem" mat-list-item [routerLink]="['/my-boards']"><span class="sideBarIcon fa fa-clipboard-check"></span><span class="sideBarText">הלוחות שלי</span></a>

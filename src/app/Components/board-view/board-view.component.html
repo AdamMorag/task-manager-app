@@ -1,71 +1,63 @@
 <div class="board-view">
-  <section class="board-view-header">
-    <h1>דף ניהול לוח - {{board.boardName}}</h1>
-  </section>
-  <section class="board-view-content">
-    <mat-grid-list class="top-content" [cols]="columnNum" rowHeight="250px">
-      <mat-grid-tile [colspan]=chartColspan>
-        <div style="display: block">
-          <canvas baseChart [data]="board.tasks | taskStatusChart" [labels]="doughnutChartLabels" [chartType]="doughnutChartType"></canvas>
-        </div>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <section class="actions">
-          <ul style="list-style-type: none">
-            <li>
-              <button mat-raised-button (click)="openCreateTaskDialog()" color="primary" class="primary-color-hover"><span class="fa fa-plus-circle"></span> הוסף משימה</button>
-            </li>
-            <li>
-              <button mat-raised-button (click)="assignBoardTasks()" color="primary" class="primary-color-hover"><span class="fa fa-sync-alt"></span> חלק משימות מחדש</button>
-            </li>
-          </ul>
-        </section>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <section class="group-members">
-          <h4>חברי הקבוצה</h4>
-          <mat-grid-list cols="3">
-            <mat-grid-tile class="group-member" *ngFor="let boardMember of board.boardMembers">
+  <div class="board-view-header">
+    <div>{{board.title}}</div>
+    <div class="actions">
+      <div class="button-container">
+        <button mat-raised-button (click)="openCreateTaskDialog()" color="primary" class="primary-color-hover"><span class="fa fa-plus-circle"></span><span class="button-text"> הוסף משימה</span></button>
+      </div>
+      <div class="button-container">
+        <button mat-raised-button (click)="assignBoardTasks()" color="primary" class="primary-color-hover"><span class="fa fa-sync-alt"></span><span class="button-text"> חלק משימות</span> מחדש</button>
+      </div>
+      <div class="button-container">
+        <button mat-raised-button (click)="openStatistics()" color="primary" class="primary-color-hover"><span class="fa fa-chart-pie"></span><span class="button-text"> הצג סטטיסטיקות</span></button>
+      </div>
+    </div>
+  </div>
+  <div class="board-view-content">
+    <div class="top-content">
+      <div>
+        <div class="group-members">
+          <div class="group-members-container">
+            <div *ngFor="let boardMember of board.boardMembers; let i = index" class="group-member group-member-{{i + 1}}">
               <img *ngIf="boardMember.image !== undefined" [src]="boardMember.image" class="member-img">
               <img *ngIf="boardMember.image === undefined" src="/assets/src/unknown.jpg" class="member-img">
-              <label>{{boardMember.name}}</label>
-            </mat-grid-tile>
-          </mat-grid-list>
-        </section>
-      </mat-grid-tile>
-    </mat-grid-list>
-    <div class="line-separator"></div>
-    <section class="columns-container">
-      <section class="done-column column" droppable (onDrop)="onTaskDrop($event, 'done')">
-        <section class="column-header" color="primary">
+              <div class="member-name">{{boardMember.name}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="columns-container">
+      <div class="done-column column" droppable (onDrop)="onTaskDrop($event, 'done')">
+        <div class="column-header" color="primary">
           <h4>Done</h4>
-        </section>
-        <mat-list>
-          <mat-list-item *ngFor="let task of board.tasks | taskStatus:'done'" draggable [dragData]="task">
+        </div>
+        <div class="tasks-container">
+          <div class="task-card-container" *ngFor="let task of board.tasks | taskStatus:'done'" draggable [dragData]="task">
             <app-task class="task-card" [task]="task" showEdit="true" showDelete="true" (onDeleted)="onTaskDeleted($event, 'done')"></app-task>
-          </mat-list-item>
-        </mat-list>
-      </section>
-      <section class="active-column column" droppable (onDrop)="onTaskDrop($event, 'active')">
-        <section class="column-header" color="primary">
+          </div>
+        </div>
+      </div>
+      <div class="active-column column" droppable (onDrop)="onTaskDrop($event, 'active')">
+        <div class="column-header" color="primary">
           <h4>Active</h4>
-        </section>
-        <mat-list>
-          <mat-list-item *ngFor="let task of board.tasks | taskStatus:'active'" draggable [dragData]="task">
+        </div>
+        <div class="tasks-container">
+          <div *ngFor="let task of board.tasks | taskStatus:'active'" draggable [dragData]="task">
             <app-task class="task-card" [task]="task" showProgressBar="true" showEdit="true" showDelete="true" (onDeleted)="onTaskDeleted($event, 'active')"></app-task>
-          </mat-list-item>
-        </mat-list>
-      </section>
-      <section class="waiting-column column" droppable (onDrop)="onTaskDrop($event, 'waiting')">
-        <section class="column-header" color="primary">
+          </div>
+        </div>
+      </div>
+      <div class="waiting-column column" droppable (onDrop)="onTaskDrop($event, 'waiting')">
+        <div class="column-header" color="primary">
           <h4>Waiting</h4>
-        </section>
-        <mat-list>
-          <mat-list-item *ngFor="let task of board.tasks | taskStatus:'waiting'" draggable [dragData]="task">
+        </div>
+        <div class="tasks-container">
+          <div *ngFor="let task of board.tasks | taskStatus:'waiting'" draggable [dragData]="task">
             <app-task class="task-card" [task]="task" showEdit="true" showDelete="true" (onDeleted)="onTaskDeleted($event, 'waiting')"></app-task>
-          </mat-list-item>
-        </mat-list>
-      </section>
-    </section>
-  </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

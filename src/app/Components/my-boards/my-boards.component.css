@@ -16,7 +16,7 @@ section mat-card {
 }
 
 mat-card-actions {
-    text-align: left
+    text-align: center;
 }
 
 button {

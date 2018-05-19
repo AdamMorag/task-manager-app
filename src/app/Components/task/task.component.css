@@ -1,13 +1,70 @@
-mat-card {
-    margin: 5px;
-    border-width: 4px;
-    border-style: solid;
-    border-radius: 10%;
+.task-card-content {
+  opacity: 0;
+  margin-bottom: 10px;
+  border-top: 3px solid;
+  padding: 8px;
+  font-size: 15px;
+  position: relative;
+}
+
+.task-container {
+  text-align: right;
+  width: 98%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.task-title {
+  text-align: right;
+  font-size: 18px;
+}
+
+mat-progress-bar {
+  margin-bottom: 10px;
+}
+
+.actions-container {
+  display: flex;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.actions-container .button {
+  margin-right: 5px;
 }
 
 .member-img {
   height: 16px;
   width: 16px;
-  margin-left: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
   border-radius: 50%;
+}
+
+.task-card-content {
+    animation: task-fade-in 1s 1s forwards;
+}
+
+.task-card-content.out-of-board-task {
+    margin-top: 5px;
+    animation: task-fade-in 1s 0.3s forwards;
+}
+
+.task-board-name {
+  text-align: right;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+@keyframes task-fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 100;
+        transform: translateY(0px);
+    }
 }
