@@ -3,6 +3,7 @@ const router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 const uuidv4 = require('uuid/v4');
+const request = require('request-promise-native');
 
 // dbname
 const dbName = 'FlowDB';
@@ -170,26 +171,49 @@ router.get('/board/assignTasks/:boardId', (req, res) => {
           res.status(500).json({ message: "Failed to find board" });
           return;
         }
-
-        const boardMembers = boards[0].boardMembers;
-
-        boards[0].tasks.forEach(task => {
-          if (task.status !== 'done')
-            task.owner = boardMembers[Math.floor(Math.random() * boardMembers.length)]
-        });
-
         return boards[0];
       }).then((board) => {
         if (!board)
           return;
 
-        return dbInstance.collection('Boards').replaceOne({ "boardId": board.boardId }, board)
-          .then(() => { return board });
+        const boardMembers = board.boardMembers.map(m => m.uid);
+
+        return dbInstance.collection('Calendars')
+          .find({
+            "uid": {
+              $in: [...boardMembers]
+            }
+          })
+          .toArray()
+          .then(calenders => {
+            return {
+              board: board,
+              usersCalendars: calenders
+            };
+          });
+      })
+      .then(requestObj => {
+        var options = {
+          method: 'POST',
+          uri: 'http://localhost:8080/RunGA',
+          body: requestObj,
+          json: true // Automatically stringifies the body to JSON
+        };
+
+        return request(options);
       }).then((board) => {
         if (!board)
           return;
 
-        res.status(200).json(board);
+        return dbInstance.collection('Boards').updateOne({ "boardId": board.boardId },
+          {
+            $set: {
+              tasks: board.tasks
+            }
+          })
+          .then(() => {
+            res.status(200).json(board);
+          });
       })
       .catch((err) => {
         sendError(err, res);
@@ -248,31 +272,33 @@ router.post('/updateUser', (req, res) => {
         sendError(err, res);
       });
 
-      dbInstance.collection('Boards').update(
-        {  "boardOwner.uid": user.uid },
-        { "$set": { "boardOwner": user }},
-        {upsert:false,
-        multi:true}
-      ).then((owner) => {
-        console.log("board owner updates");
-      });
+    dbInstance.collection('Boards').update(
+      { "boardOwner.uid": user.uid },
+      { "$set": { "boardOwner": user } },
+      {
+        upsert: false,
+        multi: true
+      }
+    ).then((owner) => {
+      console.log("board owner updates");
+    });
 
-      dbInstance.collection('Boards').update(
-        { "boardMembers.uid": user.uid },
-        { "$set": { "boardMembers.$[elem]": user } },
-        { "arrayFilters": [{ "elem.uid": user.uid }], "multi": true }
-      ).then((owner) => {
-        console.log("board member updates");
-      });
+    dbInstance.collection('Boards').update(
+      { "boardMembers.uid": user.uid },
+      { "$set": { "boardMembers.$[elem]": user } },
+      { "arrayFilters": [{ "elem.uid": user.uid }], "multi": true }
+    ).then((owner) => {
+      console.log("board member updates");
+    });
 
 
-      dbInstance.collection('Boards').update(
-        { "tasks.owner.uid": user.uid },
-        { "$set": { "tasks.$[elem].owner": user } },
-        { "arrayFilters": [{ "elem.owner.uid": user.uid }], "multi": true }
-      ).then((owner) => {
-        console.log("tasks updates");
-      });
+    dbInstance.collection('Boards').update(
+      { "tasks.owner.uid": user.uid },
+      { "$set": { "tasks.$[elem].owner": user } },
+      { "arrayFilters": [{ "elem.owner.uid": user.uid }], "multi": true }
+    ).then((owner) => {
+      console.log("tasks updates");
+    });
   });
 });
 

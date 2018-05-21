@@ -226,6 +226,8 @@ export class BoardViewComponent implements OnInit, OnDestroy {
         this.snackBar.open('המשימות חולקו', undefined, { duration: 500, direction: 'rtl' });
         this.board = board;
       }
+    }, (err) => {
+      this.snackBar.open('התרחשה שגיאה בזמן חלוקת המשימות', undefined, { duration: 500, direction: 'rtl' })
     });
   }
 }
