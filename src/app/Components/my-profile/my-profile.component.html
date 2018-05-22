@@ -6,12 +6,12 @@
     <img src="{{this.currUser.image}}" class="profile-img">
     <span class="profile-details">
       <div>
-      <span>
-      שם היוזר:</span><b>  {{this.currUser.name}}
-      </b>
+      <div class="username">
+        {{this.currUser.name}}
+      </div>
     </div>
     <div>
-      <span>צבע מועדף:</span>
+      <span>צבע:</span>
       <input type="color" [(ngModel)]="this.currUser.color" />
     </div>
     </span>

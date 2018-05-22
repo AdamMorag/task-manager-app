@@ -1,8 +1,5 @@
 .profile {
-  text-align: right;
-  margin-right: 10%;
-  margin-top: 15px;
-  direction: rtl;
+  margin-top:  35px;
 }
 
 .profile-details {
@@ -12,14 +9,35 @@
 }
 
 .profile-img {
-  height: 64px;
-  width: 64px;
-  margin-left: 15px;
+  margin-bottom:  15px;
   border-radius: 50%;
-  display: inline-block;
-  float: right;
+  width: 120px;
+  height: 120px;
+  opacity: 0;
+  transform: scale(0);
+  animation: pops-in 0.8s forwards;
+}
+
+.username {
+  font-size: 40px;
+  margin-bottom: 10px;
 }
 
 button {
   margin-top: 20px;
+}
+
+@keyframes pops-in {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  70% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
