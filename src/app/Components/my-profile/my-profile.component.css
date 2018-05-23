@@ -27,6 +27,11 @@ button {
   margin-top: 20px;
 }
 
+.center {
+    width: 100px;
+    margin: auto;
+}
+
 @keyframes pops-in {
   0% {
     opacity: 0;
