@@ -122,6 +122,24 @@ router.get('/board/:boardId', (req, res) => {
   });
 });
 
+router.get('/board/delete/:boardId', (req, res) => {
+  const boardId = req.params.boardId;
+
+  connection((db) => {
+    let dbInstance = db.db(dbName);
+    dbInstance.collection('Boards')
+      .deleteOne({
+        "boardId": boardId
+      })
+      .then((response) => {
+        res.json(response);
+      })
+      .catch((err) => {
+        sendError(err, res);
+      });
+  });
+});
+
 router.get('/users/all', (req, res) => {
   connection((db) => {
     let dbInstance = db.db(dbName);

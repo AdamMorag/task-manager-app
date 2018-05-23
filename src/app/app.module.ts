@@ -55,6 +55,8 @@ import { MyProfileComponent } from './Components/my-profile/my-profile.component
 import { EditEventDialogComponent } from './Dialogs/edit-event-dialog/edit-event-dialog.component';
 import { DeleteEventDialogComponent } from './Dialogs/delete-event-dialog/delete-event-dialog.component';
 import { DatetimePickerComponent } from './Others/datetime-picker/datetime-picker.component';
+import { DeleteBoardDialogComponent } from './Dialogs/delete-board-dialog/delete-board-dialog.component';
+import { EditBoardDialogComponent } from './Dialogs/edit-board-dialog/edit-board-dialog.component';
 
 // Services
 import { BoardsService } from "./Services/boards.service";
@@ -98,7 +100,9 @@ const providers = {
     EditEventDialogComponent,
     DeleteEventDialogComponent,
     DatetimePickerComponent,
-    MyProfileComponent
+    MyProfileComponent,
+    DeleteBoardDialogComponent,
+    EditBoardDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -150,7 +154,9 @@ const providers = {
     CreateBoardDialogComponent,
     CreateEventDialogComponent,
     EditEventDialogComponent,
-    DeleteEventDialogComponent
+    DeleteEventDialogComponent,
+    EditBoardDialogComponent,
+    DeleteBoardDialogComponent
   ],
   bootstrap: [AppComponent]
 })
