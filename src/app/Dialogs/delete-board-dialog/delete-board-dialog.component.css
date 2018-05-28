@@ -1,0 +1,11 @@
+.delete-board-container {
+    direction: rtl;
+}
+
+.dialog-actions {
+    direction: ltr;
+}
+
+button {
+  direction: rtl;
+}

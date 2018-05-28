@@ -4,6 +4,7 @@ import { trigger, state, style, transition, animate, keyframes } from "@angular/
 import { MatDialog } from '@angular/material/dialog';
 import { CreateBoardDialogComponent } from "../../Dialogs/create-board-dialog/create-board-dialog.component";
 import { MatSnackBar } from "@angular/material";
+import { DeleteBoardDialogComponent } from '../../Dialogs/delete-board-dialog/delete-board-dialog.component';
 
 @Component({
   selector: 'app-my-boards',
@@ -33,8 +34,8 @@ export class MyBoardsComponent implements OnInit {
   public loadingBoardsIManage: boolean = true;
   public loadingBoardsImSharedWith: boolean = true;
 
-  public boardsIManage: any = [];
-  public boardsImShared: any = [];
+  public boardsIManage: any[] = [];
+  public boardsImShared: any[] = [];
 
   // For animations
   public next: number = 0;
@@ -76,6 +77,29 @@ export class MyBoardsComponent implements OnInit {
               duration: 300
             });
           });
+      }
+    });
+  }
+
+  public openDeleteBoardDialog(boardId: string) {
+    this.dialog.open(DeleteBoardDialogComponent).afterClosed().subscribe((shouldDelete) => {
+      if (shouldDelete) {
+        this.snackBar.open("מוחק לוח");
+        this._boardsService.deleteBoard(boardId).subscribe(wasDeleted => {
+          if (wasDeleted) {
+            this.snackBar.open("הלוח נמחק בהצלחה", undefined ,{
+              duration: 500,
+              direction: 'rtl'
+            });
+            const i = this.boardsIManage.findIndex(b => b.boardId === boardId);
+            this.boardsIManage.splice(i, 1);
+          } else {
+            this.snackBar.open("התרחשה שגיאה", undefined ,{
+              duration: 500,
+              direction: 'rtl'
+            })
+          }
+        })
       }
     });
   }

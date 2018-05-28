@@ -12,6 +12,7 @@
         <mat-card-title>{{board.title}}</mat-card-title>
         <mat-card-actions>
             <button mat-raised-button color="primary" [routerLink]="['/board', board.boardId]" class="primary-color-hover"><span class="fa fa-edit"></span> נהל לוח</button>
+            <div class="button" (click)="openDeleteBoardDialog(board.boardId)"><span class="fa fa-trash"></span></div>
           </mat-card-actions>
       </mat-card>
     </div>
