@@ -35,6 +35,10 @@ mat-progress-bar {
   margin-right: 5px;
 }
 
+.button {
+  cursor: pointer;
+}
+
 .member-img {
   height: 16px;
   width: 16px;

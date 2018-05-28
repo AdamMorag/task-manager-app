@@ -274,6 +274,24 @@ router.post('/updateTask', (req, res) => {
   });
 });
 
+router.post('/updateBoard', (req, res) => {
+  const board = req.body
+  delete board._id;
+
+  connection((db) => {
+    let dbInstance = db.db(dbName);
+    dbInstance.collection('Boards').updateOne(
+      { "boardId": board.boardId },
+      { "$set": board }
+    ).then((board) => {
+      res.status(200).json({});
+    })
+      .catch((err) => {
+        sendError(err, res);
+      });
+  });
+});
+
 router.post('/updateUser', (req, res) => {
   const user = req.body
 

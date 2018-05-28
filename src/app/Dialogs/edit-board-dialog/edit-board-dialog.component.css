@@ -1,0 +1,36 @@
+
+
+.create-boards-container {
+    direction: rtl;
+}
+
+.dialog-actions {
+    direction: ltr;
+}
+
+input {
+    width: 100%;
+}
+
+mat-nav-list {
+    width: 50%;
+}
+
+.board-members {
+    display: flex;
+}
+
+.member-img {
+  height: 16px;
+  width: 16px;
+  margin-left: 10px;
+  border-radius: 50%;
+}
+
+.cancel-member-button {
+    margin-right: 5px;
+}
+
+button {
+  direction: rtl;
+}

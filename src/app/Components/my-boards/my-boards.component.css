@@ -35,3 +35,18 @@ button {
     margin-top: 15px;
     direction: rtl;
 }
+
+.button {
+  cursor: pointer;
+}
+
+.actions-container {
+  display: flex;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.actions-container .button {
+  margin-right: 5px;
+}

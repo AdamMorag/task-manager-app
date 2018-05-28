@@ -1,3 +1,62 @@
-<p>
-  edit-board-dialog works!
-</p>
+<div class="create-boards-container">
+  <h1 mat-dialog-title>עריכת לוח</h1>
+  <form mat-dialog-content>
+    <section>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="שם לוח" [formControl]="boardName">
+        <mat-error *ngIf="boardName.hasError('required')">
+          שם לוח הוא שדה חובה
+        </mat-error>
+      </mat-form-field>
+    </section>
+    <section>
+      <mat-form-field>
+        <input matInput [matDatepicker]="start" placeholder="תאריך תחילה" [formControl]="startDate" [max]=endDate.value>
+        <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+        <mat-datepicker #start></mat-datepicker>
+        <mat-error *ngIf="startDate.hasError('required')">
+          תאריך תחילה הוא שדה חובה
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [matDatepicker]="end" placeholder="תאריך סיום" [formControl]="endDate" [min]="startDate.value">
+        <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+        <mat-datepicker #end></mat-datepicker>
+        <mat-error *ngIf="endDate.hasError('required')">
+          תאריך סיום הוא שדה חובה
+        </mat-error>
+      </mat-form-field>
+    </section>
+    <section class="board-members">
+      <mat-form-field>
+        <input type="text" placeholder="בחר משתמש" aria-label="Number" matInput [formControl]="selectBoardMemebrs" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="addMember($event)" [displayWith]="displayFn">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            <img *ngIf="option.image !== undefined" [src]="option.image" class="ember-img">
+            <img *ngIf="option.image === undefined" src="/assets/src/unknown.jpg" class="member-img">
+            {{ option.name }}
+          </mat-option>
+        </mat-autocomplete>
+        <mat-error *ngIf="boardMembers.length < 1">
+          חייב להיות לפחות חבר אחד בלוח
+        </mat-error>
+      </mat-form-field>
+      <mat-nav-list>
+        <a mat-list-item *ngFor="let member of boardMembers">
+          <img *ngIf="member.image !== undefined" [src]="member.image" class="member-img">
+          <img *ngIf="member.image === undefined" src="/assets/src/unknown.jpg" class="member-img">
+          {{ member.name }}
+          <img src="/assets/src/cancel.png" class="member-img cancel-member-button" (click)="removeMember(member)">
+        </a>
+      </mat-nav-list>
+    </section>
+  </form>
+    <div mat-dialog-actions class="dialog-actions">
+      <button mat-raised-button color="primary" class="primary-color-hover" [mat-dialog-close]="submitForm()" [disabled]="formIsValid()"><span class="fa fa-plus-circle"></span>
+        עדכן
+      </button>
+      <button mat-raised-button color="primary" class="primary-color-hover" (click)="cancelDialog()"><span class="fa fa-times-circle"></span>
+        ביטול
+      </button>
+    </div>
+</div>

@@ -3,8 +3,10 @@ import { BoardsService } from "../../Services/boards.service";
 import { trigger, state, style, transition, animate, keyframes } from "@angular/animations";
 import { MatDialog } from '@angular/material/dialog';
 import { CreateBoardDialogComponent } from "../../Dialogs/create-board-dialog/create-board-dialog.component";
-import { MatSnackBar } from "@angular/material";
 import { DeleteBoardDialogComponent } from '../../Dialogs/delete-board-dialog/delete-board-dialog.component';
+import { EditBoardDialogComponent } from '../../Dialogs/edit-board-dialog/edit-board-dialog.component';
+import { MatSnackBar } from "@angular/material";
+import { Board } from '../../Objects/Board';
 
 @Component({
   selector: 'app-my-boards',
@@ -100,6 +102,34 @@ export class MyBoardsComponent implements OnInit {
             })
           }
         })
+      }
+    });
+  }
+
+  public openEditBoardDialog(board: Board) {
+    let editDialog = this.dialog.open(EditBoardDialogComponent, {
+      data: JSON.parse(JSON.stringify(board))
+    });
+
+    editDialog.afterClosed().subscribe((result: Board) => {
+      if (result) {
+        this.snackBar.open('מעדכן לוח', undefined, {
+          direction: 'rtl'
+        });
+
+        this._boardsService.updateBoard(result).subscribe(() => {
+          Object.assign(board, result);
+          this.snackBar.open('לוח עודכן בהצלחה', undefined, {
+            direction: 'rtl',
+            duration: 300
+          });
+        }, (err) => {
+          this.snackBar.open('התרחשה שגיאה בזמן עדכון הלוח', undefined, {
+            direction: 'rtl',
+            duration: 300
+          });
+          console.log(err);
+        });
       }
     });
   }
