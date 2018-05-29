@@ -289,6 +289,14 @@ router.post('/updateBoard', (req, res) => {
       .catch((err) => {
         sendError(err, res);
       });
+
+    dbInstance.collection('Boards').update(
+      { "tasks.boardId": board.boardId },
+      { "$set": { "tasks.$[elem].boardName": board.title } },
+      { "arrayFilters": [{ "elem.boardId": board.boardId }], "multi": true }
+    ).then((owner) => {
+      console.log("tasks updates");
+    });
   });
 });
 

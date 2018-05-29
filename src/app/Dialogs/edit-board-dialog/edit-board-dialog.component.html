@@ -32,7 +32,7 @@
         <input type="text" placeholder="בחר משתמש" aria-label="Number" matInput [formControl]="selectBoardMemebrs" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="addMember($event)" [displayWith]="displayFn">
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-            <img *ngIf="option.image !== undefined" [src]="option.image" class="ember-img">
+            <img *ngIf="option.image !== undefined" [src]="option.image" class="member-img">
             <img *ngIf="option.image === undefined" src="/assets/src/unknown.jpg" class="member-img">
             {{ option.name }}
           </mat-option>
