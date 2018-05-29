@@ -1,74 +1,6 @@
 { 
-    "_id" : ObjectId("5ab7b8c631b55d324cc44cc4"), 
-    "title" : "פז בדיקה", 
-    "startDate" : ISODate("2018-03-25T14:55:50.645+0000"), 
-    "endDate" : ISODate("2018-03-25T14:55:50.645+0000"), 
-    "boardMembers" : [
-        {
-            "name" : "פז אשרף", 
-            "image" : "https://lh5.googleusercontent.com/-9aJopvbyQ8k/AAAAAAAAAAI/AAAAAAAAABM/NUJJFpxgd2A/s96-c/photo.jpg", 
-            "color" : "#0080ff", 
-            "uid" : "100744793220693249709"
-        }
-    ], 
-    "tasks" : [
-        {
-            "taskId" : "89dc1b46-c930-4e54-8259-583501572b04", 
-            "title" : "חשוב מאוד", 
-            "boardName" : "פז בדיקה", 
-            "boardId" : "3ffd7935-eb5c-4e9d-9ad4-a353771cfc42", 
-            "owner" : {
-                "name" : "פז אשרף", 
-                "image" : "https://lh5.googleusercontent.com/-9aJopvbyQ8k/AAAAAAAAAAI/AAAAAAAAABM/NUJJFpxgd2A/s96-c/photo.jpg", 
-                "color" : "#0080ff", 
-                "uid" : "100744793220693249709"
-            }, 
-            "status" : "done", 
-            "overallTime" : NumberInt(5), 
-            "remainingTime" : NumberInt(5)
-        }, 
-        {
-            "taskId" : "0ceafd0e-845c-4df0-a190-c8e1d2f8d7b9", 
-            "title" : "דחוף", 
-            "boardName" : "פז בדיקה", 
-            "boardId" : "3ffd7935-eb5c-4e9d-9ad4-a353771cfc42", 
-            "owner" : {
-                "name" : "פז אשרף", 
-                "image" : "https://lh5.googleusercontent.com/-9aJopvbyQ8k/AAAAAAAAAAI/AAAAAAAAABM/NUJJFpxgd2A/s96-c/photo.jpg", 
-                "color" : "#0080ff", 
-                "uid" : "100744793220693249709"
-            }, 
-            "status" : "active", 
-            "overallTime" : NumberInt(2), 
-            "remainingTime" : NumberInt(1)
-        }, 
-        {
-            "taskId" : "95bcafed-2bb0-4fa4-acce-7d4b11970070", 
-            "title" : "משימה חשובה", 
-            "boardName" : "פז בדיקה", 
-            "boardId" : "3ffd7935-eb5c-4e9d-9ad4-a353771cfc42", 
-            "owner" : {
-                "name" : "פז אשרף", 
-                "image" : "https://lh5.googleusercontent.com/-9aJopvbyQ8k/AAAAAAAAAAI/AAAAAAAAABM/NUJJFpxgd2A/s96-c/photo.jpg", 
-                "color" : "#0080ff", 
-                "uid" : "100744793220693249709"
-            }, 
-            "status" : "waiting", 
-            "overallTime" : NumberInt(4), 
-            "remainingTime" : NumberInt(4)
-        }
-    ], 
-    "boardOwner" : {
-        "name" : "פז אשרף", 
-        "image" : "https://lh5.googleusercontent.com/-9aJopvbyQ8k/AAAAAAAAAAI/AAAAAAAAABM/NUJJFpxgd2A/s96-c/photo.jpg", 
-        "color" : "#0080ff", 
-        "uid" : "100744793220693249709"
-    }, 
-    "boardId" : "3ffd7935-eb5c-4e9d-9ad4-a353771cfc42"
-}
-{ 
     "_id" : ObjectId("5ae1e7bdcb52be6748ddc03d"), 
-    "title" : "לוח חשוב", 
+    "title" : "הצעה לפרוייקט", 
     "startDate" : "2018-04-26T14:52:31.410Z", 
     "endDate" : "2018-04-26T14:52:31.410Z", 
     "boardMembers" : [
@@ -78,18 +10,18 @@
             "color" : "#0080ff", 
             "uid" : "100744793220693249709"
         }, 
-        { 
-			"uid" : "114421445712031526338", 
-			"name" : "Adam Morag", 
-			"image" : "https://lh6.googleusercontent.com/-eEIXgdBvoaU/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWDfcjGSgJevfG9A1GHHAP9X2ULYvg/s96-c/photo.jpg", 
-			"color" : "#fa050c"
-		}
+        {
+            "name" : "יובל רון", 
+            "image" : "https://lh6.googleusercontent.com/-o5-HGty5oSA/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWAQkFlAKJvLhT5Zs5NZkR_uaCPAbQ/s96-c/photo.jpg", 
+            "color" : "#ff80ff", 
+            "uid" : "104602684129680002327"
+        }
     ], 
     "tasks" : [
         {
             "taskId" : "1ca87647-6dc0-4491-af6f-beb4b07ea490", 
-            "title" : "ללכת לשגב", 
-            "boardName" : "לוח חשוב", 
+            "title" : "לנסח הצדקה אקדמאית", 
+            "boardName" : "הצעה לפרוייקט", 
             "boardId" : "b1652692-454a-4f76-b337-d3c38e879037", 
             "owner" : {
                 "name" : "פז אשרף", 
@@ -112,7 +44,7 @@
 }
 { 
     "_id" : ObjectId("5ae882f3ccecae23a405e4db"), 
-    "title" : "הלוח שלי", 
+    "title" : "עיצוב פוסטר", 
     "startDate" : "2018-05-01T15:08:12.422Z", 
     "endDate" : "2018-05-01T15:08:12.422Z", 
     "boardMembers" : [
@@ -121,25 +53,13 @@
             "image" : "https://lh5.googleusercontent.com/-9aJopvbyQ8k/AAAAAAAAAAI/AAAAAAAAABM/NUJJFpxgd2A/s96-c/photo.jpg", 
             "color" : "#0080ff", 
             "uid" : "100744793220693249709"
-        }, 
-        { 
-			"uid" : "114421445712031526338", 
-			"name" : "Adam Morag", 
-			"image" : "https://lh6.googleusercontent.com/-eEIXgdBvoaU/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWDfcjGSgJevfG9A1GHHAP9X2ULYvg/s96-c/photo.jpg", 
-			"color" : "#fa050c"
-		}, 
-        { 
-			"uid" : "106829557185653587254", 
-			"name" : "Adi Elbaz", 
-			"image" : "https://lh5.googleusercontent.com/-7reWPgn3GIY/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWDiMN-MYrSxE0_r53onhAmS4_E35w/s96-c/photo.jpg", 
-			"color" : "#ff9a35"
-		}
+        }
     ], 
     "tasks" : [
         {
             "taskId" : "1de715b1-dd87-45a1-accc-7ba68ed8d463", 
-            "title" : "חשוב לבצע", 
-            "boardName" : "הלוח שלי", 
+            "title" : "לעצב לוגו לפרוייקט", 
+            "boardName" : "עיצוב פוסטר", 
             "boardId" : "d5dbc783-af98-415c-8094-dee7391927d4", 
             "owner" : {
                 "name" : "פז אשרף", 
@@ -147,7 +67,7 @@
                 "color" : "#0080ff", 
                 "uid" : "100744793220693249709"
             }, 
-            "status" : "waiting", 
+            "status" : "active", 
             "overallTime" : NumberInt(5), 
             "remainingTime" : NumberInt(2)
         }
@@ -162,55 +82,112 @@
 }
 { 
     "_id" : ObjectId("5af2ed6e7b864b3328ceed15"), 
-    "title" : "כולנו", 
+    "title" : "משימות פיתוח", 
     "startDate" : "2018-05-09T21:00:00.000Z", 
     "endDate" : "2018-05-10T21:00:00.000Z", 
     "boardMembers" : [
-        { 
-			"uid" : "106829557185653587254", 
-			"name" : "Adi Elbaz", 
-			"image" : "https://lh5.googleusercontent.com/-7reWPgn3GIY/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWDiMN-MYrSxE0_r53onhAmS4_E35w/s96-c/photo.jpg", 
-			"color" : "#ff9a35"
-		}, 
+        {
+            "uid" : "106829557185653587254", 
+            "name" : "Adi Elbaz", 
+            "image" : "https://lh5.googleusercontent.com/-7reWPgn3GIY/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWDiMN-MYrSxE0_r53onhAmS4_E35w/s96-c/photo.jpg", 
+            "color" : "#ff9a35"
+        }, 
         {
             "name" : "Adam Morag", 
             "image" : "https://lh6.googleusercontent.com/-eEIXgdBvoaU/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWDfcjGSgJevfG9A1GHHAP9X2ULYvg/s96-c/photo.jpg", 
-            "uid" : "114421445712031526338",
-			"color" : "#fa050c"
+            "uid" : "114421445712031526338", 
+            "color" : "#fa050c"
         }, 
         {
             "name" : "יובל רון", 
             "image" : "https://lh6.googleusercontent.com/-o5-HGty5oSA/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWAQkFlAKJvLhT5Zs5NZkR_uaCPAbQ/s96-c/photo.jpg", 
-            "uid" : "104602684129680002327",
-			"color" : "#ff80ff"
+            "uid" : "104602684129680002327", 
+            "color" : "#ff80ff"
         }, 
         {
             "name" : "פז אשרף", 
             "image" : "https://lh5.googleusercontent.com/-9aJopvbyQ8k/AAAAAAAAAAI/AAAAAAAAABM/NUJJFpxgd2A/s96-c/photo.jpg", 
             "color" : "#0080ff", 
             "uid" : "100744793220693249709"
+        }, 
+        {
+            "name" : "רועי חדש", 
+            "image" : "https://lh4.googleusercontent.com/-hmsHAdkHVEI/AAAAAAAAAAI/AAAAAAAAAA4/niDIPg30IBU/s96-c/photo.jpg", 
+            "color" : "#00c161", 
+            "uid" : "113249740494246978925"
         }
     ], 
     "tasks" : [
         {
-            "taskId" : "1d9e5086-6b06-426d-b31d-504728510a25", 
-            "title" : "בוא נעבוד", 
-            "boardName" : "כולנו", 
             "boardId" : "0c8e7e4c-c945-4a3d-bae8-922c3f0b050d", 
+            "taskId" : "1d9e5086-6b06-426d-b31d-504728510a25", 
+            "title" : "דיאלוג הוספת לוח", 
+            "boardName" : "משימות פיתוח", 
+            "status" : "waiting", 
+            "overallTime" : NumberInt(5), 
+            "remainingTime" : NumberInt(1), 
+            "owner" : {
+                "uid" : "106829557185653587254", 
+                "name" : "Adi Elbaz", 
+                "image" : "https://lh5.googleusercontent.com/-7reWPgn3GIY/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWDiMN-MYrSxE0_r53onhAmS4_E35w/s96-c/photo.jpg", 
+                "color" : "#ff9a35"
+            }, 
+            "startTime" : "2018-05-10T00:00:00+03:00", 
+            "endTime" : "2018-05-10T01:00:00+03:00"
+        }, 
+        {
+            "boardId" : "0c8e7e4c-c945-4a3d-bae8-922c3f0b050d", 
+            "taskId" : "577dde86-20fe-4acc-9c86-c070bc167ff3", 
+            "title" : "עיצוב המערכת", 
+            "boardName" : "משימות פיתוח", 
+            "status" : "active", 
+            "overallTime" : NumberInt(10), 
+            "remainingTime" : NumberInt(3), 
+            "owner" : {
+                "name" : "יובל רון", 
+                "image" : "https://lh6.googleusercontent.com/-o5-HGty5oSA/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWAQkFlAKJvLhT5Zs5NZkR_uaCPAbQ/s96-c/photo.jpg", 
+                "uid" : "104602684129680002327", 
+                "color" : "#ff80ff"
+            }, 
+            "startTime" : "2018-05-10T01:00:00+03:00", 
+            "endTime" : "2018-05-10T02:00:00+03:00"
+        }, 
+        {
+            "boardId" : "0c8e7e4c-c945-4a3d-bae8-922c3f0b050d", 
+            "taskId" : "51b0dd6a-dd18-4b8a-924f-38c44f4993e5", 
+            "title" : "עמוד לוז אישי", 
+            "boardName" : "משימות פיתוח", 
+            "status" : "done", 
+            "overallTime" : NumberInt(2), 
+            "remainingTime" : NumberInt(2), 
             "owner" : {
                 "name" : "Adam Morag", 
                 "image" : "https://lh6.googleusercontent.com/-eEIXgdBvoaU/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWDfcjGSgJevfG9A1GHHAP9X2ULYvg/s96-c/photo.jpg", 
-                "uid" : "114421445712031526338",
-				"color" : "#fa050c"
+                "uid" : "114421445712031526338", 
+                "color" : "#fa050c"
             }, 
-            "status" : "waiting", 
-            "overallTime" : NumberInt(5), 
+            "startTime" : "2018-05-10T00:00:00+03:00", 
+            "endTime" : "2018-05-10T02:00:00+03:00"
+        }, 
+        {
+            "taskId" : "7fba6f15-fa68-4689-9596-73dccad14e1e", 
+            "title" : "עמוד התחברות", 
+            "boardName" : "משימות פיתוח", 
+            "boardId" : "0c8e7e4c-c945-4a3d-bae8-922c3f0b050d", 
+            "owner" : {
+                "name" : "רועי חדש", 
+                "image" : "https://lh4.googleusercontent.com/-hmsHAdkHVEI/AAAAAAAAAAI/AAAAAAAAAA4/niDIPg30IBU/s96-c/photo.jpg", 
+                "color" : "#00c161", 
+                "uid" : "113249740494246978925"
+            }, 
+            "status" : "active", 
+            "overallTime" : NumberInt(1), 
             "remainingTime" : NumberInt(1)
         }, 
         {
-            "taskId" : "51b0dd6a-dd18-4b8a-924f-38c44f4993e5", 
-            "title" : "פז עושה", 
-            "boardName" : "כולנו", 
+            "taskId" : "f939146f-50af-4b29-8963-e2af03ba61d2", 
+            "title" : "הפרופיל שלי", 
+            "boardName" : "משימות פיתוח", 
             "boardId" : "0c8e7e4c-c945-4a3d-bae8-922c3f0b050d", 
             "owner" : {
                 "name" : "פז אשרף", 
@@ -219,21 +196,66 @@
                 "uid" : "100744793220693249709"
             }, 
             "status" : "active", 
+            "overallTime" : NumberInt(3), 
+            "remainingTime" : NumberInt(2)
+        }, 
+        {
+            "taskId" : "dc2fe759-5078-450f-a3ed-3d142a8d43d0", 
+            "title" : "מימוש אלגוריתם", 
+            "boardName" : "משימות פיתוח", 
+            "boardId" : "0c8e7e4c-c945-4a3d-bae8-922c3f0b050d", 
+            "owner" : {
+                "name" : "Adam Morag", 
+                "image" : "https://lh6.googleusercontent.com/-eEIXgdBvoaU/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWDfcjGSgJevfG9A1GHHAP9X2ULYvg/s96-c/photo.jpg", 
+                "uid" : "114421445712031526338", 
+                "color" : "#fa050c"
+            }, 
+            "status" : "waiting", 
+            "overallTime" : NumberInt(5), 
+            "remainingTime" : NumberInt(5)
+        }, 
+        {
+            "taskId" : "8be47814-881e-43e2-adff-20e1c123b25e", 
+            "title" : "חיבור אלגוריתם לclient", 
+            "boardName" : "משימות פיתוח", 
+            "boardId" : "0c8e7e4c-c945-4a3d-bae8-922c3f0b050d", 
+            "owner" : {
+                "name" : "פז אשרף", 
+                "image" : "https://lh5.googleusercontent.com/-9aJopvbyQ8k/AAAAAAAAAAI/AAAAAAAAABM/NUJJFpxgd2A/s96-c/photo.jpg", 
+                "color" : "#0080ff", 
+                "uid" : "100744793220693249709"
+            }, 
+            "status" : "waiting", 
             "overallTime" : NumberInt(2), 
             "remainingTime" : NumberInt(2)
         }, 
         {
-            "taskId" : "577dde86-20fe-4acc-9c86-c070bc167ff3", 
-            "title" : "יובל עושה", 
-            "boardName" : "כולנו", 
+            "taskId" : "19702df3-f68d-476a-a62c-2ab0696f64b4", 
+            "title" : "הצגת סטטיסטיקות לוח", 
+            "boardName" : "משימות פיתוח", 
             "boardId" : "0c8e7e4c-c945-4a3d-bae8-922c3f0b050d", 
             "owner" : {
-                "name" : "יובל רון", 
-                "image" : "https://lh6.googleusercontent.com/-o5-HGty5oSA/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWAQkFlAKJvLhT5Zs5NZkR_uaCPAbQ/s96-c/photo.jpg", 
-                "uid" : "104602684129680002327",
-				"color" : "#ff80ff"
+                "uid" : "106829557185653587254", 
+                "name" : "Adi Elbaz", 
+                "image" : "https://lh5.googleusercontent.com/-7reWPgn3GIY/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWDiMN-MYrSxE0_r53onhAmS4_E35w/s96-c/photo.jpg", 
+                "color" : "#ff9a35"
             }, 
             "status" : "active", 
+            "overallTime" : NumberInt(3), 
+            "remainingTime" : NumberInt(1)
+        }, 
+        {
+            "taskId" : "04b85793-8e8a-410c-87ea-c6b3ae310aa9", 
+            "title" : "דיאלוג הוספת משימה", 
+            "boardName" : "משימות פיתוח", 
+            "boardId" : "0c8e7e4c-c945-4a3d-bae8-922c3f0b050d", 
+            "owner" : {
+                "name" : "רועי חדש", 
+                "image" : "https://lh4.googleusercontent.com/-hmsHAdkHVEI/AAAAAAAAAAI/AAAAAAAAAA4/niDIPg30IBU/s96-c/photo.jpg", 
+                "color" : "#00c161", 
+                "uid" : "113249740494246978925"
+            }, 
+            "status" : "done", 
             "overallTime" : NumberInt(1), 
             "remainingTime" : NumberInt(1)
         }
@@ -245,4 +267,54 @@
         "uid" : "100744793220693249709"
     }, 
     "boardId" : "0c8e7e4c-c945-4a3d-bae8-922c3f0b050d"
+}
+{ 
+    "_id" : ObjectId("5b054f40142c6126740ab30b"), 
+    "title" : "כתיבת ספר פרוייקט", 
+    "startDate" : "2018-05-23T11:22:23.242Z", 
+    "endDate" : "2018-05-23T11:22:23.242Z", 
+    "boardMembers" : [
+        {
+            "name" : "Adam Morag", 
+            "image" : "https://lh6.googleusercontent.com/-eEIXgdBvoaU/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWDfcjGSgJevfG9A1GHHAP9X2ULYvg/s96-c/photo.jpg", 
+            "color" : "#fa050c", 
+            "uid" : "114421445712031526338"
+        }
+    ], 
+    "tasks" : [
+
+    ], 
+    "boardOwner" : {
+        "uid" : "100744793220693249709", 
+        "name" : "פז אשרף"
+    }, 
+    "boardId" : "df228e84-b5d4-4e12-ad6e-3a0afc3bb443"
+}
+{ 
+    "_id" : ObjectId("5b0d435dc549392a201d02db"), 
+    "title" : "פיתוח פרוייקט web", 
+    "startDate" : "2018-05-29T12:10:48.126Z", 
+    "endDate" : "2018-05-29T12:10:48.127Z", 
+    "boardMembers" : [
+        {
+            "name" : "פז אשרף", 
+            "image" : "https://lh5.googleusercontent.com/-9aJopvbyQ8k/AAAAAAAAAAI/AAAAAAAAABM/NUJJFpxgd2A/s96-c/photo.jpg", 
+            "color" : "#0080ff", 
+            "uid" : "100744793220693249709"
+        }, 
+        {
+            "name" : "Adam Morag", 
+            "image" : "https://lh6.googleusercontent.com/-eEIXgdBvoaU/AAAAAAAAAAI/AAAAAAAAAAA/ACLGyWDfcjGSgJevfG9A1GHHAP9X2ULYvg/s96-c/photo.jpg", 
+            "color" : "#fa050c", 
+            "uid" : "114421445712031526338"
+        }
+    ], 
+    "tasks" : [
+
+    ], 
+    "boardOwner" : {
+        "uid" : "114421445712031526338", 
+        "name" : "Adam Morag"
+    }, 
+    "boardId" : "d1e8166e-b39e-461e-b385-7003f18aa845"
 }
