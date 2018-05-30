@@ -224,7 +224,7 @@ export class BoardViewComponent implements OnInit, OnDestroy {
     this._boardService.assignBoardTasks(this.board.boardId).subscribe(board => {
       if (board) {
         this.snackBar.open('המשימות חולקו', undefined, { duration: 500, direction: 'rtl' });
-        this.board = board;
+        this.board.tasks = board.tasks;
       }
     }, (err) => {
       this.snackBar.open('התרחשה שגיאה בזמן חלוקת המשימות', undefined, { duration: 500, direction: 'rtl' })
