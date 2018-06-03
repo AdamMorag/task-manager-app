@@ -9,6 +9,12 @@
     <div class="cards-container">
       <mat-spinner *ngIf="loadingBoardsIManage"></mat-spinner>
       <mat-card [hidden]="loadingBoardsIManage" *ngFor="let board of boardsIManage">
+        <img *ngIf="board.categoryId === undefined" src="/assets/src/unknown.jpg" class="board-category-img">
+        <img *ngIf="board.categoryId === 1" src="/assets/src/suitcase.jpg" class="board-category-img">
+        <img *ngIf="board.categoryId === 2" src="/assets/src/development.png" class="board-category-img">
+        <img *ngIf="board.categoryId === 3" src="/assets/src/friends.jpg" class="board-category-img">
+        <img *ngIf="board.categoryId === 4" src="/assets/src/money.png" class="board-category-img">
+        <img *ngIf="board.categoryId === 5" src="/assets/src/others.png" class="board-category-img">
         <mat-card-title>{{board.title}}</mat-card-title>
         <mat-card-actions>
             <button mat-raised-button color="primary" [routerLink]="['/board', board.boardId]" class="primary-color-hover"><span class="fa fa-wrench"></span> נהל לוח</button>
@@ -27,6 +33,12 @@
       <mat-spinner *ngIf="loadingBoardsImSharedWith"></mat-spinner>
       <mat-card [hidden]="loadingBoardsImSharedWith" [@flyInOut] (@flyInOut.done)="doNext()"
       *ngFor="let board of staggeringboardsImShared">
+        <img *ngIf="board.categoryId === undefined" src="/assets/src/unknown.jpg" class="board-category-img">
+        <img *ngIf="board.categoryId === 1" src="/assets/src/suitcase.jpg" class="board-category-img">
+        <img *ngIf="board.categoryId === 2" src="/assets/src/development.png" class="board-category-img">
+        <img *ngIf="board.categoryId === 3" src="/assets/src/friends.jpg" class="board-category-img">
+        <img *ngIf="board.categoryId === 4" src="/assets/src/money.png" class="board-category-img">
+        <img *ngIf="board.categoryId === 5" src="/assets/src/others.png" class="board-category-img">
         <mat-card-title>{{board.title}}</mat-card-title>
         <mat-card-actions>
             <button mat-raised-button color="primary" [routerLink]="['/board', board.boardId]" class="primary-color-hover"><span class="fa fa-clipboard-list"></span> פתח לוח</button>

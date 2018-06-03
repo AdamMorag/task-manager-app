@@ -27,6 +27,13 @@ mat-nav-list {
   border-radius: 50%;
 }
 
+.category-img {
+  height: 16px;
+  width: 16px;
+  margin-left: 10px;
+  border-radius: 50%;
+}
+
 .cancel-member-button {
     margin-right: 5px;
 }

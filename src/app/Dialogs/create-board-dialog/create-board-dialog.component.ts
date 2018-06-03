@@ -31,6 +31,10 @@ export class CreateBoardDialogComponent implements OnInit {
     Validators.required
   ]);
 
+  categoryId: FormControl = new FormControl(new Number(), [
+    Validators.required
+  ]);
+
   boardMembers = [];
 
   options = [
@@ -76,6 +80,7 @@ export class CreateBoardDialogComponent implements OnInit {
       title: this.boardName.value,
       startDate: this.startDate.value,
       endDate: this.endDate.value,
+      categoryId: this.categoryId.value,
       boardMembers: this.boardMembers,
       tasks: [],
       // Once we have authntication get the real values
@@ -94,6 +99,7 @@ export class CreateBoardDialogComponent implements OnInit {
     return this.boardName.hasError('required') ||
       this.startDate.hasError('required') ||
       this.endDate.hasError('required') ||
+      this.categoryId.hasError('required') ||
       this.boardMembers.length === 0
   }
 

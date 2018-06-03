@@ -2,10 +2,37 @@
   <h1 mat-dialog-title>עריכת לוח</h1>
   <form mat-dialog-content>
     <section>
-      <mat-form-field class="example-full-width">
+      <mat-form-field>
         <input matInput placeholder="שם לוח" [formControl]="boardName">
         <mat-error *ngIf="boardName.hasError('required')">
           שם לוח הוא שדה חובה
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="בחר קטגוריה" [formControl]="categoryId">
+          <mat-option [value]="1">
+            <img src="/assets/src/suitcase.jpg" class="category-img">
+            נסיעות
+          </mat-option>
+          <mat-option [value]="2">
+            <img src="/assets/src/development.png" class="category-img">
+            פיתוח
+          </mat-option>
+          <mat-option [value]="3">
+            <img src="/assets/src/friends.jpg" class="category-img">
+            חברים
+          </mat-option>
+          <mat-option [value]="4">
+            <img src="/assets/src/money.png" class="category-img">
+            כספים
+          </mat-option>
+          <mat-option [value]="5">
+            <img src="/assets/src/others.png" class="category-img">
+            שונות
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="categoryId.hasError('required')">
+          חייב לבחור קטגוריה ללוח
         </mat-error>
       </mat-form-field>
     </section>

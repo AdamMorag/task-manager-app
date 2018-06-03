@@ -24,6 +24,8 @@ export class EditBoardDialogComponent implements OnInit {
 
   endDate: FormControl;
 
+  categoryId: FormControl;
+
   boardMembers = [];
 
   options = [
@@ -41,6 +43,10 @@ export class EditBoardDialogComponent implements OnInit {
     ]);
 
     this.selectBoardMemebrs = new FormControl(this.boardToUpdate.boardMembers, [
+    ]);
+
+    this.categoryId = new FormControl(this.boardToUpdate.categoryId, [
+      Validators.required
     ]);
 
     this.boardMembers = this.boardToUpdate.boardMembers;
@@ -94,6 +100,7 @@ export class EditBoardDialogComponent implements OnInit {
     return this.boardName.hasError('required') ||
       this.startDate.hasError('required') ||
       this.endDate.hasError('required') ||
+      this.categoryId.hasError('required') ||
       this.boardMembers.length === 0
   }
 
@@ -102,6 +109,7 @@ export class EditBoardDialogComponent implements OnInit {
     this.boardToUpdate.startDate = this.startDate.value;
     this.boardToUpdate.endDate = this.endDate.value;
     this.boardToUpdate.boardMembers = this.boardMembers;
+    this.boardToUpdate.categoryId = this.categoryId.value;
 
     return this.boardToUpdate;
   }
